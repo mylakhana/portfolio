@@ -1,0 +1,138 @@
+{
+  "personalInfo": {
+    "name": "Your Name",
+    "title": "Software Engineer",
+    "location": "City, Country",
+    "bio": "A brief, compelling paragraph about your professional self. What you're passionate about, your key skills, and what you're looking for in your next role.",
+    "profilePictureUrl": "https://placehold.co/400x400/EFEFEF/333333?text=YN",
+    "resumeUrl": "/path/to/your/resume.pdf",
+    "contact": {
+      "email": "your.email@example.com",
+      "phone": "+1 (555) 123-4567"
+    },
+    "socialLinks": {
+      "github": "https://github.com/yourusername",
+      "linkedin": "https://linkedin.com/in/yourusername",
+      "twitter": "https://twitter.com/yourusername",
+      "blog": "https://yourblog.com"
+    }
+  },
+  "clients": [
+    {
+      "id": "startup-co",
+      "name": "Startup Co.",
+      "industry": "Technology",
+      "website": "https://example.com",
+      "logoUrl": "/images/logo/alpha.svg"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Programming Languages",
+      "technologies": ["JavaScript (ES6+)", "TypeScript", "Python", "Go"]
+    },
+    {
+      "category": "Frameworks & Libraries",
+      "technologies": ["React", "Node.js", "Express", "Next.js", "Vue.js"]
+    },
+    {
+      "category": "Databases",
+      "technologies": ["PostgreSQL", "MongoDB", "Redis", "Firebase"]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "technologies": ["AWS", "Docker", "Kubernetes", "GitHub Actions", "Terraform"]
+    }
+  ],
+  "workExperience": [
+    {
+      "company": "Tech Solutions Inc.",
+      "jobTitle": "Senior Software Engineer",
+      "location": "San Francisco, CA",
+      "startDate": "Jan 2022",
+      "endDate": "Present",
+      "responsibilities": [
+        "Led the development of a new microservices-based architecture, improving system scalability by 40%.",
+        "Mentored junior developers, conducting code reviews and promoting best practices.",
+        "Engineered a real-time data processing pipeline using Kafka and Go."
+      ],
+      "technologiesUsed": ["Go", "Kafka", "PostgreSQL", "Docker", "AWS"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Project Alpha",
+      "clientId": "startup-co",
+      "isFeatured": true,
+      "logoUrl": "/images/logo/alpha.svg",
+      "coverImageUrl": "https://placehold.co/600x400/cccccc/333333?text=Project+Alpha",
+      "description": "A full-stack web application that solves a real-world problem. This project demonstrates skills in both frontend and backend development.",
+      "myRole": "Lead Developer",
+      "keyLearnings": "This project taught me the importance of robust state management in large-scale React applications and how to optimize database queries for performance under heavy load.",
+      "technologies": ["React", "Node.js", "PostgreSQL", "AWS S3"],
+      "links": {
+        "liveUrl": "https://project-alpha.com",
+        "githubUrl": "https://github.com/yourusername/project-alpha",
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Live",
+      "screenshots": [
+        "/images/screenshots/alpha-001.png"
+      ],
+      "html": null
+    }
+  ],
+  "codeSnippets": [
+    {
+      "title": "Custom React Hook for Fetching Data",
+      "description": "A reusable React hook that simplifies API calls by handling loading, error, and data states.",
+      "language": "javascript",
+      "code": "const useFetch = (url) => {\n  const [data, setData] = React.useState(null);\n  // ... rest of the hook implementation\n};",
+      "gistUrl": "https://gist.github.com/yourusername/12345abcde",
+      "screenshots": [
+        "/images/screenshots/alpha-001.png"
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "clientId": "startup-co",
+      "contactPerson": "Jane Doe",
+      "contactTitle": "CEO, Startup Co.",
+      "contactAvatarUrl": "https://placehold.co/100x100/EFEFEF/333333?text=JD",
+      "quote": "Working with [Your Name] was a game-changer. Their technical expertise and dedication to our project's success were outstanding. I can't recommend them enough.",
+      "projectName": "Project Alpha"
+    }
+  ],
+  "articles": [
+    {
+      "title": "Understanding Async/Await in JavaScript",
+      "publication": "My Personal Blog",
+      "date": "2023-08-15",
+      "url": "https://yourblog.com/async-await-deep-dive",
+      "description": "A deep dive into the mechanics of asynchronous JavaScript, explaining the event loop and how async/await simplifies writing asynchronous code."
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Technology",
+      "degree": "Bachelor of Science in Computer Science",
+      "location": "City, State",
+      "startDate": "Sep 2016",
+      "endDate": "May 2020",
+      "details": [
+        "Graduated Cum Laude",
+        "Relevant Coursework: Data Structures, Algorithms, Web Development"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Solutions Architect – Associate",
+      "issuingOrganization": "Amazon Web Services",
+      "date": "June 2022",
+      "credentialUrl": "https://www.credly.com/your-badge-url"
+    }
+  ]
+}
