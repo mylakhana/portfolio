@@ -112,6 +112,11 @@
       "status": "Live",
       "type": "Personal",
       "screenshots": ["/images/screenshots/alpha-001.png"],
+      "appScreenshots": [
+        "/images/screenshots/app/alpha-001.png",
+        "/images/screenshots/app/alpha-002.png",
+        "/images/screenshots/app/alpha-003.png"
+      ],
       "html": null
     }
   ],
