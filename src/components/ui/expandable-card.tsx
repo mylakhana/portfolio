@@ -85,7 +85,7 @@ export const ExpandableCard = ({ id, children, className }: ExpandableCardProps)
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-white rounded-3xl w-full max-w-6xl max-h-[90vh] overflow-y-auto shadow-2xl pointer-events-auto relative"
+                className="bg-white dark:bg-gray-900 rounded-3xl w-full max-w-6xl max-h-[90vh] overflow-y-auto shadow-2xl pointer-events-auto relative"
               >
                 {/* Close Button */}
                 <button
@@ -93,7 +93,7 @@ export const ExpandableCard = ({ id, children, className }: ExpandableCardProps)
                     e.stopPropagation();
                     setExpanded(null);
                   }}
-                  className="absolute top-6 right-6 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-900 hover:text-white transition-colors"
+                  className="absolute top-6 right-6 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-colors"
                   aria-label="Close"
                 >
                   <X className="w-5 h-5" />

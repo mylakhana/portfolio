@@ -42,16 +42,16 @@ export const AppScreenshot = ({ screenshots, projectTitle, className }: AppScree
     <div className={cn("w-full", className)}>
       <div className="flex flex-col md:flex-row gap-6 items-start">
         {/* Thumbnails */}
-        <div className="flex md:flex-col gap-3 overflow-x-auto md:overflow-y-auto pb-2 md:pb-0 order-2 md:order-1 w-full md:w-auto">
+        <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-y-auto pb-2 md:pb-0 order-2 md:order-1 w-full md:w-auto scrollbar-hide max-h-[400px] md:max-h-[500px]">
           {screenshots.map((screenshot, idx) => (
             <button
               key={idx}
               onClick={() => handleThumbnailClick(idx)}
               className={cn(
-                "flex-shrink-0 w-16 h-28 rounded-xl overflow-hidden border-2 transition-all duration-200",
+                "flex-shrink-0 w-12 h-20 rounded-lg overflow-hidden border-2 transition-all duration-200",
                 selectedIndex === idx
-                  ? "border-gray-900 shadow-lg scale-105"
-                  : "border-gray-200 hover:border-gray-400 opacity-60 hover:opacity-100"
+                  ? "border-gray-900 dark:border-white shadow-lg scale-105"
+                  : "border-gray-200 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 opacity-60 hover:opacity-100"
               )}
             >
               <img
@@ -98,10 +98,10 @@ export const AppScreenshot = ({ screenshots, projectTitle, className }: AppScree
 
         {/* Screenshot Info */}
         <div className="order-3 text-center md:text-left w-full md:w-auto">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             {selectedIndex + 1} / {screenshots.length}
           </p>
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
             Click thumbnails to view
           </p>
         </div>

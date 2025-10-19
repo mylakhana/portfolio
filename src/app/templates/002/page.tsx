@@ -13,6 +13,7 @@ import {
   CardExpanded,
 } from "@/components/ui/expandable-card";
 import { AppScreenshot } from "@/components/AppScreenshot";
+import { useTheme } from "@/providers/theme-provider";
 
 interface PortfolioData {
   personalInfo: {
@@ -141,6 +142,12 @@ const SocialIcon = ({ platform }: { platform: string }) => {
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
       );
+    case "instagram":
+      return (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg>
+      );
     case "blog":
       return (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -178,6 +185,7 @@ export default function Template002() {
   const [expandedSkill, setExpandedSkill] = useState<string | null>(null);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const { theme, resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => {
     fetch("/data.json")
@@ -214,8 +222,8 @@ export default function Template002() {
 
   if (!data) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse text-lg text-gray-400">Loading...</div>
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
+        <div className="animate-pulse text-lg text-gray-400 dark:text-gray-500">Loading...</div>
       </div>
     );
   }
@@ -235,8 +243,19 @@ export default function Template002() {
     }
   };
 
+  const toggleTheme = () => {
+    // Cycle through: system → light → dark → system
+    if (theme === "system") {
+      setTheme("light");
+    } else if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("system");
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300">
       {/* Floating Navigation */}
       <nav
         className={cn(
@@ -247,8 +266,8 @@ export default function Template002() {
         <div
           className={cn(
             "flex items-center gap-1 px-6 py-3 rounded-full",
-            "backdrop-blur-xl bg-white/70 shadow-lg shadow-black/5",
-            "border border-gray-200/50",
+            "backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 shadow-lg shadow-black/5",
+            "border border-gray-200/50 dark:border-gray-700/50",
             "transition-all duration-300"
           )}
         >
@@ -264,15 +283,40 @@ export default function Template002() {
               onClick={() => scrollToSection(item.id)}
               className={cn(
                 "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
-                "hover:bg-gray-100",
+                "hover:bg-gray-100 dark:hover:bg-gray-800",
                 activeSection === item.id
-                  ? "bg-gray-900 text-white hover:bg-gray-800"
-                  : "text-gray-600"
+                  ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100"
+                  : "text-gray-600 dark:text-gray-300"
               )}
             >
               {item.label}
             </button>
           ))}
+
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="ml-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            aria-label={`Switch to ${theme === "system" ? "light" : theme === "light" ? "dark" : "system"} theme`}
+            title={`Current: ${theme} (${resolvedTheme})`}
+          >
+            {theme === "system" ? (
+              // System/Auto icon
+              <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            ) : theme === "light" ? (
+              // Sun icon for light mode
+              <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+              </svg>
+            ) : (
+              // Moon icon for dark mode
+              <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+              </svg>
+            )}
+          </button>
         </div>
       </nav>
 
@@ -292,14 +336,14 @@ export default function Template002() {
           </CometCard>
 
           <div className="space-y-4">
-            <h1 className="text-6xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+            <h1 className="text-6xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent">
               {data.personalInfo.name}
             </h1>
-            <p className="text-lg text-gray-500">{data.personalInfo.surname}</p>
-            <p className="text-2xl md:text-3xl text-gray-600 font-light">
+            <p className="text-lg text-gray-500 dark:text-gray-400">{data.personalInfo.surname}</p>
+            <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 font-light">
               {data.personalInfo.title}
             </p>
-            <p className="text-lg text-gray-500 flex items-center justify-center gap-2">
+            <p className="text-lg text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
               <svg
                 className="w-5 h-5"
                 fill="none"
@@ -323,20 +367,20 @@ export default function Template002() {
             </p>
           </div>
 
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
             {data.personalInfo.bio}
           </p>
 
           <div className="flex items-center justify-center gap-4 pt-4">
             <a
               href={data.personalInfo.resumeUrl}
-              className="px-8 py-3 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition-colors shadow-lg shadow-gray-900/20"
+              className="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow-lg shadow-gray-900/20 dark:shadow-white/10"
             >
               Download Resume
             </a>
             <button
               onClick={() => scrollToSection("contact")}
-              className="px-8 py-3 border-2 border-gray-900 text-gray-900 rounded-full font-medium hover:bg-gray-50 transition-colors"
+              className="px-8 py-3 border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white rounded-full font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
             >
               Get in Touch
             </button>
@@ -351,7 +395,7 @@ export default function Template002() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-900 hover:text-white transition-all duration-200"
+                  className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-all duration-200"
                   title={platform}
                 >
                   <SocialIcon platform={platform} />
@@ -363,11 +407,11 @@ export default function Template002() {
       </section>
 
       {/* About Section - Skills */}
-      <section id="about" className="py-32 px-4 bg-gray-50">
+      <section id="about" className="py-32 px-4 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-4 mb-20">
-            <h2 className="text-5xl font-bold text-gray-900">Skills</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Skills</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">
               Technologies and tools I work with
             </p>
           </div>
@@ -385,15 +429,15 @@ export default function Template002() {
                         : skillGroup.category
                     )
                   }
-                  className="group bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer"
+                  className="group bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 cursor-pointer"
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-2xl font-semibold text-gray-900">
+                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
                       {skillGroup.category}
                     </h3>
                     <svg
                       className={cn(
-                        "w-6 h-6 text-gray-400 transition-transform duration-200",
+                        "w-6 h-6 text-gray-400 dark:text-gray-500 transition-transform duration-200",
                         expandedSkill === skillGroup.category && "rotate-180"
                       )}
                       fill="none"
@@ -414,7 +458,7 @@ export default function Template002() {
                     {techKeys.map((tech, idx) => (
                       <span
                         key={idx}
-                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-900 hover:text-white transition-colors"
+                        className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-colors"
                       >
                         {tech}
                       </span>
@@ -431,7 +475,7 @@ export default function Template002() {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <div className="space-y-4 pt-4 border-t border-gray-200">
+                        <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-600">
                           {Object.entries(skillGroup.technologies).map(
                             ([tech, level], idx) => {
                               const percentage = getProficiencyPercentage(level);
@@ -444,19 +488,19 @@ export default function Template002() {
                                   className="space-y-2"
                                 >
                                   <div className="flex items-center justify-between">
-                                    <span className="text-sm font-medium text-gray-900">
+                                    <span className="text-sm font-medium text-gray-900 dark:text-white">
                                       {tech}
                                     </span>
-                                    <span className="text-xs text-gray-500">
+                                    <span className="text-xs text-gray-500 dark:text-gray-400">
                                       {level}
                                     </span>
                                   </div>
-                                  <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
                                     <motion.div
                                       initial={{ width: 0 }}
                                       animate={{ width: `${percentage}%` }}
                                       transition={{ delay: idx * 0.1 + 0.2, duration: 0.8, ease: "easeOut" }}
-                                      className="bg-gray-900 h-2 rounded-full"
+                                      className="bg-gray-900 dark:bg-white h-2 rounded-full"
                                     />
                                   </div>
                                 </motion.div>
@@ -478,7 +522,7 @@ export default function Template002() {
       {data.clients && data.clients.length > 0 && (
         <section className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
-            <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h3 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
               Trusted by
             </h3>
             <div className="flex flex-wrap items-center justify-center gap-12">
@@ -506,17 +550,17 @@ export default function Template002() {
       <section id="experience" className="py-32 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center space-y-4 mb-20">
-            <h2 className="text-5xl font-bold text-gray-900">Experience</h2>
-            <p className="text-xl text-gray-600">My professional journey</p>
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Experience</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">My professional journey</p>
           </div>
 
           <div className="space-y-8">
             {data.workExperience.map((job, index) => (
               <div
                 key={index}
-                className="relative pl-8 pb-12 border-l-2 border-gray-200 last:pb-0"
+                className="relative pl-8 pb-12 border-l-2 border-gray-200 dark:border-gray-700 last:pb-0"
               >
-                <div className="absolute left-0 top-0 w-4 h-4 -translate-x-[9px] rounded-full bg-gray-900 ring-4 ring-white" />
+                <div className="absolute left-0 top-0 w-4 h-4 -translate-x-[9px] rounded-full bg-gray-900 dark:bg-white ring-4 ring-white dark:ring-gray-950" />
 
                 <div
                   onClick={() =>
@@ -524,20 +568,20 @@ export default function Template002() {
                       expandedExperience === index ? null : index
                     )
                   }
-                  className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer"
+                  className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 cursor-pointer"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                         {job.jobTitle}
                       </h3>
-                      <p className="text-lg text-gray-600 mt-1">
+                      <p className="text-lg text-gray-600 dark:text-gray-300 mt-1">
                         {job.companyUrl ? (
                           <a
                             href={job.companyUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline hover:text-gray-900"
+                            className="hover:underline hover:text-gray-900 dark:hover:text-white"
                             onClick={(e) => e.stopPropagation()}
                           >
                             {job.company}
@@ -548,24 +592,24 @@ export default function Template002() {
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">
                         {job.startDate} - {job.endDate}
                       </p>
-                      <p className="text-sm text-gray-500 mt-1">
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                         {job.location}
                       </p>
                     </div>
                   </div>
 
                   {/* Summary - Always visible */}
-                  <p className="text-gray-600 mb-4">{job.summary}</p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">{job.summary}</p>
 
                   {/* Technologies Used - Always visible */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {job.technologiesUsed.map((tech, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium"
+                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium"
                       >
                         {tech}
                       </span>
@@ -573,7 +617,7 @@ export default function Template002() {
                   </div>
 
                   {/* Expand indicator */}
-                  <div className="flex items-center gap-2 text-gray-500 text-sm">
+                  <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm">
                     <span>
                       {expandedExperience === index
                         ? "Show less"
@@ -607,10 +651,10 @@ export default function Template002() {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden mt-6"
                       >
-                        <div className="space-y-6 pt-6 border-t border-gray-200">
+                        <div className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-600">
                           {/* Responsibilities */}
                           <div>
-                            <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                               Key Responsibilities
                             </h4>
                             <ul className="space-y-3">
@@ -625,10 +669,10 @@ export default function Template002() {
                                     type: "spring",
                                     stiffness: 100
                                   }}
-                                  className="flex gap-3 text-gray-600"
+                                  className="flex gap-3 text-gray-600 dark:text-gray-300"
                                 >
                                   <svg
-                                    className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0"
+                                    className="w-5 h-5 text-gray-400 dark:text-gray-500 mt-0.5 flex-shrink-0"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -653,13 +697,13 @@ export default function Template002() {
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: job.responsibilities.length * 0.15 + 0.2, duration: 0.4 }}
                             >
-                              <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                                 Tech Stack
                               </h4>
                               <div className="space-y-3">
                                 {job.techStack.frontend && (
                                   <div>
-                                    <p className="text-sm font-medium text-gray-700 mb-2">
+                                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                       Frontend
                                     </p>
                                     <div className="flex flex-wrap gap-2">
@@ -676,7 +720,7 @@ export default function Template002() {
                                 )}
                                 {job.techStack.testing && (
                                   <div>
-                                    <p className="text-sm font-medium text-gray-700 mb-2">
+                                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                       Testing
                                     </p>
                                     <div className="flex flex-wrap gap-2">
@@ -707,33 +751,33 @@ export default function Template002() {
 
       {/* Education Section */}
       {data.education && data.education.length > 0 && (
-        <section className="py-32 px-4 bg-gray-50">
+        <section className="py-32 px-4 bg-gray-50 dark:bg-gray-900">
           <div className="max-w-5xl mx-auto">
             <div className="text-center space-y-4 mb-20">
-              <h2 className="text-5xl font-bold text-gray-900">Education</h2>
-              <p className="text-xl text-gray-600">Academic background</p>
+              <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Education</h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300">Academic background</p>
             </div>
 
             <div className="grid gap-6">
               {data.education.map((edu, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                         {edu.degree}
                       </h3>
-                      <p className="text-lg text-gray-600 mt-1">
+                      <p className="text-lg text-gray-600 dark:text-gray-300 mt-1">
                         {edu.institution}
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">
                         {edu.startDate} - {edu.endDate}
                       </p>
-                      <p className="text-sm text-gray-500 mt-1">
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                         {edu.location}
                       </p>
                     </div>
@@ -742,9 +786,9 @@ export default function Template002() {
                   {edu.details && edu.details.length > 0 && (
                     <ul className="space-y-2">
                       {edu.details.map((detail, idx) => (
-                        <li key={idx} className="flex gap-3 text-gray-600">
+                        <li key={idx} className="flex gap-3 text-gray-600 dark:text-gray-300">
                           <svg
-                            className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0"
+                            className="w-5 h-5 text-gray-400 dark:text-gray-500 mt-0.5 flex-shrink-0"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -772,8 +816,8 @@ export default function Template002() {
       <section id="projects" className="py-32 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-4 mb-20">
-            <h2 className="text-5xl font-bold text-gray-900">Projects</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Projects</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">
               Selected works and case studies
             </p>
           </div>
@@ -784,7 +828,7 @@ export default function Template002() {
                 <ExpandableCard key={index} id={`project-${index}`}>
                   {/* Card Thumbnail (Collapsed View) */}
                   <CardThumbnail>
-                    <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 h-full">
+                    <div className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full">
                       <div className="relative h-64 bg-gray-100 overflow-hidden">
                         <img
                           src={project.coverImageUrl}
@@ -802,10 +846,10 @@ export default function Template002() {
                       </div>
 
                       <div className="p-8">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                           {project.title}
                         </h3>
-                        <p className="text-gray-600 mb-6 line-clamp-3">
+                        <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3">
                           {project.description}
                         </p>
 
@@ -813,19 +857,19 @@ export default function Template002() {
                           {project.technologies.slice(0, 4).map((tech, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium"
+                              className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium"
                             >
                               {tech}
                             </span>
                           ))}
                           {project.technologies.length > 4 && (
-                            <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">
+                            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium">
                               +{project.technologies.length - 4} more
                             </span>
                           )}
                         </div>
 
-                        <button className="w-full px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-medium hover:bg-gray-800 transition-colors">
+                        <button className="w-full px-4 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors">
                           View Details
                         </button>
                       </div>
@@ -867,23 +911,23 @@ export default function Template002() {
                       <div className="lg:col-span-2 space-y-8">
                         {/* Description */}
                         <div>
-                          <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                          <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
                             About the Project
                           </h3>
-                          <p className="text-gray-600 leading-relaxed text-lg">
+                          <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
                             {project.description}
                           </p>
                         </div>
 
                         {/* Key Learnings - Full Width */}
-                        <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100">
-                          <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 rounded-2xl p-6 border border-blue-100 dark:border-blue-900">
+                          <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                             <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                             </svg>
                             Key Learnings
                           </h4>
-                          <p className="text-gray-700 leading-relaxed">
+                          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                             {project.keyLearnings}
                           </p>
                         </div>
@@ -891,7 +935,7 @@ export default function Template002() {
                         {/* Mobile App Screenshots */}
                         {project.appScreenshots && project.appScreenshots.length > 0 && (
                           <div>
-                            <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
                               Mobile Experience
                             </h3>
                             <AppScreenshot
@@ -905,25 +949,25 @@ export default function Template002() {
                       {/* Sidebar - 1 column */}
                       <div className="space-y-6">
                         {/* My Role - Compact Badge Style */}
-                        <div className="bg-gray-50 rounded-2xl p-4 border-l-4 border-gray-900">
-                          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
+                        <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border-l-4 border-gray-900 dark:border-white">
+                          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
                             My Role
                           </p>
-                          <p className="text-lg font-bold text-gray-900">
+                          <p className="text-lg font-bold text-gray-900 dark:text-white">
                             {project.myRole}
                           </p>
                         </div>
 
                         {/* Technologies */}
-                        <div className="bg-gray-50 rounded-2xl p-6">
-                          <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                        <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+                          <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                             Technologies
                           </h4>
                           <div className="flex flex-wrap gap-2">
                             {project.technologies.map((tech, idx) => (
                               <span
                                 key={idx}
-                                className="px-3 py-1.5 bg-white text-gray-700 rounded-full text-xs font-medium border border-gray-200"
+                                className="px-3 py-1.5 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium border border-gray-200 dark:border-gray-600"
                               >
                                 {tech}
                               </span>
@@ -932,8 +976,8 @@ export default function Template002() {
                         </div>
 
                         {/* Project Links */}
-                        <div className="bg-gray-50 rounded-2xl p-6">
-                          <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                        <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+                          <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                             Links
                           </h4>
                           <div className="space-y-3">
@@ -1016,8 +1060,8 @@ export default function Template002() {
 
                         {/* Client Info */}
                         {project.clientId && data.clients && (
-                          <div className="bg-gray-50 rounded-2xl p-6">
-                            <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                          <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                               Client
                             </h4>
                             {(() => {
@@ -1030,7 +1074,7 @@ export default function Template002() {
                                     href={client.website}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex flex-col items-center gap-3 p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors border border-gray-200 text-center"
+                                    className="flex flex-col items-center gap-3 p-4 bg-white dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors border border-gray-200 dark:border-gray-600 text-center"
                                   >
                                     <img
                                       src={client.logoUrl}
@@ -1038,10 +1082,10 @@ export default function Template002() {
                                       className="h-16 w-auto"
                                     />
                                     <div>
-                                      <p className="font-bold text-gray-900 text-lg">
+                                      <p className="font-bold text-gray-900 dark:text-white text-lg">
                                         {client.name}
                                       </p>
-                                      <p className="text-sm text-gray-500">
+                                      <p className="text-sm text-gray-500 dark:text-gray-400">
                                         {client.industry}
                                       </p>
                                     </div>
@@ -1055,8 +1099,8 @@ export default function Template002() {
 
                         {/* Web Screenshots - Peek at the Pixels */}
                         {project.screenshots && project.screenshots.length > 0 && (
-                          <div className="bg-gray-50 rounded-2xl p-6">
-                            <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                          <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                               Peek at the Pixels
                             </h4>
                             <PhotoProvider maskOpacity={0.5}>
@@ -1066,7 +1110,7 @@ export default function Template002() {
                                     <img
                                       src={screenshot}
                                       alt={`${project.title} screenshot ${idx + 1}`}
-                                      className="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity border border-gray-200"
+                                      className="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity border border-gray-200 dark:border-gray-600"
                                     />
                                   </PhotoView>
                                 ))}
@@ -1086,13 +1130,13 @@ export default function Template002() {
 
       {/* Code Snippets Section */}
       {data.codeSnippets && data.codeSnippets.length > 0 && (
-        <section className="py-32 px-4 bg-gray-50">
+        <section className="py-32 px-4 bg-gray-50 dark:bg-gray-900">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-20">
-              <h2 className="text-5xl font-bold text-gray-900">
+              <h2 className="text-5xl font-bold text-gray-900 dark:text-white">
                 Code Snippets
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-gray-600 dark:text-gray-300">
                 Reusable solutions and utilities
               </p>
             </div>
@@ -1114,22 +1158,22 @@ export default function Template002() {
                 {data.codeSnippets.map((snippet, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
+                    className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                           {snippet.title}
                         </h3>
-                        <p className="text-gray-600">{snippet.description}</p>
+                        <p className="text-gray-600 dark:text-gray-300">{snippet.description}</p>
                       </div>
-                      <span className="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">
+                      <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">
                         {snippet.language}
                       </span>
                     </div>
 
-                    <div className="bg-gray-900 rounded-2xl p-6 overflow-x-auto mb-4">
-                      <pre className="text-sm text-gray-100 font-mono">
+                    <div className="bg-gray-900 dark:bg-gray-950 rounded-2xl p-6 overflow-x-auto mb-4">
+                      <pre className="text-sm text-gray-100 dark:text-gray-200 font-mono">
                         <code>{snippet.code}</code>
                       </pre>
                     </div>
@@ -1154,7 +1198,7 @@ export default function Template002() {
                         href={snippet.gistUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block text-gray-900 font-medium text-sm hover:underline"
+                        className="inline-block text-gray-900 dark:text-white font-medium text-sm hover:underline"
                       >
                         View on GitHub Gist →
                       </a>
@@ -1172,10 +1216,10 @@ export default function Template002() {
         <section className="py-32 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-20">
-              <h2 className="text-5xl font-bold text-gray-900">
+              <h2 className="text-5xl font-bold text-gray-900 dark:text-white">
                 Testimonials
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-gray-600 dark:text-gray-300">
                 What people say about working with me
               </p>
             </div>
@@ -1184,7 +1228,7 @@ export default function Template002() {
               {data.testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
                 >
                   <div className="flex items-start gap-4 mb-6">
                     <img
@@ -1193,19 +1237,19 @@ export default function Template002() {
                       className="w-16 h-16 rounded-full"
                     />
                     <div>
-                      <p className="font-semibold text-gray-900">
+                      <p className="font-semibold text-gray-900 dark:text-white">
                         {testimonial.contactPerson}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
                         {testimonial.contactTitle}
                       </p>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                         Re: {testimonial.projectName}
                       </p>
                     </div>
                   </div>
 
-                  <blockquote className="text-gray-600 italic leading-relaxed">
+                  <blockquote className="text-gray-600 dark:text-gray-300 italic leading-relaxed">
                     "{testimonial.quote}"
                   </blockquote>
                 </div>
@@ -1217,11 +1261,11 @@ export default function Template002() {
 
       {/* Articles Section */}
       {data.articles && data.articles.length > 0 && (
-        <section className="py-32 px-4 bg-gray-50">
+        <section className="py-32 px-4 bg-gray-50 dark:bg-gray-900">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-20">
-              <h2 className="text-5xl font-bold text-gray-900">Articles</h2>
-              <p className="text-xl text-gray-600">
+              <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Articles</h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300">
                 Thoughts and technical writings
               </p>
             </div>
@@ -1233,24 +1277,24 @@ export default function Template002() {
                   href={article.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group"
+                  className="block bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 group"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-gray-600 transition-colors">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
                         {article.title}
                       </h3>
-                      <p className="text-gray-600 mb-4">
+                      <p className="text-gray-600 dark:text-gray-300 mb-4">
                         {article.description}
                       </p>
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                      <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                         <span>{article.publication}</span>
                         <span>•</span>
                         <span>{article.date}</span>
                       </div>
                     </div>
                     <svg
-                      className="w-6 h-6 text-gray-400 group-hover:text-gray-900 group-hover:translate-x-1 transition-all flex-shrink-0"
+                      className="w-6 h-6 text-gray-400 dark:text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white group-hover:translate-x-1 transition-all flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -1275,10 +1319,10 @@ export default function Template002() {
         <section className="py-32 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-20">
-              <h2 className="text-5xl font-bold text-gray-900">
+              <h2 className="text-5xl font-bold text-gray-900 dark:text-white">
                 Certifications
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-gray-600 dark:text-gray-300">
                 Professional credentials and achievements
               </p>
             </div>
@@ -1290,15 +1334,15 @@ export default function Template002() {
                   href={cert.credentialUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group"
+                  className="block bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 group"
                 >
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-gray-600 transition-colors">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
                     {cert.name}
                   </h3>
-                  <p className="text-gray-600 mb-2">
+                  <p className="text-gray-600 dark:text-gray-300 mb-2">
                     {cert.issuingOrganization}
                   </p>
-                  <p className="text-sm text-gray-500">{cert.date}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{cert.date}</p>
                 </a>
               ))}
             </div>
@@ -1307,19 +1351,19 @@ export default function Template002() {
       )}
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-4 bg-gray-50">
+      <section id="contact" className="py-32 px-4 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-4xl mx-auto text-center">
           <div className="space-y-4 mb-12">
-            <h2 className="text-5xl font-bold text-gray-900">Get in Touch</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Get in Touch</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">
               Let's work together on your next project
             </p>
           </div>
 
           <CometCard>
-            <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 w-full max-w-4xl mx-auto overflow-hidden">
+            <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 dark:border-gray-700 w-full max-w-4xl mx-auto overflow-hidden">
               {/* Subtle background gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-3xl opacity-40" />
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-blue-950 dark:via-purple-950 dark:to-pink-950 rounded-3xl opacity-40" />
 
               <div className="relative space-y-10">
                 {/* Header with decorative element */}
@@ -1339,8 +1383,8 @@ export default function Template002() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Let's Connect</h3>
-                  <p className="text-gray-600 max-w-md mx-auto">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Let's Connect</h3>
+                  <p className="text-gray-600 dark:text-gray-300 max-w-md mx-auto">
                     Ready to collaborate? Reach out through any of these channels
                   </p>
                 </div>
@@ -1349,12 +1393,12 @@ export default function Template002() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <a
                     href={`mailto:${data.personalInfo.contact.email}`}
-                    className="group relative bg-white rounded-2xl p-6 border-2 border-gray-100 hover:border-blue-300 transition-all duration-200 hover:shadow-lg"
+                    className="group relative bg-white dark:bg-gray-700 rounded-2xl p-6 border-2 border-gray-100 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 transition-all duration-200 hover:shadow-lg"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-500 transition-colors">
+                      <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-xl flex items-center justify-center group-hover:bg-blue-500 transition-colors">
                         <svg
-                          className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors"
+                          className="w-6 h-6 text-blue-600 dark:text-blue-300 group-hover:text-white transition-colors"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1368,15 +1412,15 @@ export default function Template002() {
                         </svg>
                       </div>
                       <div className="flex-1 text-left">
-                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
+                        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
                           Email
                         </p>
-                        <p className="font-semibold text-gray-900 text-sm md:text-base">
+                        <p className="font-semibold text-gray-900 dark:text-white text-sm md:text-base">
                           {data.personalInfo.contact.email}
                         </p>
                       </div>
                       <svg
-                        className="w-5 h-5 text-gray-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all"
+                        className="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-blue-500 group-hover:translate-x-1 transition-all"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -1393,12 +1437,12 @@ export default function Template002() {
 
                   <a
                     href={`tel:${data.personalInfo.contact.phone}`}
-                    className="group relative bg-white rounded-2xl p-6 border-2 border-gray-100 hover:border-purple-300 transition-all duration-200 hover:shadow-lg"
+                    className="group relative bg-white dark:bg-gray-700 rounded-2xl p-6 border-2 border-gray-100 dark:border-gray-600 hover:border-purple-300 dark:hover:border-purple-500 transition-all duration-200 hover:shadow-lg"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center group-hover:bg-purple-500 transition-colors">
+                      <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-xl flex items-center justify-center group-hover:bg-purple-500 transition-colors">
                         <svg
-                          className="w-6 h-6 text-purple-600 group-hover:text-white transition-colors"
+                          className="w-6 h-6 text-purple-600 dark:text-purple-300 group-hover:text-white transition-colors"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1412,15 +1456,15 @@ export default function Template002() {
                         </svg>
                       </div>
                       <div className="flex-1 text-left">
-                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
+                        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
                           Phone
                         </p>
-                        <p className="font-semibold text-gray-900 text-sm md:text-base">
+                        <p className="font-semibold text-gray-900 dark:text-white text-sm md:text-base">
                           {data.personalInfo.contact.phone}
                         </p>
                       </div>
                       <svg
-                        className="w-5 h-5 text-gray-400 group-hover:text-purple-500 group-hover:translate-x-1 transition-all"
+                        className="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-purple-500 group-hover:translate-x-1 transition-all"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -1438,9 +1482,9 @@ export default function Template002() {
 
                 {/* Divider */}
                 <div className="flex items-center gap-4">
-                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-                  <span className="text-sm text-gray-500 font-medium">or connect on social</span>
-                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
+                  <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">or connect on social</span>
+                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent" />
                 </div>
 
                 {/* Social Links */}
@@ -1464,7 +1508,7 @@ export default function Template002() {
                 </div>
 
                 {/* Footer note */}
-                <p className="text-center text-sm text-gray-500">
+                <p className="text-center text-sm text-gray-500 dark:text-gray-400">
                   Response time: Usually within 24 hours
                 </p>
               </div>
@@ -1474,9 +1518,9 @@ export default function Template002() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-gray-200">
+      <footer className="py-12 px-4 border-t border-gray-200 dark:border-gray-800">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-gray-400">
             © {new Date().getFullYear()} {data.personalInfo.name}. All rights reserved.
           </p>
         </div>

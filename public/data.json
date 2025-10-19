@@ -2,20 +2,21 @@
   "personalInfo": {
     "name": "Mubashir Younus",
     "surname": "Lakhana",
+    "website": "https://lakhana.com",
     "title": "Software Engineer",
-    "location": "Medina, Saudi Arabia",
+    "location": "Madinah, Saudi Arabia",
     "bio": "A brief, compelling paragraph about your professional self. What you're passionate about, your key skills, and what you're looking for in your next role.",
     "profilePictureUrl": "/images/profilepic.jpg",
-    "resumeUrl": "/path/to/your/resume.pdf",
+    "resumeUrl": "/resume.pdf",
     "contact": {
-      "email": "your.email@example.com",
-      "phone": "+1 (555) 123-4567"
+      "email": "mubashirlakhana@gmail.com",
+      "phone": "+966 (56) 556-4018"
     },
     "socialLinks": {
-      "github": "https://github.com/yourusername",
-      "linkedin": "https://linkedin.com/in/yourusername",
-      "twitter": "https://twitter.com/yourusername",
-      "blog": "https://yourblog.com"
+      "github": "https://github.com/mylakhana",
+      "linkedin": "https://www.linkedin.com/in/mubashiryounus/",
+      "instagram": "https://www.instagram.com/mylakhana",
+      "blog": "https://lakhana.com/mubashir/blog"
     }
   },
   "clients": [
