@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import { motion, AnimatePresence } from "framer-motion";
-import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
+import { CometCard } from "@/components/ui/comet-card";
 import {
   ExpandableCard,
   ExpandableCardProvider,
@@ -282,14 +282,14 @@ export default function Template002() {
         className="min-h-screen flex items-center justify-center px-4 pt-32 pb-20"
       >
         <div className="max-w-5xl mx-auto text-center space-y-8">
-          <div className="relative inline-block">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-2xl opacity-40 animate-pulse" />
+          <CometCard rounded="rounded-full" className="w-48 h-48 mx-auto">
+            <div className="absolute -inset-8 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-3xl opacity-30 animate-pulse -z-10" />
             <img
               src={data.personalInfo.profilePictureUrl}
               alt={data.personalInfo.name}
-              className="relative w-48 h-48 rounded-full mx-auto border-4 border-white shadow-xl"
+              className="relative w-full h-full rounded-full border-4 border-white shadow-xl object-cover z-10"
             />
-          </div>
+          </CometCard>
 
           <div className="space-y-4">
             <h1 className="text-6xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
@@ -1316,19 +1316,45 @@ export default function Template002() {
             </p>
           </div>
 
-          <CardContainer containerClassName="py-0">
-            <CardBody className="relative bg-white rounded-3xl p-12 shadow-sm border border-gray-100 w-full h-auto overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl opacity-50" />
-              <CardItem translateZ={20} className="w-full relative">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <CometCard>
+            <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 w-full max-w-4xl mx-auto overflow-hidden">
+              {/* Subtle background gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-3xl opacity-40" />
+
+              <div className="relative space-y-10">
+                {/* Header with decorative element */}
+                <div className="text-center space-y-3">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl mb-4">
+                    <svg
+                      className="w-8 h-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">Let's Connect</h3>
+                  <p className="text-gray-600 max-w-md mx-auto">
+                    Ready to collaborate? Reach out through any of these channels
+                  </p>
+                </div>
+
+                {/* Contact Methods */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <a
                     href={`mailto:${data.personalInfo.contact.email}`}
-                    className="flex flex-col items-center gap-4 p-6 rounded-2xl hover:bg-gray-50 transition-colors group"
+                    className="group relative bg-white rounded-2xl p-6 border-2 border-gray-100 hover:border-blue-300 transition-all duration-200 hover:shadow-lg"
                   >
-                    <CardItem translateZ={50}>
-                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-gray-900 transition-colors">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-500 transition-colors">
                         <svg
-                          className="w-8 h-8 text-gray-600 group-hover:text-white transition-colors"
+                          className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1341,23 +1367,38 @@ export default function Template002() {
                           />
                         </svg>
                       </div>
-                    </CardItem>
-                    <div>
-                      <p className="text-sm text-gray-500 mb-1">Email</p>
-                      <p className="font-medium text-gray-900">
-                        {data.personalInfo.contact.email}
-                      </p>
+                      <div className="flex-1 text-left">
+                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
+                          Email
+                        </p>
+                        <p className="font-semibold text-gray-900 text-sm md:text-base">
+                          {data.personalInfo.contact.email}
+                        </p>
+                      </div>
+                      <svg
+                        className="w-5 h-5 text-gray-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
                     </div>
                   </a>
 
                   <a
                     href={`tel:${data.personalInfo.contact.phone}`}
-                    className="flex flex-col items-center gap-4 p-6 rounded-2xl hover:bg-gray-50 transition-colors group"
+                    className="group relative bg-white rounded-2xl p-6 border-2 border-gray-100 hover:border-purple-300 transition-all duration-200 hover:shadow-lg"
                   >
-                    <CardItem translateZ={50}>
-                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-gray-900 transition-colors">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center group-hover:bg-purple-500 transition-colors">
                         <svg
-                          className="w-8 h-8 text-gray-600 group-hover:text-white transition-colors"
+                          className="w-6 h-6 text-purple-600 group-hover:text-white transition-colors"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1370,39 +1411,65 @@ export default function Template002() {
                           />
                         </svg>
                       </div>
-                    </CardItem>
-                    <div>
-                      <p className="text-sm text-gray-500 mb-1">Phone</p>
-                      <p className="font-medium text-gray-900">
-                        {data.personalInfo.contact.phone}
-                      </p>
+                      <div className="flex-1 text-left">
+                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
+                          Phone
+                        </p>
+                        <p className="font-semibold text-gray-900 text-sm md:text-base">
+                          {data.personalInfo.contact.phone}
+                        </p>
+                      </div>
+                      <svg
+                        className="w-5 h-5 text-gray-400 group-hover:text-purple-500 group-hover:translate-x-1 transition-all"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
                     </div>
                   </a>
                 </div>
-              </CardItem>
-            </CardBody>
-          </CardContainer>
 
-          {/* Social Links - Separate Card */}
-          <div className="mt-6 bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-            <p className="text-gray-600 mb-6">Connect with me on</p>
-            <div className="flex items-center justify-center gap-4">
-              {Object.entries(data.personalInfo.socialLinks).map(
-                ([platform, url]) => (
-                  <a
-                    key={platform}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-900 hover:text-white transition-all duration-200"
-                    title={platform}
-                  >
-                    <SocialIcon platform={platform} />
-                  </a>
-                )
-              )}
+                {/* Divider */}
+                <div className="flex items-center gap-4">
+                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+                  <span className="text-sm text-gray-500 font-medium">or connect on social</span>
+                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+                </div>
+
+                {/* Social Links */}
+                <div className="flex items-center justify-center gap-3 flex-wrap">
+                  {Object.entries(data.personalInfo.socialLinks).map(
+                    ([platform, url]) => (
+                      <a
+                        key={platform}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-gray-100 to-gray-200 hover:from-gray-900 hover:to-gray-800 transition-all duration-200 hover:scale-110 hover:shadow-lg"
+                        title={platform}
+                      >
+                        <div className="text-gray-700 group-hover:text-white transition-colors">
+                          <SocialIcon platform={platform} />
+                        </div>
+                      </a>
+                    )
+                  )}
+                </div>
+
+                {/* Footer note */}
+                <p className="text-center text-sm text-gray-500">
+                  Response time: Usually within 24 hours
+                </p>
+              </div>
             </div>
-          </div>
+          </CometCard>
         </div>
       </section>
 
