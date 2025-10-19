@@ -283,7 +283,7 @@ export default function Template002() {
       >
         <div className="max-w-5xl mx-auto text-center space-y-8">
           <div className="relative inline-block">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-3xl opacity-20 animate-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-2xl opacity-40 animate-pulse" />
             <img
               src={data.personalInfo.profilePictureUrl}
               alt={data.personalInfo.name}
@@ -1318,7 +1318,7 @@ export default function Template002() {
 
           <CardContainer containerClassName="py-0">
             <CardBody className="relative bg-white rounded-3xl p-12 shadow-sm border border-gray-100 w-full h-auto overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl blur-3xl opacity-[0.03] animate-pulse" />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl opacity-50" />
               <CardItem translateZ={20} className="w-full relative">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <a
