@@ -2,15 +2,15 @@
   "personalInfo": {
     "name": "Mubashir Younus",
     "surname": "Lakhana",
-    "website": "https://lakhana.com",
-    "title": "Software Engineer",
-    "location": "Madinah, Saudi Arabia",
-    "bio": "A brief, compelling paragraph about your professional self. What you're passionate about, your key skills, and what you're looking for in your next role.",
+    "website": "https://lakhana.com/mubashir",
+    "title": "Full Stack Developer",
+    "location": "Medina, Saudi Arabia",
+    "bio": "Web developer with strong experience in React, Next.js, JavaScript, and responsive web design. Skilled in building user-friendly interfaces, API integrations, and database development. Specialized in AI prompt engineering and creating AI agents for Agile Development techniques.",
     "profilePictureUrl": "/images/profilepic.jpg",
     "resumeUrl": "/resume.pdf",
     "contact": {
       "email": "mubashirlakhana@gmail.com",
-      "phone": "+966 (56) 556-4018"
+      "phone": "+966 56 556 4018"
     },
     "socialLinks": {
       "github": "https://github.com/mylakhana",
@@ -24,7 +24,14 @@
       "id": "startup-co",
       "name": "Startup Co.",
       "industry": "Technology",
-      "website": "https://example.com",
+      "website": "https://example1.com",
+      "logoUrl": "/images/logo/alpha.svg"
+    },
+    {
+      "id": "startup-co-2",
+      "name": "Startup Co. 2",
+      "industry": "Technology",
+      "website": "https://example2.com",
       "logoUrl": "/images/logo/alpha.svg"
     }
   ],
@@ -32,92 +39,366 @@
     {
       "category": "Programming Languages",
       "technologies": {
-        "React/Next.js": "Expert",
-        "HTML5, CSS3, JS, jQuery, Ajax": "Expert",
-        "Flutter (Dart)": "Expert",
-        "PHP (Laravel, Yii2)": "High",
-        "MySQL, PostgreSQL": "High",
-        "API Integration": "High",
-        "Server (Valet, nginx, Apache)": "High",
-        "AI Chatbot Integration": "Moderate",
-        "Node.js (NestJS)": "Moderate",
-        "Fastify (Node.js)": "Moderate",
+        "JavaScript/TypeScript": "Expert",
+        "HTML5/CSS3": "Expert",
+        "PHP": "High",
+        "Dart": "Expert",
         "C#": "Moderate"
       }
     },
     {
       "category": "Frameworks & Libraries",
       "technologies": {
-        "Server (Valet, nginx, Apache)": "High",
-        "AI Chatbot Integration": "Moderate",
+        "React/Next.js": "Expert",
+        "jQuery/Ajax": "Expert",
+        "Flutter": "Expert",
+        "Laravel": "High",
+        "Yii2": "High",
         "Node.js (NestJS)": "Moderate",
-        "Fastify (Node.js)": "Moderate",
-        "C#": "Moderate"
+        "Fastify": "Moderate"
       }
     },
     {
       "category": "Databases",
       "technologies": {
-        "React/Next.js": "Expert",
-        "Fastify (Node.js)": "Moderate",
-        "C#": "Moderate"
+        "MySQL": "High",
+        "PostgreSQL": "High"
       }
     },
     {
       "category": "Cloud & DevOps",
       "technologies": {
-        "React/Next.js": "Expert",
-        "C#": "Moderate"
+        "nginx/Apache/Valet": "High",
+        "API Integration": "High",
+        "AI Chatbot Integration": "Moderate"
       }
     }
   ],
   "workExperience": [
     {
-      "company": "Tech Solutions Inc.",
+      "company": "Digital Commerce (ShipTag)",
       "companyUrl": "https://shiptag.com",
-      "jobTitle": "Senior Software Engineer",
-      "location": "San Francisco, CA",
+      "jobTitle": "Web Developer",
+      "location": "Medina, Saudi Arabia",
       "type": "Full-time",
       "startDate": "Jan 2022",
       "endDate": "Present",
-      "summary": "Summary of this job in 2-3 lines",
-      "technologiesUsed": ["Go", "Kafka", "PostgreSQL", "Docker", "AWS"],
+      "summary": "Developed responsive web applications using React, Next.js, and JavaScript with focus on AI integration and modern development practices.",
+      "technologiesUsed": ["React", "Next.js", "JavaScript", "SQL", "AI Chatbots", "Claude Code", "Bolt", "Cursor"],
       "responsibilities": [
-        "Led the development of a new microservices-based architecture, improving system scalability by 40%.",
-        "Mentored junior developers, conducting code reviews and promoting best practices.",
-        "Engineered a real-time data processing pipeline using Kafka and Go."
+        "Developed responsive web applications using React, Next.js, and JavaScript with custom components and user-friendly interfaces.",
+        "Integrated third-party services including AI chatbots and payment systems with expertise in prompt and context engineering.",
+        "Collaborated with cross-functional teams following modern development practices and worked with SQL databases and API development."
       ],
       "techStack": {
-        "frontend": ["Go", "Kafka"],
-        "testing": ["Postman", "Jest"]
+        "frontend": ["React", "Next.js", "JavaScript"],
+        "backend": ["Node.js", "SQL"],
+        "tools": ["Claude Code", "Bolt", "Cursor", "Windsurf"]
+      }
+    },
+    {
+      "company": "Digital Commerce (WS1 & ShipTag)",
+      "companyUrl": "https://shiptag.com",
+      "jobTitle": "Junior Developer",
+      "location": "Medina, Saudi Arabia",
+      "type": "Full-time",
+      "startDate": "Jan 2018",
+      "endDate": "Dec 2021",
+      "summary": "Developed full-stack web and mobile applications using PHP frameworks and Flutter with extensive API integrations.",
+      "technologiesUsed": ["PHP", "Laravel", "Yii2", "Flutter", "HTML5", "CSS3", "JavaScript", "MySQL", "SQL Server"],
+      "responsibilities": [
+        "Developed web applications using PHP frameworks including Laravel and Yii2 with responsive frontends using HTML5, CSS3, and JavaScript.",
+        "Built mobile applications for Android and iOS using Flutter, implementing custom interfaces and API integrations.",
+        "Integrated various APIs including payment gateways and logistics services, developed database-driven applications with SQL Server and MySQL."
+      ],
+      "techStack": {
+        "frontend": ["HTML5", "CSS3", "JavaScript"],
+        "backend": ["PHP", "Laravel", "Yii2"],
+        "mobile": ["Flutter"],
+        "database": ["MySQL", "SQL Server"]
+      }
+    },
+    {
+      "company": "Digital Commerce (WS1)",
+      "companyUrl": "https://shiptag.com",
+      "jobTitle": "Customer Care Agent",
+      "location": "Medina, Saudi Arabia",
+      "type": "Full-time",
+      "startDate": "Mar 2016",
+      "endDate": "Dec 2017",
+      "summary": "Provided comprehensive customer service through multiple channels including tech support, sales and customer care.",
+      "technologiesUsed": ["Customer Service Software", "Live Chat Systems", "CRM"],
+      "responsibilities": [
+        "Provided telephone and live-chat customer service including tech support and sales assistance.",
+        "Worked with major customer service software platforms to ensure customer satisfaction.",
+        "Handled customer inquiries and technical issues efficiently across multiple communication channels."
+      ],
+      "techStack": {
+        "tools": ["CRM Systems", "Live Chat", "Customer Service Platforms"]
+      }
+    },
+    {
+      "company": "Yoser Pharmacy",
+      "companyUrl": null,
+      "jobTitle": "Database & Server Manager",
+      "location": "Medina, Saudi Arabia",
+      "type": "Full-time",
+      "startDate": "Dec 2015",
+      "endDate": "Feb 2016",
+      "summary": "Managed pharmacy inventory system and network infrastructure across multiple branches.",
+      "technologiesUsed": ["Database Management", "Server Configuration", "Network Management"],
+      "responsibilities": [
+        "Managed pharmacy's stock across multiple branches ensuring accurate inventory tracking.",
+        "Configured and maintained server configuration for the pharmacy's intranet network structure.",
+        "Ensured system reliability and data integrity across all pharmacy locations."
+      ],
+      "techStack": {
+        "backend": ["Database Systems", "Server Management"],
+        "infrastructure": ["Network Configuration", "Intranet Systems"]
       }
     }
   ],
   "projects": [
     {
-      "title": "Project Alpha",
-      "clientId": "startup-co",
+      "title": "Zia Library",
+      "clientId": null,
       "isFeatured": true,
-      "logoUrl": "/images/logo/alpha.svg",
-      "coverImageUrl": "https://placehold.co/600x400/cccccc/333333?text=Project+Alpha",
-      "description": "A full-stack web application that solves a real-world problem. This project demonstrates skills in both frontend and backend development.",
+      "logoUrl": "/images/logo/zm.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Zia+Library",
+      "description": "Ziauddin Islamic Audio library contains 20,000+ media files accessible in all major platforms. A comprehensive library for Islamic audio content including lectures, recitations, and educational materials.",
       "myRole": "Lead Developer",
-      "keyLearnings": "This project taught me the importance of robust state management in large-scale React applications and how to optimize database queries for performance under heavy load.",
-      "technologies": ["React", "Node.js", "PostgreSQL", "AWS S3"],
+      "keyLearnings": "Building a large-scale media library required optimizing search algorithms and implementing efficient caching strategies. Learning to handle massive audio databases and provide seamless cross-platform experiences was invaluable.",
+      "technologies": ["Flutter", "PHP", "MySQL", "API Integration"],
+      "links": {
+        "liveUrl": "https://ziaemadinah.com/",
+        "githubUrl": null,
+        "appStoreUrl": "https://apps.apple.com/us/app/zia-library-zia-e-madinah/id1454228192",
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.ziaemadinah"
+      },
+      "status": "Live",
+      "type": "Client",
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Majmooa e Naat",
+      "clientId": null,
+      "isFeatured": true,
+      "logoUrl": "/images/logo/mn.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Majmooa+e+Naat",
+      "description": "Great multi-lingual library to read and share Islamic poetry lyrics. Features a beautiful collection of Naat (Islamic poetry) in multiple languages with sharing capabilities.",
+      "myRole": "Lead Developer",
+      "keyLearnings": "Implementing multi-language support and Unicode text rendering for Urdu and Arabic scripts taught me the importance of proper internationalization and handling right-to-left languages.",
+      "technologies": ["Flutter", "PHP", "MySQL", "Unicode Processing"],
+      "links": {
+        "liveUrl": "https://lakhana.com/site/majmooaenaat",
+        "githubUrl": null,
+        "appStoreUrl": "https://apps.apple.com/us/app/majmooa-e-naat/id1454263650",
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.majmooaenaat"
+      },
+      "status": "Live",
+      "type": "Client",
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "iZiarat",
+      "clientId": null,
+      "isFeatured": true,
+      "logoUrl": "/images/logo/iziarat.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=iZiarat",
+      "description": "Enhance your travel with iZiarat which provides a visual representation of all nearby places drawn on a map. Perfect for pilgrims and travelers to discover and navigate to important Islamic sites.",
+      "myRole": "Lead Developer",
+      "keyLearnings": "Integrating Google Maps API and implementing location-based services taught me about geolocation, map rendering optimization, and creating intuitive navigation experiences for mobile users.",
+      "technologies": ["Flutter", "Google Maps API", "GPS", "MySQL"],
+      "links": {
+        "liveUrl": "http://iziarat.com/",
+        "githubUrl": null,
+        "appStoreUrl": "https://apps.apple.com/us/app/iziarat/id1504726428",
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.iziarat"
+      },
+      "status": "Live",
+      "type": "Client",
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Elm ul Adad",
+      "clientId": null,
+      "isFeatured": false,
+      "logoUrl": "/images/logo/ea.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Elm+ul+Adad",
+      "description": "Arabic & Urdu numerology calculator. A pocket tool for calculating Abjad count of any name. With added functionality of finding Ism e Azam. Our database has 150,000+ Ism e Azam combinations of 1, 2 or 3 Asma al Husnah.",
+      "myRole": "Lead Developer",
+      "keyLearnings": "Working with complex Arabic numerology algorithms and managing large datasets of 150,000+ combinations required efficient database indexing and search optimization techniques.",
+      "technologies": ["Flutter", "SQLite", "Arabic Processing"],
       "links": {
         "liveUrl": null,
-        "githubUrl": "https://github.com/yourusername/project-alpha",
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.elmuladaad"
+      },
+      "status": "Live",
+      "type": "Personal",
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Time Sequence",
+      "clientId": null,
+      "isFeatured": false,
+      "logoUrl": "/images/logo/timesequence.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Time+Sequence",
+      "description": "Timeline of all Islamic events in the past 1400+ years. Our data dates back all the way to before Hijrah. You can jump to any year and see a timeline of all events that occurred in that year. You can also see relations between events.",
+      "myRole": "Lead Developer",
+      "keyLearnings": "Creating an interactive timeline interface with 1400+ years of historical data required innovative UI/UX design and efficient data visualization techniques to make complex historical information accessible.",
+      "technologies": ["Flutter", "Timeline Visualization", "SQLite"],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.timesequence"
+      },
+      "status": "Live",
+      "type": "Personal",
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "True Quran",
+      "clientId": null,
+      "isFeatured": false,
+      "logoUrl": "/images/logo/truequran.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=True+Quran",
+      "description": "Recite Quran with transliteration, translation and tafsir with True Quran. A comprehensive Quran reading application with multiple translation options and detailed commentary.",
+      "myRole": "Lead Developer",
+      "keyLearnings": "Developing a Quran application required careful attention to Arabic text rendering, audio synchronization, and respectful handling of sacred content with precise accuracy.",
+      "technologies": ["Flutter", "Audio Player", "Arabic Typography"],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "In Development",
+      "type": "Personal",
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "WhatsApp Direct",
+      "clientId": null,
+      "isFeatured": false,
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg",
+      "coverImageUrl": "https://placehold.co/600x400/25D366/ffffff?text=WhatsApp+Direct",
+      "description": "Light-weight open-source Android app project through which you can directly send whatsapp messages without saving their phone number. A simple utility that enhances WhatsApp usability.",
+      "myRole": "Lead Developer",
+      "keyLearnings": "Creating a lightweight utility app taught me the importance of simplicity and focused functionality. Open-sourcing the project also gave me experience in community engagement and code documentation.",
+      "technologies": ["Android", "Java", "WhatsApp API"],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": "https://bitbucket.org/mylakhana/whatsapp-direct/",
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Open Source",
+      "type": "Personal",
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Hajj wa Umrah",
+      "clientId": null,
+      "isFeatured": false,
+      "logoUrl": "/images/logo/hajj.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Hajj+wa+Umrah",
+      "description": "(Fatawa) Hajj wa Umrah is a unicode collection of Hajj and Umrah related masail taken from the book 'العُرْوَۃُ فِیْ مَنَاسِکِ الحَجِّ وَ العُمْرَۃ' written by Shaikh ul Hadees Allama Mufti Muhammad Ata Ullah Naeemi. This app is owned by Jamiat e Isha`t e Ahle Sunnat (Pakistan).",
+      "myRole": "Lead Developer",
+      "keyLearnings": "Working on religious educational content required accuracy and attention to detail. Implementing proper Arabic text handling and creating a user-friendly interface for religious guidance was both challenging and rewarding.",
+      "technologies": ["Flutter", "Arabic Text Processing", "SQLite"],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": "https://apps.apple.com/us/app/hajj-wa-umrah/id1513222734",
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.ishaateislam.hajjumrah"
+      },
+      "status": "Live",
+      "type": "Client",
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Naat Academy",
+      "clientId": null,
+      "isFeatured": false,
+      "logoUrl": "/images/logo/naatacademy.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Naat+Academy",
+      "description": "Feature-wise this app resembles a lot and is inspired by Majmooa e Naat while maintaining its own uniqueness in design and content. This app is owned by Owais Razvi (AwesCreative) (India).",
+      "myRole": "Lead Developer",
+      "keyLearnings": "Building upon the experience from Majmooa e Naat, this project taught me how to create variations of successful products while maintaining unique identity and client-specific requirements.",
+      "technologies": ["Flutter", "PHP", "MySQL"],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.app.naatacademy"
+      },
+      "status": "Live",
+      "type": "Client",
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Sacred Traditions",
+      "clientId": null,
+      "isFeatured": false,
+      "logoUrl": "/images/logo/sacredtraditions.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Sacred+Traditions",
+      "description": "Sacred Traditions brings you beautiful images of the beautiful Ahadith (Sacred Sayings) of the most. We have translations in 40+ languages making Islamic teachings accessible to a global audience.",
+      "myRole": "Lead Developer",
+      "keyLearnings": "Implementing 40+ language translations taught me about scalable internationalization architecture and the importance of creating visual content that transcends language barriers.",
+      "technologies": ["React", "Next.js", "Multi-language Support"],
+      "links": {
+        "liveUrl": "https://sacredtraditions.uk",
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Live",
+      "type": "Client",
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Inheritance Calculator",
+      "clientId": null,
+      "isFeatured": false,
+      "logoUrl": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Inheritance+Calculator",
+      "description": "Inheritance Calculator – your trusted online tool for precise and compliant inheritance calculations in accordance with Sunni Islamic law. Create and share inheritance statements seamlessly with your loved ones for transparency and peace of mind.",
+      "myRole": "Lead Developer",
+      "keyLearnings": "Building a calculator for Islamic inheritance law required understanding complex legal frameworks and translating them into precise algorithms. Ensuring accuracy and compliance was paramount.",
+      "technologies": ["React", "JavaScript", "Islamic Law Algorithms"],
+      "links": {
+        "liveUrl": "/inheritance",
+        "githubUrl": null,
         "appStoreUrl": null,
         "playStoreUrl": null
       },
       "status": "Live",
       "type": "Personal",
-      "screenshots": ["/images/screenshots/alpha-001.png"],
-      "appScreenshots": [
-        "/images/screenshots/app/alpha-001.png",
-        "/images/screenshots/app/alpha-002.png",
-        "/images/screenshots/app/alpha-003.png"
-      ],
+      "screenshots": [],
+      "appScreenshots": [],
       "html": null
     }
   ],
@@ -152,14 +433,25 @@
   ],
   "education": [
     {
-      "institution": "University of Technology",
-      "degree": "Bachelor of Science in Computer Science",
-      "location": "City, State",
-      "startDate": "Sep 2016",
-      "endDate": "May 2020",
+      "institution": "Binary University of Malaysia",
+      "degree": "Masters in Computer Science",
+      "location": "Malaysia",
+      "startDate": "2021",
+      "endDate": "2023",
       "details": [
-        "Graduated Cum Laude",
-        "Relevant Coursework: Data Structures, Algorithms, Web Development"
+        "Advanced study in computer science and software engineering",
+        "Specialized in web development and AI integration"
+      ]
+    },
+    {
+      "institution": "Binary University of Malaysia",
+      "degree": "Bachelors in Computer Science",
+      "location": "Malaysia",
+      "startDate": "2015",
+      "endDate": "2018",
+      "details": [
+        "Foundation in computer science principles and programming",
+        "Relevant Coursework: Data Structures, Algorithms, Web Development, Database Systems"
       ]
     }
   ],

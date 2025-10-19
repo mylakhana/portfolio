@@ -525,22 +525,24 @@ export default function Template002() {
             <h3 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
               Trusted by
             </h3>
-            <div className="flex flex-wrap items-center justify-center gap-12">
-              {data.clients.map((client) => (
-                <a
-                  key={client.id}
-                  href={client.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
-                >
-                  <img
-                    src={client.logoUrl}
-                    alt={client.name}
-                    className="h-12 w-auto"
-                  />
-                </a>
-              ))}
+            <div className="bg-gray-200 dark:bg-gray-800 rounded-2xl py-8 px-6 overflow-x-auto scrollbar-hide">
+              <div className="flex items-center gap-12 w-max">
+                {data.clients.map((client) => (
+                  <a
+                    key={client.id}
+                    href={client.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 flex-shrink-0"
+                  >
+                    <img
+                      src={client.logoUrl}
+                      alt={client.name}
+                      className="h-12 w-auto"
+                    />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -846,9 +848,18 @@ export default function Template002() {
                       </div>
 
                       <div className="p-8">
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                          {project.title}
-                        </h3>
+                        <div className="flex items-center gap-4 mb-4">
+                          {project.logoUrl && (
+                            <img
+                              src={project.logoUrl}
+                              alt={`${project.title} logo`}
+                              className="w-16 h-16 object-contain rounded-lg"
+                            />
+                          )}
+                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                            {project.title}
+                          </h3>
+                        </div>
                         <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3">
                           {project.description}
                         </p>
@@ -900,9 +911,18 @@ export default function Template002() {
                             </span>
                           )}
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                          {project.title}
-                        </h2>
+                        <div className="flex items-center gap-4">
+                          {project.logoUrl && (
+                            <img
+                              src={project.logoUrl}
+                              alt={`${project.title} logo`}
+                              className="w-16 h-16 md:w-20 md:h-20 object-contain rounded-lg bg-white/80 p-2"
+                            />
+                          )}
+                          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                            {project.title}
+                          </h2>
+                        </div>
                       </div>
                     </div>
 

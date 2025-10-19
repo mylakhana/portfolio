@@ -93,7 +93,7 @@ export const ExpandableCard = ({ id, children, className }: ExpandableCardProps)
                     e.stopPropagation();
                     setExpanded(null);
                   }}
-                  className="absolute top-6 right-6 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-colors"
+                  className="absolute top-6 right-6 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-colors"
                   aria-label="Close"
                 >
                   <X className="w-5 h-5" />

@@ -1,0 +1,128 @@
+{
+    "personal_info": {
+      "name": "Mubashir Younus",
+      "title": "Full Stack Developer",
+      "contact": {
+        "phone": "+966 56 556 4018",
+        "email": "mubashirlakhana@gmail.com",
+        "website": "lakhana.com/mubashir"
+      },
+      "date_of_birth": "July 30, 1995",
+      "current_location": "Medina, K.S.A",
+      "programming_experience_since": "January 2018",
+      "education_level": "Masters in Computer Science",
+      "looking_for": "Web Developer position",
+      "personal_details": {
+        "marital_status": "Married",
+        "religion": "Muslim",
+        "nationality": "Pakistani",
+        "visa_status": "Valid Work Visa",
+        "gender": "Male",
+        "place_of_birth": "Medina, KSA",
+        "willing_to_relocate": true,
+        "work_preference": "Remote & On-site"
+      }
+    },
+    "summary": "Web developer with strong experience in React, Next.js, JavaScript, and responsive web design. Skilled in building user-friendly interfaces, API integrations, and database development. Specialized in AI prompt engineering and creating AI agents for bMAD (Agile Development) techniques.",
+    "education": [
+      {
+        "period": "2021 - 2023",
+        "degree": "Masters in Computer Science",
+        "institution": "Binary University of Malaysia"
+      },
+      {
+        "period": "2015 - 2018",
+        "degree": "Bachelors in Computer Science",
+        "institution": "Binary University of Malaysia"
+      },
+      {
+        "period": "2012 - 2013",
+        "degree": "Higher Secondary School Certificate",
+        "institution": "FBISE, Islamabad, Pakistan"
+      },
+      {
+        "period": "2010 - 2011",
+        "degree": "Secondary School Certificate",
+        "institution": "FBISE, Islamabad, Pakistan"
+      }
+    ],
+    "work_experience": [
+      {
+        "period": "Jan 2022 - Present",
+        "position": "Web Developer",
+        "company": "Digital Commerce (ShipTag)",
+        "location": "Medina, KSA",
+        "description": "Developed responsive web applications using React, Next.js, and JavaScript. Built custom components and user-friendly interfaces. Integrated third-party services including AI chatbots and payment systems. Experience with Claude Code, Bolt, Cursor, Windsurf for prompt & context engineering. Worked with SQL databases and API development. Collaborated with cross-functional teams following modern development practices."
+      },
+      {
+        "period": "Jan 2018 - Dec 2021",
+        "position": "Junior Developer",
+        "company": "Digital Commerce (WS1 & ShipTag)",
+        "location": "Medina, KSA",
+        "description": "Developed web applications using PHP frameworks including Laravel and Yii2. Created responsive frontends with HTML5, CSS3, and JavaScript. Built mobile applications for Android and iOS using Flutter, implementing custom interfaces and API integrations. Integrated various APIs including payment gateways and logistics services. Developed database-driven applications with SQL Server and MySQL."
+      },
+      {
+        "period": "Mar 2016 - Dec 2017",
+        "position": "Customer Care Agent",
+        "company": "Digital Commerce (WS1)",
+        "location": "Medina, KSA",
+        "description": "Experience in telephone and live-chat customer service, including tech support, sales and customer care. Familiar with major customer service softwares."
+      },
+      {
+        "period": "Dec 2015 - Feb 2016",
+        "position": "Database & Server Manager",
+        "company": "Yoser Pharmacy",
+        "location": "Medina, KSA",
+        "description": "Managed pharmacy's stock across multiple branches, configured and maintained server configuration for the pharmacy's intranet network structure."
+      }
+    ],
+    "skills": {
+      "React/Next.js": "Expert",
+      "HTML5, CSS3, JS, jQuery, Ajax": "Expert",
+      "Flutter (Dart)": "Expert",
+      "PHP (Laravel, Yii2)": "High",
+      "MySQL, PostgreSQL": "High",
+      "API Integration": "High",
+      "Server (Valet, nginx, Apache)": "High",
+      "AI Chatbot Integration": "Moderate",
+      "Node.js (NestJS)": "Moderate",
+      "Fastify (Node.js)": "Moderate",
+      "C#": "Moderate"
+    },
+    "languages": {
+      "Arabic": "Fluent",
+      "English": "Advanced",
+      "Urdu / Hindi": "Advanced"
+    },
+    "interests": [
+      "Photography",
+      "Travelling",
+      "Cycling",
+      "Reading",
+      "Writing",
+      "Music"
+    ],
+    "tags": [
+      "react",
+      "nextjs",
+      "javascript",
+      "typescript",
+      "html",
+      "css",
+      "tailwind",
+      "php",
+      "yii2",
+      "c#",
+      "mysql",
+      "postgres",
+      "api-integration",
+      "server-deployment",
+      "ai",
+      "prompt-engineering"
+    ],
+    "theme": {
+      "sidebar_bg_light": "#0e7490",
+      "sidebar_bg_dark": "#164e63"
+    }
+  }
+  
