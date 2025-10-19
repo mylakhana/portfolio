@@ -1,10 +1,11 @@
 {
   "personalInfo": {
-    "name": "Your Name",
+    "name": "Mubashir Younus",
+    "surname": "Lakhana",
     "title": "Software Engineer",
-    "location": "City, Country",
+    "location": "Medina, Saudi Arabia",
     "bio": "A brief, compelling paragraph about your professional self. What you're passionate about, your key skills, and what you're looking for in your next role.",
-    "profilePictureUrl": "https://placehold.co/400x400/EFEFEF/333333?text=YN",
+    "profilePictureUrl": "/images/profilepic.jpg",
     "resumeUrl": "/path/to/your/resume.pdf",
     "contact": {
       "email": "your.email@example.com",
@@ -29,34 +30,66 @@
   "skills": [
     {
       "category": "Programming Languages",
-      "technologies": ["JavaScript (ES6+)", "TypeScript", "Python", "Go"]
+      "technologies": {
+        "React/Next.js": "Expert",
+        "HTML5, CSS3, JS, jQuery, Ajax": "Expert",
+        "Flutter (Dart)": "Expert",
+        "PHP (Laravel, Yii2)": "High",
+        "MySQL, PostgreSQL": "High",
+        "API Integration": "High",
+        "Server (Valet, nginx, Apache)": "High",
+        "AI Chatbot Integration": "Moderate",
+        "Node.js (NestJS)": "Moderate",
+        "Fastify (Node.js)": "Moderate",
+        "C#": "Moderate"
+      }
     },
     {
       "category": "Frameworks & Libraries",
-      "technologies": ["React", "Node.js", "Express", "Next.js", "Vue.js"]
+      "technologies": {
+        "Server (Valet, nginx, Apache)": "High",
+        "AI Chatbot Integration": "Moderate",
+        "Node.js (NestJS)": "Moderate",
+        "Fastify (Node.js)": "Moderate",
+        "C#": "Moderate"
+      }
     },
     {
       "category": "Databases",
-      "technologies": ["PostgreSQL", "MongoDB", "Redis", "Firebase"]
+      "technologies": {
+        "React/Next.js": "Expert",
+        "Fastify (Node.js)": "Moderate",
+        "C#": "Moderate"
+      }
     },
     {
       "category": "Cloud & DevOps",
-      "technologies": ["AWS", "Docker", "Kubernetes", "GitHub Actions", "Terraform"]
+      "technologies": {
+        "React/Next.js": "Expert",
+        "C#": "Moderate"
+      }
     }
   ],
   "workExperience": [
     {
       "company": "Tech Solutions Inc.",
+      "companyUrl": "https://shiptag.com",
       "jobTitle": "Senior Software Engineer",
       "location": "San Francisco, CA",
+      "type": "Full-time",
       "startDate": "Jan 2022",
       "endDate": "Present",
+      "summary": "Summary of this job in 2-3 lines",
+      "technologiesUsed": ["Go", "Kafka", "PostgreSQL", "Docker", "AWS"],
       "responsibilities": [
         "Led the development of a new microservices-based architecture, improving system scalability by 40%.",
         "Mentored junior developers, conducting code reviews and promoting best practices.",
         "Engineered a real-time data processing pipeline using Kafka and Go."
       ],
-      "technologiesUsed": ["Go", "Kafka", "PostgreSQL", "Docker", "AWS"]
+      "techStack": {
+        "frontend": ["Go", "Kafka"],
+        "testing": ["Postman", "Jest"]
+      }
     }
   ],
   "projects": [
@@ -71,15 +104,14 @@
       "keyLearnings": "This project taught me the importance of robust state management in large-scale React applications and how to optimize database queries for performance under heavy load.",
       "technologies": ["React", "Node.js", "PostgreSQL", "AWS S3"],
       "links": {
-        "liveUrl": "https://project-alpha.com",
+        "liveUrl": null,
         "githubUrl": "https://github.com/yourusername/project-alpha",
         "appStoreUrl": null,
         "playStoreUrl": null
       },
       "status": "Live",
-      "screenshots": [
-        "/images/screenshots/alpha-001.png"
-      ],
+      "type": "Personal",
+      "screenshots": ["/images/screenshots/alpha-001.png"],
       "html": null
     }
   ],
@@ -90,9 +122,7 @@
       "language": "javascript",
       "code": "const useFetch = (url) => {\n  const [data, setData] = React.useState(null);\n  // ... rest of the hook implementation\n};",
       "gistUrl": "https://gist.github.com/yourusername/12345abcde",
-      "screenshots": [
-        "/images/screenshots/alpha-001.png"
-      ]
+      "screenshots": ["/images/screenshots/alpha-001.png"]
     }
   ],
   "testimonials": [
