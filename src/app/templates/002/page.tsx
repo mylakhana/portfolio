@@ -4,13 +4,15 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
-import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalTrigger,
-} from "@/components/ui/animated-modal";
 import { motion, AnimatePresence } from "framer-motion";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
+import {
+  ExpandableCard,
+  ExpandableCardProvider,
+  CardThumbnail,
+  CardExpanded,
+} from "@/components/ui/expandable-card";
+import { AppScreenshot } from "@/components/AppScreenshot";
 
 interface PortfolioData {
   personalInfo: {
@@ -174,10 +176,8 @@ export default function Template002() {
   const [data, setData] = useState<PortfolioData | null>(null);
   const [activeSection, setActiveSection] = useState("home");
   const [expandedSkill, setExpandedSkill] = useState<string | null>(null);
-  const [expandedProject, setExpandedProject] = useState<string | null>(null);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const [selectedAppScreenshot, setSelectedAppScreenshot] = useState<{[key: string]: number}>({});
 
   useEffect(() => {
     fetch("/data.json")
@@ -778,421 +778,309 @@ export default function Template002() {
             </p>
           </div>
 
-          <PhotoProvider
-            maskOpacity={0.5}
-            overlayRender={(props) => (
-              <div
-                style={{
-                  position: "fixed",
-                  inset: 0,
-                  backgroundColor: "rgba(0, 0, 0, 0.5)",
-                  backdropFilter: "blur(10px)",
-                }}
-              />
-            )}
-          >
+          <ExpandableCardProvider>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {data.projects.map((project, index) => (
-                <div
-                  key={index}
-                  className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100"
-                >
-                  <div className="relative h-64 bg-gray-100 overflow-hidden">
-                    <img
-                      src={project.coverImageUrl}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    {project.isFeatured && (
-                      <div className="absolute top-4 right-4 px-3 py-1 bg-gray-900 text-white text-xs font-medium rounded-full">
-                        Featured
-                      </div>
-                    )}
-                  </div>
-
-                  <div
-                    onClick={() =>
-                      setExpandedProject(
-                        expandedProject === project.title
-                          ? null
-                          : project.title
-                      )
-                    }
-                    className="p-8 cursor-pointer"
-                  >
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-2xl font-bold text-gray-900">
-                        {project.title}
-                      </h3>
-                      <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">
-                        {project.status}
-                      </span>
-                    </div>
-
-                    <p className="text-gray-600 mb-4">{project.description}</p>
-
-                    <div className="text-gray-900 font-medium text-sm mb-4 flex items-center gap-2">
-                      <span>
-                        {expandedProject === project.title
-                          ? "Show less"
-                          : "Learn more"}
-                      </span>
-                      <svg
-                        className={cn(
-                          "w-4 h-4 transition-transform",
-                          expandedProject === project.title && "rotate-180"
-                        )}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
+                <ExpandableCard key={index} id={`project-${index}`}>
+                  {/* Card Thumbnail (Collapsed View) */}
+                  <CardThumbnail>
+                    <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 h-full">
+                      <div className="relative h-64 bg-gray-100 overflow-hidden">
+                        <img
+                          src={project.coverImageUrl}
+                          alt={project.title}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
-                      </svg>
+                        {project.isFeatured && (
+                          <div className="absolute top-4 right-4 px-3 py-1 bg-gray-900 text-white text-xs font-medium rounded-full">
+                            Featured
+                          </div>
+                        )}
+                        <div className="absolute top-4 left-4 px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">
+                          {project.status}
+                        </div>
+                      </div>
+
+                      <div className="p-8">
+                        <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                          {project.title}
+                        </h3>
+                        <p className="text-gray-600 mb-6 line-clamp-3">
+                          {project.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {project.technologies.slice(0, 4).map((tech, idx) => (
+                            <span
+                              key={idx}
+                              className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                          {project.technologies.length > 4 && (
+                            <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">
+                              +{project.technologies.length - 4} more
+                            </span>
+                          )}
+                        </div>
+
+                        <button className="w-full px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-medium hover:bg-gray-800 transition-colors">
+                          View Details
+                        </button>
+                      </div>
+                    </div>
+                  </CardThumbnail>
+
+                  {/* Card Expanded (Full Screen View) */}
+                  <CardExpanded className="p-8 md:p-12">
+                    {/* Header with Cover Image */}
+                    <div className="relative h-80 -mx-8 md:-mx-12 -mt-8 md:-mt-12 mb-8 overflow-hidden">
+                      <img
+                        src={project.coverImageUrl}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-transparent" />
+                      <div className="absolute bottom-6 left-8 md:left-12 right-8 md:right-12">
+                        <div className="flex items-center gap-3 mb-3">
+                          <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
+                            {project.status}
+                          </span>
+                          <span className="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">
+                            {project.type}
+                          </span>
+                          {project.isFeatured && (
+                            <span className="px-3 py-1 bg-gray-900 text-white text-sm font-medium rounded-full">
+                              Featured
+                            </span>
+                          )}
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                          {project.title}
+                        </h2>
+                      </div>
                     </div>
 
-                    <div
-                      className={cn(
-                        "overflow-hidden transition-all duration-300 space-y-4",
-                        expandedProject === project.title
-                          ? "max-h-[600px] opacity-100 mb-4"
-                          : "max-h-0 opacity-0"
-                      )}
-                    >
-                      <div>
-                        <p className="text-sm font-semibold text-gray-900 mb-1">
-                          My Role
-                        </p>
-                        <p className="text-gray-600 text-sm">
-                          {project.myRole}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-gray-900 mb-1">
-                          Key Learnings
-                        </p>
-                        <p className="text-gray-600 text-sm">
-                          {project.keyLearnings}
-                        </p>
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                      {/* Main Content - 2 columns */}
+                      <div className="lg:col-span-2 space-y-8">
+                        {/* Description */}
+                        <div>
+                          <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                            About the Project
+                          </h3>
+                          <p className="text-gray-600 leading-relaxed text-lg">
+                            {project.description}
+                          </p>
+                        </div>
+
+                        {/* Key Learnings - Full Width */}
+                        <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100">
+                          <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                            <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                            Key Learnings
+                          </h4>
+                          <p className="text-gray-700 leading-relaxed">
+                            {project.keyLearnings}
+                          </p>
+                        </div>
+
+                        {/* Mobile App Screenshots */}
+                        {project.appScreenshots && project.appScreenshots.length > 0 && (
+                          <div>
+                            <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                              Mobile Experience
+                            </h3>
+                            <AppScreenshot
+                              screenshots={project.appScreenshots}
+                              projectTitle={project.title}
+                            />
+                          </div>
+                        )}
                       </div>
 
-                      {/* Screenshot Thumbnails */}
-                      {project.screenshots && project.screenshots.length > 0 && (
-                        <div onClick={(e) => e.stopPropagation()}>
-                          <p className="text-sm font-semibold text-gray-900 mb-2">
-                            Screenshots
+                      {/* Sidebar - 1 column */}
+                      <div className="space-y-6">
+                        {/* My Role - Compact Badge Style */}
+                        <div className="bg-gray-50 rounded-2xl p-4 border-l-4 border-gray-900">
+                          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
+                            My Role
                           </p>
-                          <div className="flex gap-2 overflow-x-auto pb-2">
-                            {project.screenshots.map((screenshot, idx) => (
-                              <PhotoView key={idx} src={screenshot}>
-                                <img
-                                  src={screenshot}
-                                  alt={`${project.title} screenshot ${idx + 1}`}
-                                  className="h-20 w-28 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0 border border-gray-200"
-                                />
-                              </PhotoView>
+                          <p className="text-lg font-bold text-gray-900">
+                            {project.myRole}
+                          </p>
+                        </div>
+
+                        {/* Technologies */}
+                        <div className="bg-gray-50 rounded-2xl p-6">
+                          <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                            Technologies
+                          </h4>
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies.map((tech, idx) => (
+                              <span
+                                key={idx}
+                                className="px-3 py-1.5 bg-white text-gray-700 rounded-full text-xs font-medium border border-gray-200"
+                              >
+                                {tech}
+                              </span>
                             ))}
                           </div>
                         </div>
-                      )}
-                    </div>
 
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.technologies.map((tech, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                        {/* Project Links */}
+                        <div className="bg-gray-50 rounded-2xl p-6">
+                          <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                            Links
+                          </h4>
+                          <div className="space-y-3">
+                            {project.links.liveUrl && (
+                              <a
+                                href={project.links.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 px-4 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
+                              >
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                                  />
+                                </svg>
+                                <span>Live Site</span>
+                              </a>
+                            )}
+                            {project.links.githubUrl && (
+                              <a
+                                href={project.links.githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 px-4 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium border border-gray-200"
+                              >
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                </svg>
+                                <span>GitHub</span>
+                              </a>
+                            )}
+                            {project.links.appStoreUrl && (
+                              <a
+                                href={project.links.appStoreUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 px-4 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
+                              >
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" />
+                                </svg>
+                                <span>App Store</span>
+                              </a>
+                            )}
+                            {project.links.playStoreUrl && (
+                              <a
+                                href={project.links.playStoreUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+                              >
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                                </svg>
+                                <span>Play Store</span>
+                              </a>
+                            )}
+                          </div>
+                        </div>
 
-                    <div
-                      className="flex gap-3"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {project.links.liveUrl && (
-                        <a
-                          href={project.links.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 px-4 py-2 bg-gray-900 text-white rounded-full text-sm font-medium text-center hover:bg-gray-800 transition-colors"
-                        >
-                          View Live
-                        </a>
-                      )}
-                      {project.links.githubUrl && (
-                        <a
-                          href={project.links.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 px-4 py-2 border-2 border-gray-900 text-gray-900 rounded-full text-sm font-medium text-center hover:bg-gray-50 transition-colors"
-                        >
-                          GitHub
-                        </a>
-                      )}
-                    </div>
-
-                    {/* View Details Modal */}
-                    <div onClick={(e) => e.stopPropagation()}>
-                      <Modal>
-                        <ModalTrigger className="w-full mt-4 px-4 py-2 bg-gray-900 text-white rounded-full text-sm font-medium text-center hover:bg-gray-800 transition-colors">
-                          View Details
-                        </ModalTrigger>
-                        <ModalBody>
-                          <ModalContent className="cursor-auto">
-                            {/* Header */}
-                            <div className="flex items-start justify-between mb-8">
-                              <div className="flex-1">
-                                <h2 className="text-4xl font-bold text-gray-900 mb-3">
-                                  {project.title}
-                                </h2>
-                                <div className="flex items-center gap-3">
-                                  <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
-                                    {project.status}
-                                  </span>
-                                  <span className="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">
-                                    {project.type}
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Description */}
-                            <div className="mb-8">
-                              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                                About the Project
-                              </h3>
-                              <p className="text-gray-600 leading-relaxed">
-                                {project.description}
-                              </p>
-                            </div>
-
-                            {/* My Role */}
-                            <div className="mb-8">
-                              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                                My Role
-                              </h3>
-                              <p className="text-gray-600 leading-relaxed">
-                                {project.myRole}
-                              </p>
-                            </div>
-
-                            {/* Key Learnings */}
-                            <div className="mb-8">
-                              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                                Key Learnings
-                              </h3>
-                              <p className="text-gray-600 leading-relaxed">
-                                {project.keyLearnings}
-                              </p>
-                            </div>
-
-                            {/* Technologies */}
-                            <div className="mb-8">
-                              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                                Technologies Used
-                              </h3>
-                              <div className="flex flex-wrap gap-2">
-                                {project.technologies.map((tech, idx) => (
-                                  <span
-                                    key={idx}
-                                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
+                        {/* Client Info */}
+                        {project.clientId && data.clients && (
+                          <div className="bg-gray-50 rounded-2xl p-6">
+                            <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                              Client
+                            </h4>
+                            {(() => {
+                              const client = data.clients.find(
+                                (c) => c.id === project.clientId
+                              );
+                              if (client) {
+                                return (
+                                  <a
+                                    href={client.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex flex-col items-center gap-3 p-4 bg-white rounded-lg hover:bg-gray-100 transition-colors border border-gray-200 text-center"
                                   >
-                                    {tech}
-                                  </span>
+                                    <img
+                                      src={client.logoUrl}
+                                      alt={client.name}
+                                      className="h-16 w-auto"
+                                    />
+                                    <div>
+                                      <p className="font-bold text-gray-900 text-lg">
+                                        {client.name}
+                                      </p>
+                                      <p className="text-sm text-gray-500">
+                                        {client.industry}
+                                      </p>
+                                    </div>
+                                  </a>
+                                );
+                              }
+                              return null;
+                            })()}
+                          </div>
+                        )}
+
+                        {/* Web Screenshots - Peek at the Pixels */}
+                        {project.screenshots && project.screenshots.length > 0 && (
+                          <div className="bg-gray-50 rounded-2xl p-6">
+                            <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                              Peek at the Pixels
+                            </h4>
+                            <PhotoProvider maskOpacity={0.5}>
+                              <div className="grid grid-cols-2 gap-2">
+                                {project.screenshots.map((screenshot, idx) => (
+                                  <PhotoView key={idx} src={screenshot}>
+                                    <img
+                                      src={screenshot}
+                                      alt={`${project.title} screenshot ${idx + 1}`}
+                                      className="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity border border-gray-200"
+                                    />
+                                  </PhotoView>
                                 ))}
                               </div>
-                            </div>
-
-                            {/* App Screenshots with iPhone Frame */}
-                            {project.appScreenshots && project.appScreenshots.length > 0 && (
-                              <div className="mb-8">
-                                <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                                  Mobile App Screenshots
-                                </h3>
-                                <div className="flex flex-col md:flex-row gap-6">
-                                  {/* Thumbnails */}
-                                  <div className="flex md:flex-col gap-3 overflow-x-auto md:overflow-y-auto pb-2 md:pb-0 order-2 md:order-1">
-                                    {project.appScreenshots.map((screenshot, idx) => (
-                                      <button
-                                        key={idx}
-                                        onClick={() =>
-                                          setSelectedAppScreenshot({
-                                            ...selectedAppScreenshot,
-                                            [project.title]: idx,
-                                          })
-                                        }
-                                        className={cn(
-                                          "flex-shrink-0 w-16 h-24 rounded-lg overflow-hidden border-2 transition-all",
-                                          (selectedAppScreenshot[project.title] || 0) === idx
-                                            ? "border-blue-500 ring-2 ring-blue-200"
-                                            : "border-gray-200 hover:border-gray-400"
-                                        )}
-                                      >
-                                        <img
-                                          src={screenshot}
-                                          alt={`Thumbnail ${idx + 1}`}
-                                          className="w-full h-full object-cover"
-                                        />
-                                      </button>
-                                    ))}
-                                  </div>
-
-                                  {/* iPhone Frame Viewer */}
-                                  <div className="flex-shrink-0 order-1 md:order-2">
-                                    <div className="relative w-[400px] mx-auto">
-                                      {/* Screenshot inside frame */}
-                                      <div className="absolute inset-0 p-[14px]">
-                                        <img
-                                          src={project.appScreenshots[selectedAppScreenshot[project.title] || 0]}
-                                          alt={`${project.title} app screenshot`}
-                                          className="w-full h-full object-cover rounded-[45px]"
-                                        />
-                                      </div>
-                                      {/* iPhone Frame on top */}
-                                      <img
-                                        src="/images/iphone-frame.png"
-                                        alt="iPhone frame"
-                                        className="relative z-10 w-full h-auto"
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-
-                            {/* Web Screenshots */}
-                            {project.screenshots && project.screenshots.length > 0 && (
-                              <div className="mb-8">
-                                <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                                  Web Screenshots
-                                </h3>
-                                <PhotoProvider
-                                  maskOpacity={0.5}
-                                >
-                                  <div className="grid grid-cols-2 gap-4">
-                                    {project.screenshots.map((screenshot, idx) => (
-                                      <PhotoView key={idx} src={screenshot}>
-                                        <img
-                                          src={screenshot}
-                                          alt={`${project.title} screenshot ${idx + 1}`}
-                                          className="w-full h-48 object-cover rounded-xl cursor-pointer hover:opacity-90 transition-opacity border border-gray-200"
-                                        />
-                                      </PhotoView>
-                                    ))}
-                                  </div>
-                                </PhotoProvider>
-                              </div>
-                            )}
-
-                            {/* Links */}
-                            <div className="mb-8">
-                              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                                Project Links
-                              </h3>
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                {project.links.liveUrl && (
-                                  <a
-                                    href={project.links.liveUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-4 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
-                                  >
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                                    </svg>
-                                    <span>View Live Site</span>
-                                  </a>
-                                )}
-                                {project.links.githubUrl && (
-                                  <a
-                                    href={project.links.githubUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-4 py-3 border-2 border-gray-900 text-gray-900 rounded-lg hover:bg-gray-50 transition-colors"
-                                  >
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                    </svg>
-                                    <span>View on GitHub</span>
-                                  </a>
-                                )}
-                                {project.links.appStoreUrl && (
-                                  <a
-                                    href={project.links.appStoreUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-4 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
-                                  >
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                      <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" />
-                                    </svg>
-                                    <span>App Store</span>
-                                  </a>
-                                )}
-                                {project.links.playStoreUrl && (
-                                  <a
-                                    href={project.links.playStoreUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                                  >
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                      <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                                    </svg>
-                                    <span>Play Store</span>
-                                  </a>
-                                )}
-                              </div>
-                            </div>
-
-                            {/* Client Info */}
-                            {project.clientId && data.clients && (
-                              <div className="pt-6 border-t border-gray-200">
-                                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                                  Client
-                                </h3>
-                                {(() => {
-                                  const client = data.clients.find(c => c.id === project.clientId);
-                                  if (client) {
-                                    return (
-                                      <a
-                                        href={client.website}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                                      >
-                                        <img
-                                          src={client.logoUrl}
-                                          alt={client.name}
-                                          className="h-10 w-auto"
-                                        />
-                                        <div>
-                                          <p className="font-medium text-gray-900">{client.name}</p>
-                                          <p className="text-sm text-gray-500">{client.industry}</p>
-                                        </div>
-                                      </a>
-                                    );
-                                  }
-                                  return null;
-                                })()}
-                              </div>
-                            )}
-                          </ModalContent>
-                        </ModalBody>
-                      </Modal>
+                            </PhotoProvider>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </CardExpanded>
+                </ExpandableCard>
               ))}
             </div>
-          </PhotoProvider>
+          </ExpandableCardProvider>
         </div>
       </section>
 
@@ -1211,7 +1099,7 @@ export default function Template002() {
 
             <PhotoProvider
               maskOpacity={0.5}
-              overlayRender={(props) => (
+              overlayRender={() => (
                 <div
                   style={{
                     position: "fixed",
@@ -1428,81 +1316,91 @@ export default function Template002() {
             </p>
           </div>
 
-          <div className="bg-white rounded-3xl p-12 shadow-sm border border-gray-100">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <a
-                href={`mailto:${data.personalInfo.contact.email}`}
-                className="flex flex-col items-center gap-4 p-6 rounded-2xl hover:bg-gray-50 transition-colors group"
-              >
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-gray-900 transition-colors">
-                  <svg
-                    className="w-8 h-8 text-gray-600 group-hover:text-white transition-colors"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+          <CardContainer containerClassName="py-0">
+            <CardBody className="relative bg-white rounded-3xl p-12 shadow-sm border border-gray-100 w-full h-auto overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl blur-3xl opacity-[0.03] animate-pulse" />
+              <CardItem translateZ={20} className="w-full relative">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <a
+                    href={`mailto:${data.personalInfo.contact.email}`}
+                    className="flex flex-col items-center gap-4 p-6 rounded-2xl hover:bg-gray-50 transition-colors group"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500 mb-1">Email</p>
-                  <p className="font-medium text-gray-900">
-                    {data.personalInfo.contact.email}
-                  </p>
-                </div>
-              </a>
+                    <CardItem translateZ={50}>
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-gray-900 transition-colors">
+                        <svg
+                          className="w-8 h-8 text-gray-600 group-hover:text-white transition-colors"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                          />
+                        </svg>
+                      </div>
+                    </CardItem>
+                    <div>
+                      <p className="text-sm text-gray-500 mb-1">Email</p>
+                      <p className="font-medium text-gray-900">
+                        {data.personalInfo.contact.email}
+                      </p>
+                    </div>
+                  </a>
 
-              <a
-                href={`tel:${data.personalInfo.contact.phone}`}
-                className="flex flex-col items-center gap-4 p-6 rounded-2xl hover:bg-gray-50 transition-colors group"
-              >
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-gray-900 transition-colors">
-                  <svg
-                    className="w-8 h-8 text-gray-600 group-hover:text-white transition-colors"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                  <a
+                    href={`tel:${data.personalInfo.contact.phone}`}
+                    className="flex flex-col items-center gap-4 p-6 rounded-2xl hover:bg-gray-50 transition-colors group"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
-                  </svg>
+                    <CardItem translateZ={50}>
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-gray-900 transition-colors">
+                        <svg
+                          className="w-8 h-8 text-gray-600 group-hover:text-white transition-colors"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                          />
+                        </svg>
+                      </div>
+                    </CardItem>
+                    <div>
+                      <p className="text-sm text-gray-500 mb-1">Phone</p>
+                      <p className="font-medium text-gray-900">
+                        {data.personalInfo.contact.phone}
+                      </p>
+                    </div>
+                  </a>
                 </div>
-                <div>
-                  <p className="text-sm text-gray-500 mb-1">Phone</p>
-                  <p className="font-medium text-gray-900">
-                    {data.personalInfo.contact.phone}
-                  </p>
-                </div>
-              </a>
-            </div>
+              </CardItem>
+            </CardBody>
+          </CardContainer>
 
-            <div className="pt-8 border-t border-gray-200">
-              <p className="text-gray-600 mb-6">Connect with me on</p>
-              <div className="flex items-center justify-center gap-4">
-                {Object.entries(data.personalInfo.socialLinks).map(
-                  ([platform, url]) => (
-                    <a
-                      key={platform}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-900 hover:text-white transition-all duration-200"
-                      title={platform}
-                    >
-                      <SocialIcon platform={platform} />
-                    </a>
-                  )
-                )}
-              </div>
+          {/* Social Links - Separate Card */}
+          <div className="mt-6 bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+            <p className="text-gray-600 mb-6">Connect with me on</p>
+            <div className="flex items-center justify-center gap-4">
+              {Object.entries(data.personalInfo.socialLinks).map(
+                ([platform, url]) => (
+                  <a
+                    key={platform}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-900 hover:text-white transition-all duration-200"
+                    title={platform}
+                  >
+                    <SocialIcon platform={platform} />
+                  </a>
+                )
+              )}
             </div>
           </div>
         </div>
