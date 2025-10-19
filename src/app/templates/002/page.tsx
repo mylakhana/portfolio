@@ -10,6 +10,7 @@ import {
   ModalContent,
   ModalTrigger,
 } from "@/components/ui/animated-modal";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface PortfolioData {
   personalInfo: {
@@ -421,40 +422,51 @@ export default function Template002() {
                   </div>
 
                   {/* Expanded details with progress bars */}
-                  <div
-                    className={cn(
-                      "overflow-hidden transition-all duration-300",
-                      expandedSkill === skillGroup.category
-                        ? "max-h-[800px] opacity-100"
-                        : "max-h-0 opacity-0"
+                  <AnimatePresence>
+                    {expandedSkill === skillGroup.category && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="space-y-4 pt-4 border-t border-gray-200">
+                          {Object.entries(skillGroup.technologies).map(
+                            ([tech, level], idx) => {
+                              const percentage = getProficiencyPercentage(level);
+                              return (
+                                <motion.div
+                                  key={idx}
+                                  initial={{ opacity: 0, x: -20 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ delay: idx * 0.1, duration: 0.3 }}
+                                  className="space-y-2"
+                                >
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-sm font-medium text-gray-900">
+                                      {tech}
+                                    </span>
+                                    <span className="text-xs text-gray-500">
+                                      {level}
+                                    </span>
+                                  </div>
+                                  <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                                    <motion.div
+                                      initial={{ width: 0 }}
+                                      animate={{ width: `${percentage}%` }}
+                                      transition={{ delay: idx * 0.1 + 0.2, duration: 0.8, ease: "easeOut" }}
+                                      className="bg-gray-900 h-2 rounded-full"
+                                    />
+                                  </div>
+                                </motion.div>
+                              );
+                            }
+                          )}
+                        </div>
+                      </motion.div>
                     )}
-                  >
-                    <div className="space-y-4 pt-4 border-t border-gray-200">
-                      {Object.entries(skillGroup.technologies).map(
-                        ([tech, level], idx) => {
-                          const percentage = getProficiencyPercentage(level);
-                          return (
-                            <div key={idx} className="space-y-2">
-                              <div className="flex items-center justify-between">
-                                <span className="text-sm font-medium text-gray-900">
-                                  {tech}
-                                </span>
-                                <span className="text-xs text-gray-500">
-                                  {level}
-                                </span>
-                              </div>
-                              <div className="w-full bg-gray-200 rounded-full h-2">
-                                <div
-                                  className="bg-gray-900 h-2 rounded-full transition-all duration-500"
-                                  style={{ width: `${percentage}%` }}
-                                />
-                              </div>
-                            </div>
-                          );
-                        }
-                      )}
-                    </div>
-                  </div>
+                  </AnimatePresence>
                 </div>
               );
             })}
@@ -586,88 +598,106 @@ export default function Template002() {
                   </div>
 
                   {/* Expanded content */}
-                  <div
-                    className={cn(
-                      "overflow-hidden transition-all duration-300",
-                      expandedExperience === index
-                        ? "max-h-[1000px] opacity-100 mt-6"
-                        : "max-h-0 opacity-0"
-                    )}
-                  >
-                    <div className="space-y-6 pt-6 border-t border-gray-200">
-                      {/* Responsibilities */}
-                      <div>
-                        <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                          Key Responsibilities
-                        </h4>
-                        <ul className="space-y-3">
-                          {job.responsibilities.map((resp, idx) => (
-                            <li key={idx} className="flex gap-3 text-gray-600">
-                              <svg
-                                className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                              </svg>
-                              <span>{resp}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Tech Stack */}
-                      {job.techStack && (
-                        <div>
-                          <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                            Tech Stack
-                          </h4>
-                          <div className="space-y-3">
-                            {job.techStack.frontend && (
-                              <div>
-                                <p className="text-sm font-medium text-gray-700 mb-2">
-                                  Frontend
-                                </p>
-                                <div className="flex flex-wrap gap-2">
-                                  {job.techStack.frontend.map((tech, idx) => (
-                                    <span
-                                      key={idx}
-                                      className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium"
-                                    >
-                                      {tech}
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-                            {job.techStack.testing && (
-                              <div>
-                                <p className="text-sm font-medium text-gray-700 mb-2">
-                                  Testing
-                                </p>
-                                <div className="flex flex-wrap gap-2">
-                                  {job.techStack.testing.map((tech, idx) => (
-                                    <span
-                                      key={idx}
-                                      className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium"
-                                    >
-                                      {tech}
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
+                  <AnimatePresence>
+                    {expandedExperience === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden mt-6"
+                      >
+                        <div className="space-y-6 pt-6 border-t border-gray-200">
+                          {/* Responsibilities */}
+                          <div>
+                            <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                              Key Responsibilities
+                            </h4>
+                            <ul className="space-y-3">
+                              {job.responsibilities.map((resp, idx) => (
+                                <motion.li
+                                  key={idx}
+                                  initial={{ opacity: 0, x: -30 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{
+                                    delay: idx * 0.15,
+                                    duration: 0.4,
+                                    type: "spring",
+                                    stiffness: 100
+                                  }}
+                                  className="flex gap-3 text-gray-600"
+                                >
+                                  <svg
+                                    className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                  </svg>
+                                  <span>{resp}</span>
+                                </motion.li>
+                              ))}
+                            </ul>
                           </div>
+
+                          {/* Tech Stack */}
+                          {job.techStack && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: job.responsibilities.length * 0.15 + 0.2, duration: 0.4 }}
+                            >
+                              <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                                Tech Stack
+                              </h4>
+                              <div className="space-y-3">
+                                {job.techStack.frontend && (
+                                  <div>
+                                    <p className="text-sm font-medium text-gray-700 mb-2">
+                                      Frontend
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
+                                      {job.techStack.frontend.map((tech, idx) => (
+                                        <span
+                                          key={idx}
+                                          className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium"
+                                        >
+                                          {tech}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                {job.techStack.testing && (
+                                  <div>
+                                    <p className="text-sm font-medium text-gray-700 mb-2">
+                                      Testing
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
+                                      {job.techStack.testing.map((tech, idx) => (
+                                        <span
+                                          key={idx}
+                                          className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium"
+                                        >
+                                          {tech}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            </motion.div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
             ))}
@@ -1018,7 +1048,7 @@ export default function Template002() {
                                   <div className="flex-shrink-0 order-1 md:order-2">
                                     <div className="relative w-[400px] mx-auto">
                                       {/* Screenshot inside frame */}
-                                      <div className="absolute inset-0 p-[15px]">
+                                      <div className="absolute inset-0 p-[14px]">
                                         <img
                                           src={project.appScreenshots[selectedAppScreenshot[project.title] || 0]}
                                           alt={`${project.title} app screenshot`}
