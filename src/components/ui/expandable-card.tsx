@@ -42,26 +42,39 @@ export const ExpandableCard = ({ id, children, className }: ExpandableCardProps)
 
   useEffect(() => {
     if (isExpanded) {
+      // Prevent body scroll without changing position
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
       document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+
+      return () => {
+        // Restore body scroll
+        document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
+      };
     }
   }, [isExpanded]);
 
   return (
     <>
-      {/* Card in Grid */}
-      <motion.div
-        layoutId={`card-${id}`}
-        onClick={() => setExpanded(id)}
-        className={cn(
-          "cursor-pointer",
-          isExpanded ? "fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8" : "",
-          className
-        )}
-      >
-        {!isExpanded && children}
-      </motion.div>
+      {/* Placeholder to keep space in grid when expanded */}
+      {isExpanded && (
+        <div className={cn("opacity-0 pointer-events-none", className)}>
+          {children}
+        </div>
+      )}
+
+      {/* Animated Card */}
+      {!isExpanded && (
+        <motion.div
+          layoutId={`card-${id}`}
+          onClick={() => setExpanded(id)}
+          className={cn("cursor-pointer", className)}
+        >
+          {children}
+        </motion.div>
+      )}
 
       {/* Expanded Overlay */}
       <AnimatePresence>
