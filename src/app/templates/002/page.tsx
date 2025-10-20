@@ -16,7 +16,7 @@ import { AppScreenshot } from "@/components/AppScreenshot";
 import { useTheme } from "@/providers/theme-provider";
 import { TechIcon, getDeviconName } from "@/components/ui/tech-icon";
 
-// Add scroll animation styles
+// Add scroll animation and scrollbar styles
 if (typeof document !== "undefined") {
   const style = document.createElement("style");
   style.textContent = `
@@ -30,6 +30,27 @@ if (typeof document !== "undefined") {
     }
     .animate-scroll:hover {
       animation-play-state: paused;
+    }
+
+    /* Custom scrollbar styles */
+    .scrollbar-thin::-webkit-scrollbar {
+      height: 6px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 3px;
+    }
+    .dark .scrollbar-thin::-webkit-scrollbar-thumb {
+      background: #4b5563;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+      background: #9ca3af;
+    }
+    .dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+      background: #6b7280;
     }
   `;
   if (!document.head.querySelector('style[data-scroll-animation]')) {
@@ -214,38 +235,38 @@ const getProficiencyColor = (level: string): { bg: string; text: string; border:
   switch (level.toLowerCase()) {
     case "expert":
       return {
-        bg: "bg-emerald-50 dark:bg-emerald-950",
-        text: "text-emerald-700 dark:text-emerald-300",
-        border: "border-emerald-200 dark:border-emerald-800",
-        barBg: "bg-emerald-500 dark:bg-emerald-400"
+        bg: "bg-emerald-50/30 dark:bg-emerald-950/10",
+        text: "text-emerald-500 dark:text-emerald-500",
+        border: "border-emerald-200/30 dark:border-emerald-800/20",
+        barBg: "bg-emerald-400/70 dark:bg-emerald-500/50"
       };
     case "high":
       return {
-        bg: "bg-blue-50 dark:bg-blue-950",
-        text: "text-blue-700 dark:text-blue-300",
-        border: "border-blue-200 dark:border-blue-800",
-        barBg: "bg-blue-500 dark:bg-blue-400"
+        bg: "bg-blue-50/30 dark:bg-blue-950/10",
+        text: "text-blue-500 dark:text-blue-500",
+        border: "border-blue-200/30 dark:border-blue-800/20",
+        barBg: "bg-blue-400/70 dark:bg-blue-500/50"
       };
     case "moderate":
       return {
-        bg: "bg-amber-50 dark:bg-amber-950",
-        text: "text-amber-700 dark:text-amber-300",
-        border: "border-amber-200 dark:border-amber-800",
-        barBg: "bg-amber-500 dark:bg-amber-400"
+        bg: "bg-amber-50/30 dark:bg-amber-950/10",
+        text: "text-amber-500 dark:text-amber-500",
+        border: "border-amber-200/30 dark:border-amber-800/20",
+        barBg: "bg-amber-400/70 dark:bg-amber-500/50"
       };
     case "low":
       return {
-        bg: "bg-gray-50 dark:bg-gray-800",
-        text: "text-gray-700 dark:text-gray-300",
-        border: "border-gray-200 dark:border-gray-700",
-        barBg: "bg-gray-500 dark:bg-gray-400"
+        bg: "bg-gray-50/30 dark:bg-gray-800/10",
+        text: "text-gray-500 dark:text-gray-500",
+        border: "border-gray-200/30 dark:border-gray-700/20",
+        barBg: "bg-gray-400/70 dark:bg-gray-500/50"
       };
     default:
       return {
-        bg: "bg-gray-50 dark:bg-gray-800",
-        text: "text-gray-700 dark:text-gray-300",
-        border: "border-gray-200 dark:border-gray-700",
-        barBg: "bg-gray-500 dark:bg-gray-400"
+        bg: "bg-gray-50/30 dark:bg-gray-800/10",
+        text: "text-gray-500 dark:text-gray-500",
+        border: "border-gray-200/30 dark:border-gray-700/20",
+        barBg: "bg-gray-400/70 dark:bg-gray-500/50"
       };
   }
 };
@@ -255,7 +276,15 @@ export default function Template002() {
   const [activeSection, setActiveSection] = useState("home");
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const [selectedPlatform, setSelectedPlatform] = useState<string>("All");
+  const [showFilters, setShowFilters] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [projectFilters, setProjectFilters] = useState({
+    status: "All",
+    type: "All",
+    platform: "All",
+    technology: "All",
+    client: "All"
+  });
   const { theme, resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => {
@@ -311,6 +340,8 @@ export default function Template002() {
         behavior: "smooth",
       });
       setActiveSection(id);
+
+      // Do NOT auto-close mobile menu - let user close it manually
     }
   };
 
@@ -331,75 +362,157 @@ export default function Template002() {
       <nav
         className={cn(
           "fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300",
-          scrolled ? "top-4" : "top-6"
+          scrolled ? "top-4" : "top-6",
+          "max-w-[95vw]"
         )}
       >
         <div
           className={cn(
-            "flex items-center gap-1 px-6 py-3 rounded-full",
             "backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 shadow-lg shadow-black/5",
             "border border-gray-200/50 dark:border-gray-700/50",
-            "transition-all duration-300"
+            "transition-all duration-300",
+            "rounded-3xl"
           )}
         >
-          {[
-            { id: "home", label: "Home" },
-            { id: "skills", label: "Skills" },
-            { id: "experience", label: "Experience" },
-            { id: "trusted-by", label: "Trusted By" },
-            { id: "technologies", label: "Technologies" },
-            { id: "projects", label: "Projects" },
-            { id: "snippets", label: "Code Snippets" },
-            { id: "testimonials", label: "Testimonials" },
-            { id: "education", label: "Education" },
-            { id: "contact", label: "Contact" },
-          ].map((item) => (
+          {/* Mobile: Burger Menu (< 530px) */}
+          <div className="min-[530px]:hidden flex items-center justify-between px-4 py-3">
             <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
-                "hover:bg-gray-100 dark:hover:bg-gray-800",
-                activeSection === item.id
-                  ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100"
-                  : "text-gray-600 dark:text-gray-300"
-              )}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle menu"
             >
-              {item.label}
+              <svg className="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
             </button>
-          ))}
 
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="ml-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label={`Switch to ${theme === "system" ? "light" : theme === "light" ? "dark" : "system"} theme`}
-            title={`Current: ${theme} (${resolvedTheme})`}
-          >
-            {theme === "system" ? (
-              // System/Auto icon
-              <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            ) : theme === "light" ? (
-              // Sun icon for light mode
-              <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
-              </svg>
-            ) : (
-              // Moon icon for dark mode
-              <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-              </svg>
+            {/* Theme Toggle - Always visible on mobile */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label={`Switch to ${theme === "system" ? "light" : theme === "light" ? "dark" : "system"} theme`}
+              title={`Current: ${theme} (${resolvedTheme})`}
+            >
+              {theme === "system" ? (
+                <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              ) : theme === "light" ? (
+                <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                </svg>
+              )}
+            </button>
+          </div>
+
+          {/* Mobile Menu Items (Collapsible) */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden min-[530px]:hidden border-t border-gray-200 dark:border-gray-700"
+              >
+                <div className="flex flex-col gap-1 p-3">
+                  {[
+                    { id: "home", label: "Home" },
+                    { id: "skills", label: "Skills" },
+                    { id: "experience", label: "Experience" },
+                    { id: "trusted-by", label: "Clients" },
+                    { id: "technologies", label: "TechStack" },
+                    { id: "projects", label: "Projects" },
+                    { id: "snippets", label: "Snippets" },
+                    { id: "testimonials", label: "Feedback" },
+                    { id: "education", label: "Education" },
+                    { id: "contact", label: "Connect" },
+                  ].map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className={cn(
+                        "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 text-left",
+                        "hover:bg-gray-100 dark:hover:bg-gray-800",
+                        activeSection === item.id
+                          ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900"
+                          : "text-gray-600 dark:text-gray-300"
+                      )}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
             )}
-          </button>
+          </AnimatePresence>
+
+          {/* Desktop Navigation (>= 530px) */}
+          <div className="hidden min-[530px]:flex items-center gap-1 px-6 py-3 max-[1330px]:flex-wrap justify-center">
+            {[
+              { id: "home", label: "Home" },
+              { id: "skills", label: "Skills" },
+              { id: "experience", label: "Experience" },
+              { id: "trusted-by", label: "Clients" },
+              { id: "technologies", label: "TechStack" },
+              { id: "projects", label: "Projects" },
+              { id: "snippets", label: "Snippets" },
+              { id: "testimonials", label: "Feedback" },
+              { id: "education", label: "Education" },
+              { id: "contact", label: "Connect" },
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={cn(
+                  "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
+                  "hover:bg-gray-100 dark:hover:bg-gray-800",
+                  activeSection === item.id
+                    ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100"
+                    : "text-gray-600 dark:text-gray-300"
+                )}
+              >
+                {item.label}
+              </button>
+            ))}
+
+            {/* Theme Toggle - Desktop */}
+            <button
+              onClick={toggleTheme}
+              className="ml-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label={`Switch to ${theme === "system" ? "light" : theme === "light" ? "dark" : "system"} theme`}
+              title={`Current: ${theme} (${resolvedTheme})`}
+            >
+              {theme === "system" ? (
+                <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              ) : theme === "light" ? (
+                <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center px-4 pt-32 pb-20"
+        className="min-h-screen flex items-center justify-center px-4 pt-32 max-[1199px]:pt-44 max-[749px]:pt-56 max-[529px]:pt-32 pb-20"
       >
         <div className="max-w-5xl mx-auto text-center space-y-8">
           <CometCard rounded="rounded-full" className="w-48 h-48 mx-auto">
@@ -486,73 +599,10 @@ export default function Template002() {
       <section id="skills" className="py-32 px-4 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Skills</h2>
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Tech Arsenal</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Technologies and tools I work with
+              My toolkit for building awesome stuff
             </p>
-          </div>
-
-          {/* Stats Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-sm border border-gray-100 dark:border-gray-700"
-            >
-              <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                {data.stats.yearsOfExperience}+
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">
-                Years Experience
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-sm border border-gray-100 dark:border-gray-700"
-            >
-              <div className="text-4xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">
-                {data.stats.projectsCompleted}+
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">
-                Projects Completed
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-sm border border-gray-100 dark:border-gray-700"
-            >
-              <div className="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">
-                {data.stats.technologiesUsed}+
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">
-                Technologies Used
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-sm border border-gray-100 dark:border-gray-700"
-            >
-              <div className="text-4xl font-bold text-amber-600 dark:text-amber-400 mb-2">
-                {data.stats.happyClients}+
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">
-                Happy Clients
-              </div>
-            </motion.div>
           </div>
 
           {/* Skills Grid */}
@@ -604,6 +654,89 @@ export default function Template002() {
               </motion.div>
             ))}
           </div>
+
+          {/* Stats Bar - Moved below skills */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 flex items-center gap-4"
+            >
+              <svg className="w-12 h-12 text-blue-600 dark:text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                  Years Experience
+                </div>
+                <div className="text-3xl font-bold text-gray-900 dark:text-white">
+                  {data.stats.yearsOfExperience}+
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 flex items-center gap-4"
+            >
+              <svg className="w-12 h-12 text-emerald-600 dark:text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                  Projects Completed
+                </div>
+                <div className="text-3xl font-bold text-gray-900 dark:text-white">
+                  {data.stats.projectsCompleted}+
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 flex items-center gap-4"
+            >
+              <svg className="w-12 h-12 text-purple-600 dark:text-purple-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+              <div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                  Technologies Used
+                </div>
+                <div className="text-3xl font-bold text-gray-900 dark:text-white">
+                  {data.stats.technologiesUsed}+
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 flex items-center gap-4"
+            >
+              <svg className="w-12 h-12 text-amber-600 dark:text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+              </svg>
+              <div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                  Happy Clients
+                </div>
+                <div className="text-3xl font-bold text-gray-900 dark:text-white">
+                  {data.stats.happyClients}+
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -611,8 +744,8 @@ export default function Template002() {
       <section id="experience" className="py-32 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center space-y-4 mb-20">
-            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Experience</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">My professional journey</p>
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Where I've Worked</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">The journey so far</p>
           </div>
 
           <div className="space-y-8">
@@ -815,7 +948,7 @@ export default function Template002() {
         <section id="trusted-by" className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
             <h3 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-              Trusted by
+              Clients Who Trust Me
             </h3>
             <div className="bg-gray-200 dark:bg-gray-800 rounded-2xl py-8 px-6 overflow-hidden">
               <div className="flex items-center gap-12 animate-scroll">
@@ -842,7 +975,7 @@ export default function Template002() {
       <section id="technologies" className="py-20 px-4 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-6xl mx-auto">
           <h3 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-            Technologies I Have Used
+            Stack & Tools
           </h3>
           <div className="bg-white dark:bg-gray-800 rounded-2xl py-12 px-6 overflow-hidden border border-gray-200 dark:border-gray-700">
             <div className="flex items-center gap-16 animate-scroll">
@@ -864,36 +997,292 @@ export default function Template002() {
       <section id="projects" className="py-32 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Projects</h2>
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Things I've Built</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Selected works and case studies
+              Projects that made it to production
             </p>
           </div>
 
-          {/* Platform Filter Chips */}
-          <div className="flex items-center justify-center gap-3 mb-12 flex-wrap">
-            {["All", ...Array.from(new Set(data.projects.map(p => p.platform)))].map((platform) => (
-              <button
-                key={platform}
-                onClick={() => setSelectedPlatform(platform)}
+          {/* Filter Toggle Button */}
+          <div className="flex justify-center mb-8">
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className={cn(
+                "group px-6 py-3 rounded-full font-medium transition-all duration-200 flex items-center gap-3",
+                showFilters
+                  ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-lg"
+                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-2 border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white"
+              )}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              <span>Filter Projects</span>
+              {Object.values(projectFilters).filter(v => v !== "All").length > 0 && (
+                <span className="px-2 py-0.5 bg-white dark:bg-gray-900 text-gray-900 dark:text-white rounded-full text-xs font-bold">
+                  {Object.values(projectFilters).filter(v => v !== "All").length}
+                </span>
+              )}
+              <svg
                 className={cn(
-                  "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200",
-                  selectedPlatform === platform
-                    ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-lg"
-                    : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white"
+                  "w-4 h-4 transition-transform duration-200",
+                  showFilters && "rotate-180"
                 )}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                {platform}
-              </button>
-            ))}
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
           </div>
+
+          {/* Collapsible Filter Panel */}
+          <AnimatePresence>
+            {showFilters && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden mb-12"
+              >
+                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 space-y-4 border border-gray-200 dark:border-gray-700">
+                  {/* Status Filter */}
+                  <div className="flex items-start gap-3">
+                    <span className="text-sm font-semibold text-gray-900 dark:text-white min-w-[80px] pt-1.5 flex-shrink-0">Status:</span>
+                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin cursor-grab active:cursor-grabbing"
+                      onMouseDown={(e) => {
+                        const ele = e.currentTarget;
+                        ele.style.cursor = 'grabbing';
+                        const startX = e.pageX - ele.offsetLeft;
+                        const scrollLeft = ele.scrollLeft;
+                        const handleMouseMove = (e: MouseEvent) => {
+                          const x = e.pageX - ele.offsetLeft;
+                          const walk = (x - startX) * 2;
+                          ele.scrollLeft = scrollLeft - walk;
+                        };
+                        const handleMouseUp = () => {
+                          ele.style.cursor = 'grab';
+                          document.removeEventListener('mousemove', handleMouseMove);
+                          document.removeEventListener('mouseup', handleMouseUp);
+                        };
+                        document.addEventListener('mousemove', handleMouseMove);
+                        document.addEventListener('mouseup', handleMouseUp);
+                      }}>
+                      {["All", ...Array.from(new Set(data.projects.map(p => p.status)))].map((status) => (
+                        <button
+                          key={status}
+                          onClick={() => setProjectFilters({...projectFilters, status})}
+                          className={cn(
+                            "px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0",
+                            projectFilters.status === status
+                              ? "bg-emerald-600 dark:bg-emerald-500 text-white shadow-lg"
+                              : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-emerald-600 dark:hover:border-emerald-500"
+                          )}
+                        >
+                          {status}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Type Filter */}
+                  <div className="flex items-start gap-3">
+                    <span className="text-sm font-semibold text-gray-900 dark:text-white min-w-[80px] pt-1.5 flex-shrink-0">Type:</span>
+                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin cursor-grab active:cursor-grabbing"
+                      onMouseDown={(e) => {
+                        const ele = e.currentTarget;
+                        ele.style.cursor = 'grabbing';
+                        const startX = e.pageX - ele.offsetLeft;
+                        const scrollLeft = ele.scrollLeft;
+                        const handleMouseMove = (e: MouseEvent) => {
+                          const x = e.pageX - ele.offsetLeft;
+                          const walk = (x - startX) * 2;
+                          ele.scrollLeft = scrollLeft - walk;
+                        };
+                        const handleMouseUp = () => {
+                          ele.style.cursor = 'grab';
+                          document.removeEventListener('mousemove', handleMouseMove);
+                          document.removeEventListener('mouseup', handleMouseUp);
+                        };
+                        document.addEventListener('mousemove', handleMouseMove);
+                        document.addEventListener('mouseup', handleMouseUp);
+                      }}>
+                      {["All", ...Array.from(new Set(data.projects.map(p => p.type)))].map((type) => (
+                        <button
+                          key={type}
+                          onClick={() => setProjectFilters({...projectFilters, type})}
+                          className={cn(
+                            "px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0",
+                            projectFilters.type === type
+                              ? "bg-blue-600 dark:bg-blue-500 text-white shadow-lg"
+                              : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-blue-600 dark:hover:border-blue-500"
+                          )}
+                        >
+                          {type}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Platform Filter */}
+                  <div className="flex items-start gap-3">
+                    <span className="text-sm font-semibold text-gray-900 dark:text-white min-w-[80px] pt-1.5 flex-shrink-0">Platform:</span>
+                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin cursor-grab active:cursor-grabbing"
+                      onMouseDown={(e) => {
+                        const ele = e.currentTarget;
+                        ele.style.cursor = 'grabbing';
+                        const startX = e.pageX - ele.offsetLeft;
+                        const scrollLeft = ele.scrollLeft;
+                        const handleMouseMove = (e: MouseEvent) => {
+                          const x = e.pageX - ele.offsetLeft;
+                          const walk = (x - startX) * 2;
+                          ele.scrollLeft = scrollLeft - walk;
+                        };
+                        const handleMouseUp = () => {
+                          ele.style.cursor = 'grab';
+                          document.removeEventListener('mousemove', handleMouseMove);
+                          document.removeEventListener('mouseup', handleMouseUp);
+                        };
+                        document.addEventListener('mousemove', handleMouseMove);
+                        document.addEventListener('mouseup', handleMouseUp);
+                      }}>
+                      {["All", ...Array.from(new Set(data.projects.map(p => p.platform)))].map((platform) => (
+                        <button
+                          key={platform}
+                          onClick={() => setProjectFilters({...projectFilters, platform})}
+                          className={cn(
+                            "px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0",
+                            projectFilters.platform === platform
+                              ? "bg-purple-600 dark:bg-purple-500 text-white shadow-lg"
+                              : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-purple-600 dark:hover:border-purple-500"
+                          )}
+                        >
+                          {platform}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Technology Filter */}
+                  <div className="flex items-start gap-3">
+                    <span className="text-sm font-semibold text-gray-900 dark:text-white min-w-[80px] pt-1.5 flex-shrink-0">Tech:</span>
+                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin cursor-grab active:cursor-grabbing"
+                      onMouseDown={(e) => {
+                        const ele = e.currentTarget;
+                        ele.style.cursor = 'grabbing';
+                        const startX = e.pageX - ele.offsetLeft;
+                        const scrollLeft = ele.scrollLeft;
+                        const handleMouseMove = (e: MouseEvent) => {
+                          const x = e.pageX - ele.offsetLeft;
+                          const walk = (x - startX) * 2;
+                          ele.scrollLeft = scrollLeft - walk;
+                        };
+                        const handleMouseUp = () => {
+                          ele.style.cursor = 'grab';
+                          document.removeEventListener('mousemove', handleMouseMove);
+                          document.removeEventListener('mouseup', handleMouseUp);
+                        };
+                        document.addEventListener('mousemove', handleMouseMove);
+                        document.addEventListener('mouseup', handleMouseUp);
+                      }}>
+                      {["All", ...Array.from(new Set(data.projects.flatMap(p => p.technologies)))].slice(0, 10).map((tech) => (
+                        <button
+                          key={tech}
+                          onClick={() => setProjectFilters({...projectFilters, technology: tech})}
+                          className={cn(
+                            "px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 flex items-center gap-1 whitespace-nowrap flex-shrink-0",
+                            projectFilters.technology === tech
+                              ? "bg-amber-600 dark:bg-amber-500 text-white shadow-lg"
+                              : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-amber-600 dark:hover:border-amber-500"
+                          )}
+                        >
+                          {tech !== "All" && <TechIcon name={getDeviconName(tech)} variant="original" className="text-sm" />}
+                          {tech}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Client Filter */}
+                  {data.clients && data.clients.length > 0 && (
+                    <div className="flex items-start gap-3">
+                      <span className="text-sm font-semibold text-gray-900 dark:text-white min-w-[80px] pt-1.5 flex-shrink-0">Client:</span>
+                      <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin cursor-grab active:cursor-grabbing"
+                        onMouseDown={(e) => {
+                          const ele = e.currentTarget;
+                          ele.style.cursor = 'grabbing';
+                          const startX = e.pageX - ele.offsetLeft;
+                          const scrollLeft = ele.scrollLeft;
+                          const handleMouseMove = (e: MouseEvent) => {
+                            const x = e.pageX - ele.offsetLeft;
+                            const walk = (x - startX) * 2;
+                            ele.scrollLeft = scrollLeft - walk;
+                          };
+                          const handleMouseUp = () => {
+                            ele.style.cursor = 'grab';
+                            document.removeEventListener('mousemove', handleMouseMove);
+                            document.removeEventListener('mouseup', handleMouseUp);
+                          };
+                          document.addEventListener('mousemove', handleMouseMove);
+                          document.addEventListener('mouseup', handleMouseUp);
+                        }}>
+                        {["All", ...data.clients.map(c => c.name)].map((client) => (
+                          <button
+                            key={client}
+                            onClick={() => setProjectFilters({...projectFilters, client})}
+                            className={cn(
+                              "px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0",
+                              projectFilters.client === client
+                                ? "bg-rose-600 dark:bg-rose-500 text-white shadow-lg"
+                                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-rose-600 dark:hover:border-rose-500"
+                            )}
+                          >
+                            {client}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Clear Filters Button */}
+                  {Object.values(projectFilters).some(v => v !== "All") && (
+                    <div className="flex justify-center pt-4 border-t border-gray-200 dark:border-gray-700">
+                      <button
+                        onClick={() => setProjectFilters({
+                          status: "All",
+                          type: "All",
+                          platform: "All",
+                          technology: "All",
+                          client: "All"
+                        })}
+                        className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors flex items-center gap-2"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        Clear All Filters
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <ExpandableCardProvider>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {(selectedPlatform === "All"
-                ? data.projects
-                : data.projects.filter(p => p.platform === selectedPlatform)
-              ).map((project, index) => (
+              {data.projects.filter(project => {
+                const matchesStatus = projectFilters.status === "All" || project.status === projectFilters.status;
+                const matchesType = projectFilters.type === "All" || project.type === projectFilters.type;
+                const matchesPlatform = projectFilters.platform === "All" || project.platform === projectFilters.platform;
+                const matchesTech = projectFilters.technology === "All" || project.technologies.includes(projectFilters.technology);
+                const matchesClient = projectFilters.client === "All" || (
+                  data.clients.find(c => c.name === projectFilters.client)?.id === project.clientId
+                );
+                return matchesStatus && matchesType && matchesPlatform && matchesTech && matchesClient;
+              }).map((project, index) => (
                 <ExpandableCard key={index} id={`project-${index}`}>
                   {/* Card Thumbnail (Collapsed View) */}
                   <CardThumbnail>
@@ -1221,10 +1610,10 @@ export default function Template002() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-20">
               <h2 className="text-5xl font-bold text-gray-900 dark:text-white">
-                Code Snippets
+                Code Vault
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300">
-                Reusable solutions and utilities
+                Snippets I keep handy
               </p>
             </div>
 
@@ -1259,9 +1648,9 @@ export default function Template002() {
                       </span>
                     </div>
 
-                    <div className="bg-gray-900 dark:bg-gray-950 rounded-2xl p-6 overflow-x-auto mb-4">
-                      <pre className="text-sm text-gray-100 dark:text-gray-200 font-mono">
-                        <code>{snippet.code}</code>
+                    <div className="bg-gray-900 dark:bg-gray-950 rounded-2xl p-4 md:p-6 overflow-x-auto mb-4 max-w-full">
+                      <pre className="text-xs md:text-sm text-gray-100 dark:text-gray-200 font-mono whitespace-pre w-full min-w-0">
+                        <code className="block">{snippet.code}</code>
                       </pre>
                     </div>
 
@@ -1304,10 +1693,10 @@ export default function Template002() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-20">
               <h2 className="text-5xl font-bold text-gray-900 dark:text-white">
-                Testimonials
+                Kind Words
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300">
-                What people say about working with me
+                What folks say about working together
               </p>
             </div>
 
@@ -1354,8 +1743,8 @@ export default function Template002() {
         <section id="education" className="py-32 px-4 bg-gray-50 dark:bg-gray-900">
           <div className="max-w-5xl mx-auto">
             <div className="text-center space-y-4 mb-20">
-              <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Education</h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300">Academic background</p>
+              <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Learning Path</h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300">Where I studied</p>
             </div>
 
             <div className="grid gap-6">
@@ -1418,10 +1807,10 @@ export default function Template002() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-20">
               <h2 className="text-5xl font-bold text-gray-900 dark:text-white">
-                Certifications
+                Badges & Certs
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300">
-                Professional credentials and achievements
+                Achievements unlocked
               </p>
             </div>
 
@@ -1433,13 +1822,13 @@ export default function Template002() {
                 >
                   <div className="mb-4">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                      {cert.title}
+                      {cert.name}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300 text-sm">
-                      {cert.issuer}
+                      {cert.issuingOrganization}
                     </p>
                     <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">
-                      Issued: {cert.issueDate}
+                      Issued: {cert.date}
                     </p>
                   </div>
 
@@ -1478,9 +1867,9 @@ export default function Template002() {
         <section className="py-32 px-4 bg-gray-50 dark:bg-gray-900">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-20">
-              <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Articles</h2>
+              <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Blog & Writings</h2>
               <p className="text-xl text-gray-600 dark:text-gray-300">
-                Thoughts and technical writings
+                Sharing what I learn
               </p>
             </div>
 
@@ -1532,9 +1921,9 @@ export default function Template002() {
       <section id="contact" className="py-32 px-4 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-4xl mx-auto text-center">
           <div className="space-y-4 mb-12">
-            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Get in Touch</h2>
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Let's Connect</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Let's work together on your next project
+              Hit me up for projects or just to chat
             </p>
           </div>
 

@@ -192,6 +192,7 @@
       "clientId": null,
       "isFeatured": true,
       "logoUrl": "/images/logo/zm.png",
+      "darkLogoUrl": "/images/logo/zm-bk.png",
       "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Zia+Library",
       "description": "Ziauddin Islamic Audio library contains 20,000+ media files accessible in all major platforms. A comprehensive library for Islamic audio content including lectures, recitations, and educational materials.",
       "myRole": "Lead Developer",
