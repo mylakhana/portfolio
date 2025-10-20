@@ -19,6 +19,34 @@
       "blog": "https://lakhana.com/mubashir/blog"
     }
   },
+  "stats": {
+    "yearsOfExperience": 8,
+    "projectsCompleted": 25,
+    "technologiesUsed": 30,
+    "happyClients": 15
+  },
+  "technologiesUsed": [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "HTML5",
+    "CSS3",
+    "PHP",
+    "Laravel",
+    "Flutter",
+    "Dart",
+    "MySQL",
+    "PostgreSQL",
+    "Node.js",
+    "Git",
+    "Docker",
+    "Photoshop",
+    "PHPStorm",
+    "Cursor",
+    "VSCode",
+    "Figma"
+  ],
   "clients": [
     {
       "id": "startup-co",
@@ -177,6 +205,7 @@
       },
       "status": "Live",
       "type": "Client",
+      "platform": "Mobile App",
       "screenshots": [],
       "appScreenshots": [],
       "html": null
@@ -199,8 +228,14 @@
       },
       "status": "Live",
       "type": "Client",
-      "screenshots": [],
-      "appScreenshots": [],
+      "platform": "Mobile App",
+      "screenshots": [
+        "/images/screenshots/app/alpha-001.png"
+      ],
+      "appScreenshots": [
+        "/images/screenshots/app/alpha-001.png",
+        "/images/screenshots/app/alpha-002.png"
+      ],
       "html": null
     },
     {
@@ -221,6 +256,7 @@
       },
       "status": "Live",
       "type": "Client",
+      "platform": "Mobile App",
       "screenshots": [],
       "appScreenshots": [],
       "html": null
@@ -243,6 +279,7 @@
       },
       "status": "Live",
       "type": "Personal",
+      "platform": "Mobile App",
       "screenshots": [],
       "appScreenshots": [],
       "html": null
@@ -265,6 +302,7 @@
       },
       "status": "Live",
       "type": "Personal",
+      "platform": "Mobile App",
       "screenshots": [],
       "appScreenshots": [],
       "html": null
@@ -287,6 +325,7 @@
       },
       "status": "In Development",
       "type": "Personal",
+      "platform": "Mobile App",
       "screenshots": [],
       "appScreenshots": [],
       "html": null
@@ -309,6 +348,7 @@
       },
       "status": "Open Source",
       "type": "Personal",
+      "platform": "Mobile App",
       "screenshots": [],
       "appScreenshots": [],
       "html": null
@@ -331,6 +371,7 @@
       },
       "status": "Live",
       "type": "Client",
+      "platform": "Mobile App",
       "screenshots": [],
       "appScreenshots": [],
       "html": null
@@ -353,6 +394,7 @@
       },
       "status": "Live",
       "type": "Client",
+      "platform": "Mobile App",
       "screenshots": [],
       "appScreenshots": [],
       "html": null
@@ -375,6 +417,7 @@
       },
       "status": "Live",
       "type": "Client",
+      "platform": "Web",
       "screenshots": [],
       "appScreenshots": [],
       "html": null
@@ -397,6 +440,7 @@
       },
       "status": "Live",
       "type": "Personal",
+      "platform": "Web",
       "screenshots": [],
       "appScreenshots": [],
       "html": null

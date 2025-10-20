@@ -20,3 +20,19 @@
   - Skiper UI
   - 21st.dev
 - Explore these resources for innovative UI patterns and components
+
+## Technology Icons
+- Use **Devicon** for displaying technology/tool icons consistently across the portfolio
+- Import and usage:
+  ```tsx
+  import { TechIcon, getDeviconName } from "@/components/ui/tech-icon";
+
+  // Basic usage with original colored variant (recommended)
+  <TechIcon name="react" variant="original" />
+
+  // Auto-map from display name
+  <TechIcon name={getDeviconName("JavaScript/TypeScript")} variant="original" />
+  ```
+- Preferred variant: `original` with `colored` (default)
+- Browse available icons: [devicon.dev](https://devicon.dev/)
+- See full documentation in `docs/devicon-usage.md`
