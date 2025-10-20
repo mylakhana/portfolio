@@ -1648,8 +1648,8 @@ export default function Template002() {
                       </span>
                     </div>
 
-                    <div className="bg-gray-900 dark:bg-gray-950 rounded-2xl p-4 md:p-6 overflow-x-auto mb-4 max-w-full">
-                      <pre className="text-xs md:text-sm text-gray-100 dark:text-gray-200 font-mono whitespace-pre w-full min-w-0">
+                    <div className="bg-gray-900 dark:bg-gray-950 rounded-2xl p-2 min-[480px]:p-4 md:p-6 overflow-x-auto mb-4 max-w-full">
+                      <pre className="text-[10px] min-[480px]:text-xs md:text-sm text-gray-100 dark:text-gray-200 font-mono whitespace-pre w-full min-w-0">
                         <code className="block">{snippet.code}</code>
                       </pre>
                     </div>
