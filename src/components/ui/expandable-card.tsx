@@ -30,6 +30,21 @@ export const useExpandableCard = () => {
   return context;
 };
 
+// Context for individual card's expanded state
+interface CardStateContextType {
+  isExpanded: boolean;
+}
+
+const CardStateContext = createContext<CardStateContextType | undefined>(undefined);
+
+const useCardState = () => {
+  const context = useContext(CardStateContext);
+  if (!context) {
+    throw new Error("useCardState must be used within ExpandableCard");
+  }
+  return context;
+};
+
 interface ExpandableCardProps {
   id: string;
   children: React.ReactNode;
@@ -57,7 +72,7 @@ export const ExpandableCard = ({ id, children, className }: ExpandableCardProps)
   }, [isExpanded]);
 
   return (
-    <>
+    <CardStateContext.Provider value={{ isExpanded }}>
       {/* Placeholder to keep space in grid when expanded */}
       {isExpanded && (
         <div className={cn("opacity-0 pointer-events-none", className)}>
@@ -118,7 +133,7 @@ export const ExpandableCard = ({ id, children, className }: ExpandableCardProps)
           </>
         )}
       </AnimatePresence>
-    </>
+    </CardStateContext.Provider>
   );
 };
 
@@ -128,17 +143,17 @@ interface CardContentProps {
 }
 
 export const CardThumbnail = ({ children, className }: CardContentProps) => {
-  const { expanded } = useExpandableCard();
+  const { isExpanded } = useCardState();
 
-  if (expanded) return null;
+  if (isExpanded) return null;
 
   return <div className={className}>{children}</div>;
 };
 
 export const CardExpanded = ({ children, className }: CardContentProps) => {
-  const { expanded } = useExpandableCard();
+  const { isExpanded } = useCardState();
 
-  if (!expanded) return null;
+  if (!isExpanded) return null;
 
   return <div className={className}>{children}</div>;
 };
