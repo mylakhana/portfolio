@@ -431,8 +431,8 @@ export default function Template002() {
                     { id: "trusted-by", label: "Clients" },
                     { id: "technologies", label: "TechStack" },
                     { id: "projects", label: "Projects" },
-                    { id: "snippets", label: "Snippets" },
-                    { id: "testimonials", label: "Feedback" },
+                    { id: "snippets", label: "Code" },
+                    { id: "testimonials", label: "Endorsements" },
                     { id: "education", label: "Education" },
                     { id: "contact", label: "Connect" },
                   ].map((item) => (
@@ -464,8 +464,8 @@ export default function Template002() {
               { id: "trusted-by", label: "Clients" },
               { id: "technologies", label: "TechStack" },
               { id: "projects", label: "Projects" },
-              { id: "snippets", label: "Snippets" },
-              { id: "testimonials", label: "Feedback" },
+              { id: "snippets", label: "Code" },
+              { id: "testimonials", label: "Endorsements" },
               { id: "education", label: "Education" },
               { id: "contact", label: "Connect" },
             ].map((item) => (
@@ -599,9 +599,9 @@ export default function Template002() {
       <section id="skills" className="py-32 px-4 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Tech Arsenal</h2>
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Skills</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              My toolkit for building awesome stuff
+              My tech arsenal
             </p>
           </div>
 
@@ -997,9 +997,10 @@ export default function Template002() {
       <section id="projects" className="py-32 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Things I've Built</h2>
+            <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Projects & Experiments</h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Projects that made it to production
+              A showcase of projects — some live in production, others live in my GitHub, all part of my journey as a developer.
+              
             </p>
           </div>
 
@@ -1613,7 +1614,7 @@ export default function Template002() {
                 Code Vault
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300">
-                Snippets I keep handy
+                A peek into the code that defines my style — from clever abstractions to battle-tested components.
               </p>
             </div>
 
@@ -1696,7 +1697,7 @@ export default function Template002() {
                 Kind Words
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300">
-                What folks say about working together
+                What colleagues, clients, and collaborators have to say about working with me.
               </p>
             </div>
 
@@ -1744,7 +1745,7 @@ export default function Template002() {
           <div className="max-w-5xl mx-auto">
             <div className="text-center space-y-4 mb-20">
               <h2 className="text-5xl font-bold text-gray-900 dark:text-white">Learning Path</h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300">Where I studied</p>
+              <p className="text-xl text-gray-600 dark:text-gray-300">My formal learning journey — where I gained the skills that power my work today.</p>
             </div>
 
             <div className="grid gap-6">
