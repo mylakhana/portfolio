@@ -43,7 +43,6 @@
     "Docker",
     "Photoshop",
     "PHPStorm",
-    "Cursor",
     "VSCode",
     "Figma"
   ],
@@ -1425,7 +1424,9 @@
       "type": "Prototype",
       "platform": ["Mobile App"],
       "screenshots": [],
-      "appScreenshots": ["https://s3.lakhana.com/portfolio/videos/timesequence.mp4"],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/videos/timesequence.mp4"
+      ],
       "html": null
     },
     {
@@ -1575,12 +1576,52 @@
   ],
   "testimonials": [
     {
+      "clientId": "yn",
+      "contactPerson": "Yawar Younus",
+      "contactTitle": "Developer, Team Member",
+      "contactAvatarUrl": "https://placehold.co/100x100/EFEFEF/333333?text=YY",
+      "quote": "Mubashir’s creative execution for Majmooa e Naat elevated the entire platform. His balance of aesthetics and usability showed a deep understanding of both design and development.",
+      "projectName": "Majmooa e Naat"
+    },
+    {
       "clientId": "dc",
-      "contactPerson": "Jane Doe",
-      "contactTitle": "CEO, Startup Co.",
-      "contactAvatarUrl": "https://placehold.co/100x100/EFEFEF/333333?text=JD",
-      "quote": "Working with [Your Name] was a game-changer. Their technical expertise and dedication to our project's success were outstanding. I can't recommend them enough.",
-      "projectName": "Project Alpha"
+      "contactPerson": "Ahmed Ghilan",
+      "contactTitle": "CTO & Dev Team Manager",
+      "contactAvatarUrl": "https://placehold.co/100x100/EFEFEF/333333?text=AG",
+      "quote": "Working with Mubashir was a game-changer. Their technical expertise and dedication to our project's success were outstanding. I can't recommend them enough.",
+      "projectName": "ShipTag"
+    },
+    {
+      "clientId": "em",
+      "contactPerson": "Eisa",
+      "contactTitle": "Owner",
+      "contactAvatarUrl": "https://placehold.co/100x100/EFEFEF/333333?text=E",
+      "quote": "Mubashir brought our vision for Mirai to life with stunning precision. His design sense, responsiveness, and technical depth made the entire process enjoyable and result-driven.",
+      "projectName": "Mirai"
+    },
+    {
+      "clientId": "rc",
+      "contactPerson": "Rayyan",
+      "contactTitle": "Owner",
+      "contactAvatarUrl": "https://placehold.co/100x100/EFEFEF/333333?text=R",
+      "quote": "Working with Mubashir on Chic was a masterclass in design excellence. He perfectly captured our brand’s modern aesthetic while ensuring smooth functionality across the board.",
+      "projectName": "Chic"
+    },
+    {
+      "clientId": "yl",
+      "contactPerson": "Yawar",
+      "contactTitle": "Developer, Team Member",
+      "contactAvatarUrl": "https://placehold.co/100x100/EFEFEF/333333?text=Y",
+      "quote": "For Zia Library, Mubashir delivered pixel-perfect designs that felt intuitive and elegant. His ability to translate complex requirements into clean, user-friendly layouts was exceptional.",
+      "projectName": "Zia Library"
+    },
+    {
+      "clientId": "rb",
+      "contactPerson": "Rayyan",
+      "contactTitle": "Owner",
+      "contactAvatarUrl": "https://placehold.co/100x100/EFEFEF/333333?text=R",
+      "quote": "For ChicBiz, Mubashir delivered an exceptional design system that reflected professionalism and elegance. His creative approach and technical precision made a lasting impact on our brand.",
+      "projectName": "ChicBiz"
     }
   ],
   "articles": [
@@ -1632,10 +1673,10 @@
   ],
   "certifications": [
     {
-      "name": "AWS Certified Solutions Architect – Associate",
-      "issuingOrganization": "Amazon Web Services",
-      "date": "June 2022",
-      "credentialUrl": "https://www.credly.com/your-badge-url"
+      "name": "Student Of The Year",
+      "issuingOrganization": "Superior Community Institute",
+      "date": "September `2016",
+      "credentialUrl": "https://s3.lakhana.com/portfolio/images/cover/myl-soty.png"
     }
   ]
 }
