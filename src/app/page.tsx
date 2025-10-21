@@ -831,14 +831,19 @@ export default function Template002() {
 
                   {/* Technologies Used - Always visible */}
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {job.technologiesUsed.map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    {job.technologiesUsed.map((tech, idx) => {
+                      const iconString = getDeviconName(tech);
+                      const { name, variant } = parseIconString(iconString);
+                      return (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium flex items-center gap-1.5"
+                        >
+                          <TechIcon name={name} variant={variant as "plain" | "original" | "line"} className="text-sm" />
+                          {tech}
+                        </span>
+                      );
+                    })}
                   </div>
 
                   {/* Expand indicator */}
@@ -932,14 +937,19 @@ export default function Template002() {
                                       Frontend
                                     </p>
                                     <div className="flex flex-wrap gap-2">
-                                      {job.techStack.frontend.map((tech, idx) => (
-                                        <span
-                                          key={idx}
-                                          className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium"
-                                        >
-                                          {tech}
-                                        </span>
-                                      ))}
+                                      {job.techStack.frontend.map((tech, idx) => {
+                                        const iconString = getDeviconName(tech);
+                                        const { name, variant } = parseIconString(iconString);
+                                        return (
+                                          <span
+                                            key={idx}
+                                            className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium flex items-center gap-1.5"
+                                          >
+                                            <TechIcon name={name} variant={variant as "plain" | "original" | "line"} className="text-sm" />
+                                            {tech}
+                                          </span>
+                                        );
+                                      })}
                                     </div>
                                   </div>
                                 )}
@@ -949,14 +959,19 @@ export default function Template002() {
                                       Testing
                                     </p>
                                     <div className="flex flex-wrap gap-2">
-                                      {job.techStack.testing.map((tech, idx) => (
-                                        <span
-                                          key={idx}
-                                          className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium"
-                                        >
-                                          {tech}
-                                        </span>
-                                      ))}
+                                      {job.techStack.testing.map((tech, idx) => {
+                                        const iconString = getDeviconName(tech);
+                                        const { name, variant } = parseIconString(iconString);
+                                        return (
+                                          <span
+                                            key={idx}
+                                            className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium flex items-center gap-1.5"
+                                          >
+                                            <TechIcon name={name} variant={variant as "plain" | "original" | "line"} className="text-sm" />
+                                            {tech}
+                                          </span>
+                                        );
+                                      })}
                                     </div>
                                   </div>
                                 )}
@@ -995,7 +1010,7 @@ export default function Template002() {
                     return (
                       <div
                         key={`${client.id}-${index}`}
-                        className="grayscale hover:grayscale-0 transition-all duration-300 opacity-60 dark:opacity-80 hover:opacity-100 flex-shrink-0"
+                        className="transition-all duration-300 opacity-80 hover:opacity-100 hover:drop-shadow-lg flex-shrink-0"
                       >
                         <img
                           src={logoSrc}
@@ -1029,7 +1044,7 @@ export default function Template002() {
                   return (
                     <div
                       key={`${tech}-${index}`}
-                      className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 dark:opacity-85 hover:opacity-100"
+                      className="flex-shrink-0 transition-all duration-300 opacity-85 hover:opacity-100 hover:drop-shadow-lg"
                     >
                       <TechIcon name={name} variant={variant as "plain" | "original" | "line"} className="text-5xl" />
                     </div>
@@ -1374,14 +1389,19 @@ export default function Template002() {
                         </p>
 
                         <div className="flex flex-wrap gap-2 mb-6 flex-grow">
-                          {project.technologies.slice(0, 4).map((tech, idx) => (
-                            <span
-                              key={idx}
-                              className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium h-fit"
-                            >
-                              {tech}
-                            </span>
-                          ))}
+                          {project.technologies.slice(0, 4).map((tech, idx) => {
+                            const iconString = getDeviconName(tech);
+                            const { name, variant } = parseIconString(iconString);
+                            return (
+                              <span
+                                key={idx}
+                                className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium h-fit flex items-center gap-1.5"
+                              >
+                                <TechIcon name={name} variant={variant as "plain" | "original" | "line"} className="text-sm" />
+                                {tech}
+                              </span>
+                            );
+                          })}
                           {project.technologies.length > 4 && (
                             <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium h-fit">
                               +{project.technologies.length - 4} more
@@ -1498,14 +1518,19 @@ export default function Template002() {
                             Technologies
                           </h4>
                           <div className="flex flex-wrap gap-2">
-                            {project.technologies.map((tech, idx) => (
-                              <span
-                                key={idx}
-                                className="px-3 py-1.5 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium border border-gray-200 dark:border-gray-600"
-                              >
-                                {tech}
-                              </span>
-                            ))}
+                            {project.technologies.map((tech, idx) => {
+                              const iconString = getDeviconName(tech);
+                              const { name, variant } = parseIconString(iconString);
+                              return (
+                                <span
+                                  key={idx}
+                                  className="px-3 py-1.5 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium border border-gray-200 dark:border-gray-600 flex items-center gap-1.5"
+                                >
+                                  <TechIcon name={name} variant={variant as "plain" | "original" | "line"} className="text-sm" />
+                                  {tech}
+                                </span>
+                              );
+                            })}
                           </div>
                         </div>
 
@@ -1879,7 +1904,7 @@ export default function Template002() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-20">
               <h2 className="text-5xl font-bold text-gray-900 dark:text-white">
-                Badges & Certs
+                Badges & Certifications
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300">
                 Achievements unlocked
