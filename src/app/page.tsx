@@ -156,7 +156,7 @@ interface PortfolioData {
     };
     status: string;
     type: string;
-    platform: string;
+    platform: string | string[];
     screenshots: string[];
     appScreenshots?: string[];
   }>;
@@ -593,6 +593,7 @@ export default function Template002() {
           <div className="flex items-center justify-center gap-4 pt-4">
             <a
               href={data.personalInfo.resumeUrl}
+              target="_blank"
               className="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow-lg shadow-gray-900/20 dark:shadow-white/10"
             >
               Download Resume
@@ -1196,7 +1197,7 @@ export default function Template002() {
                         document.addEventListener('mousemove', handleMouseMove);
                         document.addEventListener('mouseup', handleMouseUp);
                       }}>
-                      {["All", ...Array.from(new Set(data.projects.map(p => p.platform)))].map((platform) => (
+                      {["All", ...Array.from(new Set(data.projects.flatMap(p => Array.isArray(p.platform) ? p.platform : [p.platform])))].map((platform) => (
                         <button
                           key={platform}
                           onClick={() => setProjectFilters({...projectFilters, platform})}
@@ -1324,7 +1325,11 @@ export default function Template002() {
               {data.projects.filter(project => {
                 const matchesStatus = projectFilters.status === "All" || project.status === projectFilters.status;
                 const matchesType = projectFilters.type === "All" || project.type === projectFilters.type;
-                const matchesPlatform = projectFilters.platform === "All" || project.platform === projectFilters.platform;
+                const matchesPlatform = projectFilters.platform === "All" || (
+                  Array.isArray(project.platform)
+                    ? project.platform.includes(projectFilters.platform)
+                    : project.platform === projectFilters.platform
+                );
                 const matchesTech = projectFilters.technology === "All" || project.technologies.includes(projectFilters.technology);
                 const matchesClient = projectFilters.client === "All" || (
                   data.clients.find(c => c.name === projectFilters.client)?.id === project.clientId
