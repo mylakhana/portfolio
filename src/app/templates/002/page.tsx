@@ -16,6 +16,12 @@ import { AppScreenshot } from "@/components/AppScreenshot";
 import { useTheme } from "@/providers/theme-provider";
 import { TechIcon, getDeviconName } from "@/components/ui/tech-icon";
 
+// Helper function to determine if a file is a video
+const isVideoFile = (filename: string): boolean => {
+  const videoExtensions = ['.mp4', '.mkv', '.webm', '.mov', '.avi'];
+  return videoExtensions.some(ext => filename.toLowerCase().endsWith(ext));
+};
+
 // Add scroll animation and scrollbar styles
 if (typeof document !== "undefined") {
   const style = document.createElement("style");
@@ -92,6 +98,11 @@ interface PortfolioData {
     industry: string;
     website: string;
     logoUrl: string;
+    logoVariants?: {
+      text?: string;
+      textDark?: string;
+      dark?: string;
+    };
   }>;
   skills: Array<{
     category: string;
@@ -117,11 +128,18 @@ interface PortfolioData {
     title: string;
     clientId: string;
     isFeatured: boolean;
+    sort: number;
+    timelineSort?: number;
     logoUrl: string;
+    logoVariants?: {
+      text?: string;
+      textDark?: string;
+      dark?: string;
+    };
     coverImageUrl: string;
     description: string;
     myRole: string;
-    keyLearnings: string;
+    keyLearnings: string[];
     technologies: string[];
     links: {
       liveUrl: string | null;
@@ -319,6 +337,13 @@ export default function Template002() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Set page title based on personalInfo.name
+  useEffect(() => {
+    if (data?.personalInfo?.name) {
+      document.title = data.personalInfo.name;
+    }
+  }, [data]);
 
   if (!data) {
     return (
@@ -584,7 +609,7 @@ export default function Template002() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-all duration-200"
+                  className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-all duration-200"
                   title={platform}
                 >
                   <SocialIcon platform={platform} />
@@ -952,19 +977,29 @@ export default function Template002() {
             </h3>
             <div className="bg-gray-200 dark:bg-gray-800 rounded-2xl py-8 px-6 overflow-hidden">
               <div className="flex items-center gap-12 animate-scroll">
-                {/* Duplicate items for seamless loop */}
-                {[...data.clients, ...data.clients].map((client, index) => (
-                  <div
-                    key={`${client.id}-${index}`}
-                    className="grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 flex-shrink-0"
-                  >
-                    <img
-                      src={client.logoUrl}
-                      alt={client.name}
-                      className="h-12 w-auto"
-                    />
-                  </div>
-                ))}
+                {/* Duplicate items for seamless loop - repeat more if few items */}
+                {(() => {
+                  const repeatCount = data.clients.length < 6 ? 4 : 2;
+                  return Array(repeatCount).fill(data.clients).flat().map((client, index) => {
+                    const isDark = resolvedTheme === 'dark';
+                    const logoSrc = isDark
+                      ? (client.logoVariants?.textDark || client.logoVariants?.text || client.logoUrl)
+                      : (client.logoVariants?.text || client.logoUrl);
+
+                    return (
+                      <div
+                        key={`${client.id}-${index}`}
+                        className="grayscale hover:grayscale-0 transition-all duration-300 opacity-60 dark:opacity-80 hover:opacity-100 flex-shrink-0"
+                      >
+                        <img
+                          src={logoSrc}
+                          alt={client.name}
+                          className="h-12 w-auto"
+                        />
+                      </div>
+                    );
+                  });
+                })()}
               </div>
             </div>
           </div>
@@ -978,16 +1013,19 @@ export default function Template002() {
             Stack & Tools
           </h3>
           <div className="bg-white dark:bg-gray-800 rounded-2xl py-12 px-6 overflow-hidden border border-gray-200 dark:border-gray-700">
-            <div className="flex items-center gap-16 animate-scroll">
-              {/* Duplicate items for seamless loop */}
-              {[...data.technologiesUsed, ...data.technologiesUsed].map((tech, index) => (
-                <div
-                  key={`${tech}-${index}`}
-                  className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
-                >
-                  <TechIcon name={getDeviconName(tech)} variant="original" className="text-5xl" />
-                </div>
-              ))}
+            <div className="flex items-center gap-12 animate-scroll">
+              {/* Duplicate items for seamless loop - repeat more if few items */}
+              {(() => {
+                const repeatCount = data.technologiesUsed.length < 8 ? 4 : 2;
+                return Array(repeatCount).fill(data.technologiesUsed).flat().map((tech, index) => (
+                  <div
+                    key={`${tech}-${index}`}
+                    className="flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 dark:opacity-85 hover:opacity-100"
+                  >
+                    <TechIcon name={getDeviconName(tech)} variant="original" className="text-5xl" />
+                  </div>
+                ));
+              })()}
             </div>
           </div>
         </div>
@@ -1283,11 +1321,11 @@ export default function Template002() {
                   data.clients.find(c => c.name === projectFilters.client)?.id === project.clientId
                 );
                 return matchesStatus && matchesType && matchesPlatform && matchesTech && matchesClient;
-              }).map((project, index) => (
+              }).sort((a, b) => a.sort - b.sort).map((project, index) => (
                 <ExpandableCard key={index} id={`project-${index}`}>
                   {/* Card Thumbnail (Collapsed View) */}
                   <CardThumbnail>
-                    <div className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full">
+                    <div className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full flex flex-col">
                       <div className="relative h-64 bg-gray-100 overflow-hidden">
                         <img
                           src={project.coverImageUrl}
@@ -1304,11 +1342,11 @@ export default function Template002() {
                         </div>
                       </div>
 
-                      <div className="p-8">
+                      <div className="p-8 flex flex-col flex-grow">
                         <div className="flex items-center gap-4 mb-4">
                           {project.logoUrl && (
                             <img
-                              src={project.logoUrl}
+                              src={resolvedTheme === 'dark' && project.logoVariants?.dark ? project.logoVariants.dark : project.logoUrl}
                               alt={`${project.title} logo`}
                               className="w-16 h-16 object-contain rounded-lg"
                             />
@@ -1321,23 +1359,23 @@ export default function Template002() {
                           {project.description}
                         </p>
 
-                        <div className="flex flex-wrap gap-2 mb-6">
+                        <div className="flex flex-wrap gap-2 mb-6 flex-grow">
                           {project.technologies.slice(0, 4).map((tech, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium"
+                              className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium h-fit"
                             >
                               {tech}
                             </span>
                           ))}
                           {project.technologies.length > 4 && (
-                            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium">
+                            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium h-fit">
                               +{project.technologies.length - 4} more
                             </span>
                           )}
                         </div>
 
-                        <button className="w-full px-4 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors">
+                        <button className="w-full px-4 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors mt-auto">
                           View Details
                         </button>
                       </div>
@@ -1353,7 +1391,7 @@ export default function Template002() {
                         alt={project.title}
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-gray-900 via-white/50 dark:via-gray-900/50 to-transparent" />
                       <div className="absolute bottom-6 left-8 md:left-12 right-8 md:right-12">
                         <div className="flex items-center gap-3 mb-3">
                           <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
@@ -1371,12 +1409,12 @@ export default function Template002() {
                         <div className="flex items-center gap-4">
                           {project.logoUrl && (
                             <img
-                              src={project.logoUrl}
+                              src={resolvedTheme === 'dark' && project.logoVariants?.dark ? project.logoVariants.dark : project.logoUrl}
                               alt={`${project.title} logo`}
                               className="w-16 h-16 md:w-20 md:h-20 object-contain rounded-lg bg-white/80 p-2"
                             />
                           )}
-                          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 darl:text-gray-200 dark:text-gray-300">
                             {project.title}
                           </h2>
                         </div>
@@ -1404,9 +1442,14 @@ export default function Template002() {
                             </svg>
                             Key Learnings
                           </h4>
-                          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                            {project.keyLearnings}
-                          </p>
+                          <ul className="space-y-2">
+                            {project.keyLearnings.map((learning, index) => (
+                              <li key={index} className="text-gray-700 dark:text-gray-300 leading-relaxed flex items-start gap-2">
+                                <span className="text-blue-600 dark:text-blue-400 mt-1.5">•</span>
+                                <span>{learning}</span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
 
                         {/* Mobile App Screenshots */}
@@ -1453,12 +1496,13 @@ export default function Template002() {
                         </div>
 
                         {/* Project Links */}
-                        <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
-                          <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                            Links
-                          </h4>
-                          <div className="space-y-3">
-                            {project.links.liveUrl && (
+                        {(project.links.liveUrl || project.links.githubUrl || project.links.appStoreUrl || project.links.playStoreUrl) && (
+                          <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                              Links
+                            </h4>
+                            <div className="space-y-3">
+                              {project.links.liveUrl && (
                               <a
                                 href={project.links.liveUrl}
                                 target="_blank"
@@ -1531,9 +1575,10 @@ export default function Template002() {
                                 </svg>
                                 <span>Play Store</span>
                               </a>
-                            )}
+                              )}
+                            </div>
                           </div>
-                        </div>
+                        )}
 
                         {/* Client Info */}
                         {project.clientId && data.clients && (
@@ -1554,7 +1599,7 @@ export default function Template002() {
                                     className="flex flex-col items-center gap-3 p-4 bg-white dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors border border-gray-200 dark:border-gray-600 text-center"
                                   >
                                     <img
-                                      src={client.logoUrl}
+                                      src={resolvedTheme === 'dark' && client.logoVariants?.dark ? client.logoVariants.dark : client.logoUrl}
                                       alt={client.name}
                                       className="h-16 w-auto"
                                     />
@@ -1583,13 +1628,25 @@ export default function Template002() {
                             <PhotoProvider maskOpacity={0.5}>
                               <div className="grid grid-cols-2 gap-2">
                                 {project.screenshots.map((screenshot, idx) => (
-                                  <PhotoView key={idx} src={screenshot}>
-                                    <img
+                                  isVideoFile(screenshot) ? (
+                                    <video
+                                      key={idx}
                                       src={screenshot}
-                                      alt={`${project.title} screenshot ${idx + 1}`}
-                                      className="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity border border-gray-200 dark:border-gray-600"
+                                      className="w-full h-24 object-cover rounded-lg border border-gray-200 dark:border-gray-600"
+                                      autoPlay
+                                      loop
+                                      muted
+                                      playsInline
                                     />
-                                  </PhotoView>
+                                  ) : (
+                                    <PhotoView key={idx} src={screenshot}>
+                                      <img
+                                        src={screenshot}
+                                        alt={`${project.title} screenshot ${idx + 1}`}
+                                        className="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity border border-gray-200 dark:border-gray-600"
+                                      />
+                                    </PhotoView>
+                                  )
                                 ))}
                               </div>
                             </PhotoProvider>

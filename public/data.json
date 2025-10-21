@@ -49,36 +49,50 @@
   ],
   "clients": [
     {
-      "id": "startup-co",
-      "name": "Startup Co.",
+      "id": "dc",
+      "name": "Digital Commerce Ltd.",
       "industry": "Technology",
-      "website": "https://example1.com",
-      "logoUrl": "/images/logo/alpha.svg"
+      "website": "https://shiptag.com",
+      "logoUrl": "/images/logo/dc.png"
     },
     {
-      "id": "startup-co-2",
-      "name": "Startup Co. 2",
+      "id": "freelancing",
+      "name": "Freelancing Clients",
       "industry": "Technology",
-      "website": "https://example2.com",
-      "logoUrl": "/images/logo/alpha.svg"
+      "website": null,
+      "logoUrl": "/images/logo/fiverr.svg"
+    },
+    {
+      "id": "lakhana",
+      "name": "Lakhana Developers",
+      "industry": "Technology",
+      "website": "https://lakhana.com",
+      "logoUrl": "/images/logo/lakhana.png",
+      "logoVariants": {
+        "dark": "/images/logo/lakhana-wh.png"
+      }
     }
   ],
   "skills": [
     {
-      "category": "Programming Languages",
+      "category": "Programming Languages & Web Tech",
       "technologies": {
-        "JavaScript/TypeScript": "Expert",
-        "HTML5/CSS3": "Expert",
+        "JavaScript": "Expert",
+        "TypeScript": "Expert",
         "PHP": "High",
         "Dart": "Expert",
-        "C#": "Moderate"
+        "C#": "Moderate",
+        "HTML5": "Expert",
+        "CSS3": "Expert"
       }
     },
     {
       "category": "Frameworks & Libraries",
       "technologies": {
-        "React/Next.js": "Expert",
-        "jQuery/Ajax": "Expert",
+        "React": "Expert",
+        "Next.js": "Expert",
+        "jQuery": "Expert",
+        "Ajax": "Expert",
         "Flutter": "Expert",
         "Laravel": "High",
         "Yii2": "High",
@@ -96,7 +110,9 @@
     {
       "category": "Cloud & DevOps",
       "technologies": {
-        "nginx/Apache/Valet": "High",
+        "nginx": "High",
+        "Apache": "High",
+        "Valet": "High",
         "API Integration": "High",
         "AI Chatbot Integration": "Moderate"
       }
@@ -112,7 +128,16 @@
       "startDate": "Jan 2022",
       "endDate": "Present",
       "summary": "Developed responsive web applications using React, Next.js, and JavaScript with focus on AI integration and modern development practices.",
-      "technologiesUsed": ["React", "Next.js", "JavaScript", "SQL", "AI Chatbots", "Claude Code", "Bolt", "Cursor"],
+      "technologiesUsed": [
+        "React",
+        "Next.js",
+        "JavaScript",
+        "SQL",
+        "AI Chatbots",
+        "Claude Code",
+        "Bolt",
+        "Cursor"
+      ],
       "responsibilities": [
         "Developed responsive web applications using React, Next.js, and JavaScript with custom components and user-friendly interfaces.",
         "Integrated third-party services including AI chatbots and payment systems with expertise in prompt and context engineering.",
@@ -133,7 +158,17 @@
       "startDate": "Jan 2018",
       "endDate": "Dec 2021",
       "summary": "Developed full-stack web and mobile applications using PHP frameworks and Flutter with extensive API integrations.",
-      "technologiesUsed": ["PHP", "Laravel", "Yii2", "Flutter", "HTML5", "CSS3", "JavaScript", "MySQL", "SQL Server"],
+      "technologiesUsed": [
+        "PHP",
+        "Laravel",
+        "Yii2",
+        "Flutter",
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "MySQL",
+        "SQL Server"
+      ],
       "responsibilities": [
         "Developed web applications using PHP frameworks including Laravel and Yii2 with responsive frontends using HTML5, CSS3, and JavaScript.",
         "Built mobile applications for Android and iOS using Flutter, implementing custom interfaces and API integrations.",
@@ -155,7 +190,11 @@
       "startDate": "Mar 2016",
       "endDate": "Dec 2017",
       "summary": "Provided comprehensive customer service through multiple channels including tech support, sales and customer care.",
-      "technologiesUsed": ["Customer Service Software", "Live Chat Systems", "CRM"],
+      "technologiesUsed": [
+        "Customer Service Software",
+        "Live Chat Systems",
+        "CRM"
+      ],
       "responsibilities": [
         "Provided telephone and live-chat customer service including tech support and sales assistance.",
         "Worked with major customer service software platforms to ensure customer satisfaction.",
@@ -174,7 +213,11 @@
       "startDate": "Dec 2015",
       "endDate": "Feb 2016",
       "summary": "Managed pharmacy inventory system and network infrastructure across multiple branches.",
-      "technologiesUsed": ["Database Management", "Server Configuration", "Network Management"],
+      "technologiesUsed": [
+        "Database Management",
+        "Server Configuration",
+        "Network Management"
+      ],
       "responsibilities": [
         "Managed pharmacy's stock across multiple branches ensuring accurate inventory tracking.",
         "Configured and maintained server configuration for the pharmacy's intranet network structure.",
@@ -188,38 +231,382 @@
   ],
   "projects": [
     {
-      "title": "Zia Library",
-      "clientId": null,
+      "title": "WS1",
+      "clientId": "dc",
       "isFeatured": true,
-      "logoUrl": "/images/logo/zm.png",
-      "darkLogoUrl": "/images/logo/zm-bk.png",
-      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Zia+Library",
-      "description": "Ziauddin Islamic Audio library contains 20,000+ media files accessible in all major platforms. A comprehensive library for Islamic audio content including lectures, recitations, and educational materials.",
-      "myRole": "Lead Developer",
-      "keyLearnings": "Building a large-scale media library required optimizing search algorithms and implementing efficient caching strategies. Learning to handle massive audio databases and provide seamless cross-platform experiences was invaluable.",
-      "technologies": ["Flutter", "PHP", "MySQL", "API Integration"],
+      "timelineSort": 1,
+      "sort": 2,
+      "logoUrl": "/images/logo/ws1.png",
+      "logoVariants": {
+        "dark": "/images/logo/ws1-wh.png"
+      },
+      "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/ws1.png",
+      "description": "Package forwarding and consolidation service that provides customers with a US mailing address for international shipping. In 2024, WS1 was merged with MyUS company.",
+      "metadata": "WS1.com is a mail forwarding and package consolidation service enabling international customers to shop from US-based online retailers and have their packages shipped internationally with significant cost savings. The service features a US address provision, package receiving and storage, shipment consolidation, real-time tracking, multiple courier options, and up to 80% discount on international shipping. Developed as a full-stack developer, I migrated the mobile app from Xamarin to Flutter and handled mobile, frontend, and backend development.",
+      "myRole": "Full-Stack Developer (Mobile, Frontend, Backend, API)",
+      "keyLearnings": [
+        "Led successful Flutter migration from Xamarin that became company standard",
+        "Developed full-stack capabilities across mobile, frontend, and backend",
+        "Learned to advocate for technical decisions and build credibility through delivery",
+        "Mastered Flutter framework and cross-platform mobile development",
+        "Understood business impact of technical decisions"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "PHP",
+        "Yii2",
+        "JavaScript",
+        "MySQL",
+        "SQL Server",
+        "Firebase",
+        "API Integration"
+      ],
       "links": {
-        "liveUrl": "https://ziaemadinah.com/",
+        "liveUrl": "https://ws1.com",
         "githubUrl": null,
-        "appStoreUrl": "https://apps.apple.com/us/app/zia-library-zia-e-madinah/id1454228192",
-        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.ziaemadinah"
+        "appStoreUrl": null,
+        "playStoreUrl": "https://apkpure.com/ws1-com/com.ws1.com"
+      },
+      "status": "Merged",
+      "type": "Work",
+      "platform": [
+        "Mobile App",
+        "Web Dashboard",
+        "Admin Dashboard",
+        "API Service"
+      ],
+      "screenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/ws1-001.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/ws1-002.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/ws1-003.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/ws1-004.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/ws1-005.webp"
+      ],
+      "html": null
+    },
+    {
+      "title": "Arsel (ShipTag Predecessor)",
+      "clientId": "dc",
+      "isFeatured": true,
+      "timelineSort": 2,
+      "sort": 4,
+      "logoUrl": "/images/logo/arsel.webp",
+      "logoVariants": null,
+      "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/arsel.png",
+      "description": "Digital Commerce's first domestic shipping service within Saudi Arabia, enabling quick shipment preparation with up to 70% savings on shipping costs",
+      "metadata": "Arsel (أرسل - meaning 'Send') was Digital Commerce's entry into domestic shipping services within Saudi Arabia, providing users the ability to quickly prepare domestic shipments with significant cost savings. The app featured quick mobile signup, Google Maps integration for addresses, courier selection, instant label generation, and real-time tracking. I completely recreated the app in Flutter from the existing Xamarin version, delivering superior performance and user experience. Arsel later evolved into ShipTag as a multi-carrier platform.",
+      "myRole": "Flutter Developer (Complete Recreation from Xamarin)",
+      "keyLearnings": [
+        "Leveraged WS1 Flutter migration success for rapid approval",
+        "Built foundation for future ShipTag evolution",
+        "Learned iterative development value - simple version first validates market",
+        "Mastered Saudi Post API integration and Arabic RTL support",
+        "Understood when to rebuild vs refactor"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "PHP",
+        "Yii2",
+        "Google Maps",
+        "Saudi Post API",
+        "Firebase"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": "https://apkpure.com/shiptag-أرسل/com.arsel.sp"
+      },
+      "status": "Discontinued",
+      "type": "Work",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/arsel-001.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/arsel-002.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/arsel-003.webp"
+      ],
+      "html": null
+    },
+    {
+      "title": "WTE (Where To Eat)",
+      "clientId": "dc",
+      "isFeatured": false,
+      "timelineSort": 3,
+      "sort": 27,
+      "logoUrl": "/images/logo/dc.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=WTE+(Where+To+Eat)",
+      "description": "Voting application helping friends decide where to eat through democratic polls, built before WhatsApp Polls feature existed",
+      "metadata": "WTE (Where To Eat) was a side project voting application designed to solve the common problem of groups being unable to decide where to eat. Users could create polls with multiple restaurant options, share with friends, and reach consensus through democratic voting. The project was prototyped way before WhatsApp added its Poll feature and was discontinued when WhatsApp implemented similar functionality, validating the problem identification but demonstrating timing importance in product development.",
+      "myRole": "Solo Developer (Concept to Prototype)",
+      "keyLearnings": [
+        "Validated importance of market timing - great idea rendered obsolete by platform feature",
+        "Learned rapid prototyping and idea validation",
+        "Understood when to pivot based on external factors",
+        "Practiced solo full-stack development",
+        "Recognized value in identifying real user needs even if solution isn't viable"
+      ],
+      "technologies": ["Flutter", "Dart", "Figma"],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Completed",
+      "type": "Work",
+      "platform": ["Mobile App", "Figma Design"],
+      "screenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/wte-001.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/wte-002.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/wte-003.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/wte-004.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/wte-005.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/wte-006.jpg"
+      ],
+      "html": null
+    },
+    {
+      "title": "ShipTag",
+      "clientId": "dc",
+      "isFeatured": true,
+      "timelineSort": 4,
+      "sort": 1,
+      "logoUrl": "/images/logo/shiptag.svg",
+      "logoVariants": {
+        "text": "/images/logo/shiptag-text.svg",
+        "textDark": "/images/logo/shiptag-text-wh.svg"
+      },
+      "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/shiptag.png",
+      "description": "Digital Commerce's flagship comprehensive multi-carrier shipping and logistics platform for Saudi Arabia serving both B2C and B2B clients",
+      "metadata": "ShipTag is Digital Commerce's flagship comprehensive shipping and logistics platform for Saudi Arabia, evolved from Arsel into a multi-carrier hub serving both individuals (B2C) and businesses (B2B). The platform integrates 7+ major carriers (Aramex, DHL, SMSA, J&T, UPS, FedEx, Saudi Post) providing competitive pricing, price comparison, real-time tracking, and enterprise-grade features including bulk shipment management, storage services, and API access for third-party integrations. As lead mobile developer, I rebuilt the entire Flutter app from scratch with modern architecture, implemented multi-carrier abstraction, and contributed to overall platform architecture.",
+      "myRole": "Lead Developer (Full Ownership of Mobile App, Frontend Contributions, Architecture Participation)",
+      "keyLearnings": [
+        "Complete platform rebuild taught importance of clean architecture from day one",
+        "Multi-carrier integration required sophisticated abstraction patterns",
+        "Learned to scale from single-carrier to multi-carrier platform",
+        "Business evolution from service provider to technology platform",
+        "Understood B2B vs B2C feature requirements"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "BLoC",
+        "Node.js",
+        "NestJS",
+        "PostgreSQL",
+        "React",
+        "Next.js",
+        "Firebase",
+        "Multiple Carrier APIs"
+      ],
+      "links": {
+        "liveUrl": "https://shiptag.com/",
+        "githubUrl": null,
+        "appStoreUrl": "https://apps.apple.com/sa/app/id6444087759",
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.dc.shiptag"
       },
       "status": "Live",
-      "type": "Client",
-      "platform": "Mobile App",
+      "type": "Work",
+      "platform": [
+        "Mobile App",
+        "Web Dashboard",
+        "Admin Dashboard",
+        "API Service"
+      ],
+      "screenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/shiptag-001.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/shiptag-002.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/shiptag-003.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/shiptag-004.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/shiptag-005.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/shiptag-006.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/shiptag-007.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/shiptag-008.webp"
+      ],
+      "html": null
+    },
+    {
+      "title": "Camillion",
+      "clientId": "dc",
+      "isFeatured": true,
+      "timelineSort": 5,
+      "sort": 3,
+      "logoUrl": "/images/logo/camillion.svg",
+      "logoVariants": null,
+      "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/camillion.png",
+      "description": "Cross-border shopping — Shop any Product from US, UK, Turkey and more countries and get it delivered to your doorstep. Shop International Websites at the Same Prices they are Available Locally. Fast Global Shipping.",
+      "metadata": "Camillion is a cross-border shopping facilitation mobile application and web interface that simplifies international online shopping for customers in Saudi Arabia and the Gulf region. The app calculates the total landed cost of purchases including customs duties, VAT (15%), shipping, and currency conversion, providing transparent price breakdowns before purchase. Developed as mobile developer, My team built the complete Flutter app with real-time currency conversion, product category duty rates, and comprehensive cost calculation engine for informed purchasing decisions.",
+      "myRole": "Part of the Development team",
+      "keyLearnings": [
+        "Learned financial calculation precision importance in money-related apps",
+        "Mastered currency conversion and caching strategies",
+        "Understood customs and import regulations complexity",
+        "Practiced building companion tools that enhance main service",
+        "Developed trust through calculation transparency"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "PHP",
+        "MySQL",
+        "Currency APIs",
+        "Saudi Customs Integration",
+        "Data scraping"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": "https://apkpure.com/camillion/com.app.camillion"
+      },
+      "status": "Discontinued",
+      "type": "Work",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/camillion-001.png",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/camillion-002.png",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/camillion-003.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/camillion-004.webp"
+      ],
+      "html": null
+    },
+    {
+      "title": "Cityfinder API",
+      "clientId": "dc",
+      "isFeatured": false,
+      "timelineSort": 6,
+      "sort": 16,
+      "logoUrl": "/images/logo/dc.png",
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Cityfinder+API",
+      "description": "Unified API solving city naming inconsistency across multiple Saudi shipping carriers, acting as intelligent data normalization layer",
+      "metadata": "Cityfinder API is a specialized internal API service designed to solve the critical problem of inconsistent city naming across multiple shipping carriers in Saudi Arabia. Each carrier uses different spellings and has different city coverage (some list 20-30 cities, others 400+). Cityfinder acts as a unified source of truth, accepting any city spelling variation and returning standardized city codes, carrier-specific spellings, branch information, and route support. As lead developer, I designed the data normalization architecture, manually mapped 400+ cities, implemented fuzzy matching algorithms, and created the RESTful API that powers ShipTag and integrates with Labelmaker API.",
+      "myRole": "Lead API Developer & System Architect",
+      "keyLearnings": [
+        "Identified and solved infrastructure problem benefiting entire product ecosystem",
+        "Mastered data normalization and fuzzy string matching algorithms",
+        "Learned value of building reusable solutions vs working around each inconsistency",
+        "Understood that internal APIs deserve same care as customer-facing products",
+        "Created single source of truth that simplified carrier integration"
+      ],
+      "technologies": [
+        "PHP",
+        "Yii2",
+        "MySQL",
+        "Levenshtein Algorithm",
+        "Redis",
+        "RESTful API"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Live",
+      "type": "Work",
+      "platform": ["API Service"],
       "screenshots": [],
       "appScreenshots": [],
       "html": null
     },
     {
-      "title": "Majmooa e Naat",
-      "clientId": null,
+      "title": "Labelmaker API",
+      "clientId": "dc",
+      "isFeatured": false,
+      "timelineSort": 7,
+      "sort": 17,
+      "logoUrl": "/images/logo/dc.png",
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Labelmaker+API",
+      "description": "Universal shipping label generation microservice abstracting complexity of integrating with 8+ carrier APIs into a single endpoint",
+      "metadata": "Labelmaker API is a specialized microservice serving as the universal shipping label generation engine for Digital Commerce's logistics platform. It abstracts the complexity of integrating with multiple shipping carrier APIs (Aramex, DHL, SMSA, J&T, UPS, FedEx, Saudi Post, etc.) into a single, simple-to-use API endpoint. Originally built into ShipTag, it was extracted to a separate microservice for reusability, independent scaling, and third-party access. As core developer, I implemented the carrier adapter pattern, developed integrations for 8+ carriers, and built the microservice architecture that handles label generation, batch processing, and error handling.",
+      "myRole": "Core Developer & Integration Architect",
+      "keyLearnings": [
+        "Learned when to extract functionality to microservice vs keeping in monolith",
+        "Mastered adapter pattern for handling multiple incompatible APIs",
+        "Understood importance of retry logic and circuit breaker patterns",
+        "Practiced building resilient systems with fallback mechanisms",
+        "Created abstraction that simplified complex multi-carrier integration"
+      ],
+      "technologies": [
+        "Node.js",
+        "NestJS",
+        "PHP",
+        "Yii2",
+        "Carrier APIs",
+        "Redis Queue",
+        "PDF Generation",
+        "Cloud Storage"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Live",
+      "type": "Work",
+      "platform": ["API Service"],
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Zia Library",
+      "clientId": "lakhana",
       "isFeatured": true,
-      "logoUrl": "/images/logo/mn.png",
-      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Majmooa+e+Naat",
-      "description": "Great multi-lingual library to read and share Islamic poetry lyrics. Features a beautiful collection of Naat (Islamic poetry) in multiple languages with sharing capabilities.",
+      "timelineSort": 8,
+      "sort": 9,
+      "logoUrl": "/images/logo/zm.png",
+      "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/zm.jpg",
+      "description": "Ziauddin Islamic Audio library contains 20,000+ media files accessible in all major platforms. A comprehensive library for Islamic audio content including lectures, recitations, and educational materials.",
+      "metadata": "Zia Library (Zia e Madinah) is a large-scale Islamic audio content platform featuring over 20,000 media files including lectures, recitations, and educational materials. Developed with Flutter for mobile platforms and PHP/MySQL backend, the app implements advanced search algorithms, efficient caching strategies, and seamless audio streaming capabilities. The project required optimization for handling massive audio databases and providing cross-platform experiences.",
       "myRole": "Lead Developer",
-      "keyLearnings": "Implementing multi-language support and Unicode text rendering for Urdu and Arabic scripts taught me the importance of proper internationalization and handling right-to-left languages.",
+      "keyLearnings": [
+        "Building a large-scale media library required optimizing search algorithms and implementing efficient caching strategies. Learning to handle massive audio databases and provide seamless cross-platform experiences was invaluable."
+      ],
+      "technologies": ["Flutter", "PHP", "MySQL", "API Service"],
+      "links": {
+        "liveUrl": "https://zialibrary.net/",
+        "githubUrl": null,
+        "appStoreUrl": "https://apps.apple.com/us/app/zia-library-zia-e-madinah/id1454228192",
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.ziaemadinah"
+      },
+      "status": "Live",
+      "type": "Personal",
+      "platform": ["Mobile App", "Web Dashboard", "Admin Dashboard"],
+      "screenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/zm-001.png",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/zm-002.png",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/zm-003.png",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/zm-004.png",
+        "https://s3.lakhana.com/portfolio/videos/zm.mp4"
+      ],
+      "html": null
+    },
+    {
+      "title": "Majmooa e Naat",
+      "clientId": "lakhana",
+      "isFeatured": true,
+      "timelineSort": 9,
+      "sort": 7,
+      "logoUrl": "/images/logo/mn.png",
+      "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/mn.jpg",
+      "description": "Great multi-lingual library to read and share Islamic poetry lyrics. Features a beautiful collection of Naat (Islamic poetry) in multiple languages with sharing capabilities.",
+      "metadata": "Majmooa e Naat is a multi-lingual mobile application for reading and sharing Islamic poetry (Naat) built with Flutter. The app features comprehensive Unicode text rendering for Urdu and Arabic scripts, right-to-left language support, and multi-language capabilities. Using PHP/MySQL backend, it provides a beautiful collection of Islamic poetry with sharing functionality across multiple platforms.",
+      "myRole": "Lead Developer",
+      "keyLearnings": [
+        "Implementing multi-language support and Unicode text rendering for Urdu and Arabic scripts taught me the importance of proper internationalization and handling right-to-left languages."
+      ],
       "technologies": ["Flutter", "PHP", "MySQL", "Unicode Processing"],
       "links": {
         "liveUrl": "https://lakhana.com/site/majmooaenaat",
@@ -228,26 +615,35 @@
         "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.majmooaenaat"
       },
       "status": "Live",
-      "type": "Client",
-      "platform": "Mobile App",
-      "screenshots": [
-        "/images/screenshots/app/alpha-001.png"
-      ],
+      "type": "Personal",
+      "platform": ["Mobile App", "Web Dashboard", "Admin Dashboard"],
+      "screenshots": [],
       "appScreenshots": [
-        "/images/screenshots/app/alpha-001.png",
-        "/images/screenshots/app/alpha-002.png"
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-001.png",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-002.png",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-003.png",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-004.png",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-005.png",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-006.png",
+        "https://s3.lakhana.com/portfolio/videos/mn-001.mp4",
+        "https://s3.lakhana.com/portfolio/videos/mn-002.mp4"
       ],
       "html": null
     },
     {
       "title": "iZiarat",
-      "clientId": null,
+      "clientId": "lakhana",
       "isFeatured": true,
+      "timelineSort": 10,
+      "sort": 8,
       "logoUrl": "/images/logo/iziarat.png",
-      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=iZiarat",
+      "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/iziarat.png",
       "description": "Enhance your travel with iZiarat which provides a visual representation of all nearby places drawn on a map. Perfect for pilgrims and travelers to discover and navigate to important Islamic sites.",
+      "metadata": "iZiarat is a location-based mobile application developed with Flutter that helps pilgrims and travelers discover important Islamic sites. The app integrates Google Maps API for map rendering and visualization, implements GPS-based location services, and uses MySQL database to store site information. Features include geolocation tracking, intuitive navigation, and optimized map rendering for a seamless user experience.",
       "myRole": "Lead Developer",
-      "keyLearnings": "Integrating Google Maps API and implementing location-based services taught me about geolocation, map rendering optimization, and creating intuitive navigation experiences for mobile users.",
+      "keyLearnings": [
+        "Integrating Google Maps API and implementing location-based services taught me about geolocation, map rendering optimization, and creating intuitive navigation experiences for mobile users."
+      ],
       "technologies": ["Flutter", "Google Maps API", "GPS", "MySQL"],
       "links": {
         "liveUrl": "http://iziarat.com/",
@@ -256,90 +652,32 @@
         "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.iziarat"
       },
       "status": "Live",
-      "type": "Client",
-      "platform": "Mobile App",
-      "screenshots": [],
-      "appScreenshots": [],
-      "html": null
-    },
-    {
-      "title": "Elm ul Adad",
-      "clientId": null,
-      "isFeatured": false,
-      "logoUrl": "/images/logo/ea.png",
-      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Elm+ul+Adad",
-      "description": "Arabic & Urdu numerology calculator. A pocket tool for calculating Abjad count of any name. With added functionality of finding Ism e Azam. Our database has 150,000+ Ism e Azam combinations of 1, 2 or 3 Asma al Husnah.",
-      "myRole": "Lead Developer",
-      "keyLearnings": "Working with complex Arabic numerology algorithms and managing large datasets of 150,000+ combinations required efficient database indexing and search optimization techniques.",
-      "technologies": ["Flutter", "SQLite", "Arabic Processing"],
-      "links": {
-        "liveUrl": null,
-        "githubUrl": null,
-        "appStoreUrl": null,
-        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.elmuladaad"
-      },
-      "status": "Live",
       "type": "Personal",
-      "platform": "Mobile App",
+      "platform": ["Mobile App"],
       "screenshots": [],
-      "appScreenshots": [],
-      "html": null
-    },
-    {
-      "title": "Time Sequence",
-      "clientId": null,
-      "isFeatured": false,
-      "logoUrl": "/images/logo/timesequence.png",
-      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Time+Sequence",
-      "description": "Timeline of all Islamic events in the past 1400+ years. Our data dates back all the way to before Hijrah. You can jump to any year and see a timeline of all events that occurred in that year. You can also see relations between events.",
-      "myRole": "Lead Developer",
-      "keyLearnings": "Creating an interactive timeline interface with 1400+ years of historical data required innovative UI/UX design and efficient data visualization techniques to make complex historical information accessible.",
-      "technologies": ["Flutter", "Timeline Visualization", "SQLite"],
-      "links": {
-        "liveUrl": null,
-        "githubUrl": null,
-        "appStoreUrl": null,
-        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.timesequence"
-      },
-      "status": "Live",
-      "type": "Personal",
-      "platform": "Mobile App",
-      "screenshots": [],
-      "appScreenshots": [],
-      "html": null
-    },
-    {
-      "title": "True Quran",
-      "clientId": null,
-      "isFeatured": false,
-      "logoUrl": "/images/logo/truequran.png",
-      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=True+Quran",
-      "description": "Recite Quran with transliteration, translation and tafsir with True Quran. A comprehensive Quran reading application with multiple translation options and detailed commentary.",
-      "myRole": "Lead Developer",
-      "keyLearnings": "Developing a Quran application required careful attention to Arabic text rendering, audio synchronization, and respectful handling of sacred content with precise accuracy.",
-      "technologies": ["Flutter", "Audio Player", "Arabic Typography"],
-      "links": {
-        "liveUrl": null,
-        "githubUrl": null,
-        "appStoreUrl": null,
-        "playStoreUrl": null
-      },
-      "status": "In Development",
-      "type": "Personal",
-      "platform": "Mobile App",
-      "screenshots": [],
-      "appScreenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/iziarat-001.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/iziarat-002.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/iziarat-003.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/iziarat-004.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/iziarat-005.webp"
+      ],
       "html": null
     },
     {
       "title": "WhatsApp Direct",
       "clientId": null,
       "isFeatured": false,
+      "timelineSort": 11,
+      "sort": 25,
       "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg",
       "coverImageUrl": "https://placehold.co/600x400/25D366/ffffff?text=WhatsApp+Direct",
       "description": "Light-weight open-source Android app project through which you can directly send whatsapp messages without saving their phone number. A simple utility that enhances WhatsApp usability.",
+      "metadata": "WhatsApp Direct is a lightweight open-source Android utility application developed in Java that enables users to send WhatsApp messages without saving phone numbers to contacts. The app integrates with WhatsApp API and demonstrates focused functionality and simplicity in design. The project is open-sourced, providing community engagement and comprehensive code documentation for developers.",
       "myRole": "Lead Developer",
-      "keyLearnings": "Creating a lightweight utility app taught me the importance of simplicity and focused functionality. Open-sourcing the project also gave me experience in community engagement and code documentation.",
+      "keyLearnings": [
+        "Creating a lightweight utility app taught me the importance of simplicity and focused functionality. Open-sourcing the project also gave me experience in community engagement and code documentation."
+      ],
       "technologies": ["Android", "Java", "WhatsApp API"],
       "links": {
         "liveUrl": null,
@@ -349,20 +687,64 @@
       },
       "status": "Open Source",
       "type": "Personal",
-      "platform": "Mobile App",
+      "platform": ["Mobile App"],
       "screenshots": [],
-      "appScreenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/whatsappdirect-001.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/whatsappdirect-002.jpg"
+      ],
+      "html": null
+    },
+    {
+      "title": "Naat Academy",
+      "clientId": "freelancing",
+      "isFeatured": false,
+      "timelineSort": 12,
+      "sort": 24,
+      "logoUrl": "/images/logo/naatacademy.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Naat+Academy",
+      "description": "Feature-wise this app resembles a lot and is inspired by Majmooa e Naat while maintaining its own uniqueness in design and content. This app is owned by Owais Razvi (AwesCreative) (India).",
+      "metadata": "Naat Academy is a mobile application built with Flutter and PHP/MySQL backend for reading and sharing Islamic poetry. Developed for Owais Razvi (AwesCreative) in India, the app draws inspiration from Majmooa e Naat while maintaining unique design and content. It demonstrates creating variations of successful products while preserving unique identity and meeting client-specific requirements.",
+      "myRole": "Lead Developer",
+      "keyLearnings": [
+        "Building upon the experience from Majmooa e Naat, this project taught me how to create variations of successful products while maintaining unique identity and client-specific requirements."
+      ],
+      "technologies": ["Flutter", "PHP", "MySQL"],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": "https://apkpure.com/naat-academy-naat-book-naa/com.app.naatacademy"
+      },
+      "status": "Completed",
+      "type": "Personal",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/na-001.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/na-002.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/na-003.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/na-004.webp"
+      ],
       "html": null
     },
     {
       "title": "Hajj wa Umrah",
-      "clientId": null,
+      "clientId": "lakhana",
       "isFeatured": false,
+      "timelineSort": 13,
+      "sort": 22,
       "logoUrl": "/images/logo/hajj.png",
+      "logoVariants": {
+        "text": "/images/logo/hajj-text.png"
+      },
       "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Hajj+wa+Umrah",
       "description": "(Fatawa) Hajj wa Umrah is a unicode collection of Hajj and Umrah related masail taken from the book 'العُرْوَۃُ فِیْ مَنَاسِکِ الحَجِّ وَ العُمْرَۃ' written by Shaikh ul Hadees Allama Mufti Muhammad Ata Ullah Naeemi. This app is owned by Jamiat e Isha`t e Ahle Sunnat (Pakistan).",
+      "metadata": "Hajj wa Umrah is a religious educational mobile application built with Flutter featuring Unicode collection of Hajj and Umrah related Islamic jurisprudence (masail). The app implements proper Arabic text processing, SQLite database for content storage, and user-friendly interface for religious guidance. Developed for Jamiat e Isha`t e Ahle Sunnat (Pakistan), it requires accuracy and attention to detail in handling religious educational content.",
       "myRole": "Lead Developer",
-      "keyLearnings": "Working on religious educational content required accuracy and attention to detail. Implementing proper Arabic text handling and creating a user-friendly interface for religious guidance was both challenging and rewarding.",
+      "keyLearnings": [
+        "Working on religious educational content required accuracy and attention to detail. Implementing proper Arabic text handling and creating a user-friendly interface for religious guidance was both challenging and rewarding."
+      ],
       "technologies": ["Flutter", "Arabic Text Processing", "SQLite"],
       "links": {
         "liveUrl": null,
@@ -371,45 +753,40 @@
         "playStoreUrl": "https://play.google.com/store/apps/details?id=com.ishaateislam.hajjumrah"
       },
       "status": "Live",
-      "type": "Client",
-      "platform": "Mobile App",
+      "type": "Personal",
+      "platform": ["Mobile App"],
       "screenshots": [],
-      "appScreenshots": [],
-      "html": null
-    },
-    {
-      "title": "Naat Academy",
-      "clientId": null,
-      "isFeatured": false,
-      "logoUrl": "/images/logo/naatacademy.png",
-      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Naat+Academy",
-      "description": "Feature-wise this app resembles a lot and is inspired by Majmooa e Naat while maintaining its own uniqueness in design and content. This app is owned by Owais Razvi (AwesCreative) (India).",
-      "myRole": "Lead Developer",
-      "keyLearnings": "Building upon the experience from Majmooa e Naat, this project taught me how to create variations of successful products while maintaining unique identity and client-specific requirements.",
-      "technologies": ["Flutter", "PHP", "MySQL"],
-      "links": {
-        "liveUrl": null,
-        "githubUrl": null,
-        "appStoreUrl": null,
-        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.app.naatacademy"
-      },
-      "status": "Live",
-      "type": "Client",
-      "platform": "Mobile App",
-      "screenshots": [],
-      "appScreenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/hajj-001.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/hajj-002.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/hajj-003.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/hajj-004.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/hajj-005.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/hajj-006.webp"
+      ],
       "html": null
     },
     {
       "title": "Sacred Traditions",
-      "clientId": null,
+      "clientId": "lakhana",
       "isFeatured": false,
+      "timelineSort": 14,
+      "sort": 20,
       "logoUrl": "/images/logo/sacredtraditions.png",
-      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Sacred+Traditions",
-      "description": "Sacred Traditions brings you beautiful images of the beautiful Ahadith (Sacred Sayings) of the most. We have translations in 40+ languages making Islamic teachings accessible to a global audience.",
+      "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/sacredtraditions.png",
+      "description": "Sacred Traditions brings you beautiful images of the beautiful Ahadith (Sacred Sayings). We have translations in 40+ languages making Islamic teachings accessible to a global audience.",
+      "metadata": "Sacred Traditions is a web application built with PHP Yii2 framework featuring beautiful visual presentations of Islamic Ahadith (Sacred Sayings) with translations in 40+ languages. The project implements scalable internationalization architecture, multi-language support system, and visual content design that transcends language barriers, making Islamic teachings accessible to a global audience through modern web technologies.",
       "myRole": "Lead Developer",
-      "keyLearnings": "Implementing 40+ language translations taught me about scalable internationalization architecture and the importance of creating visual content that transcends language barriers.",
-      "technologies": ["React", "Next.js", "Multi-language Support"],
+      "keyLearnings": [
+        "Implementing 40+ language translations taught me about scalable internationalization architecture and the importance of creating visual content that transcends language barriers."
+      ],
+      "technologies": [
+        "PHP",
+        "Yii2",
+        "HTML5",
+        "CSS3",
+        "Multi-language Support"
+      ],
       "links": {
         "liveUrl": "https://sacredtraditions.uk",
         "githubUrl": null,
@@ -417,33 +794,772 @@
         "playStoreUrl": null
       },
       "status": "Live",
-      "type": "Client",
-      "platform": "Web",
+      "type": "Personal",
+      "platform": ["Web Dashboard"],
       "screenshots": [],
       "appScreenshots": [],
       "html": null
     },
     {
-      "title": "Inheritance Calculator",
-      "clientId": null,
+      "title": "Elm ul Adad",
+      "clientId": "lakhana",
       "isFeatured": false,
-      "logoUrl": null,
-      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Inheritance+Calculator",
-      "description": "Inheritance Calculator – your trusted online tool for precise and compliant inheritance calculations in accordance with Sunni Islamic law. Create and share inheritance statements seamlessly with your loved ones for transparency and peace of mind.",
+      "timelineSort": 15,
+      "sort": 23,
+      "logoUrl": "/images/logo/ea.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Elm+ul+Adad",
+      "description": "Arabic & Urdu numerology calculator. A pocket tool for calculating Abjad count of any name. With added functionality of finding Ism e Azam. Our database has 150,000+ Ism e Azam combinations of 1, 2 or 3 Asma al Husnah.",
+      "metadata": "Elm ul Adad is an Arabic and Urdu numerology calculator mobile application built with Flutter and SQLite. The app calculates Abjad (numerical values) of names and features a comprehensive database of 150,000+ Ism e Azam combinations. It implements complex Arabic numerology algorithms, efficient database indexing for fast searches, and Arabic text processing capabilities for accurate calculations.",
       "myRole": "Lead Developer",
-      "keyLearnings": "Building a calculator for Islamic inheritance law required understanding complex legal frameworks and translating them into precise algorithms. Ensuring accuracy and compliance was paramount.",
-      "technologies": ["React", "JavaScript", "Islamic Law Algorithms"],
+      "keyLearnings": [
+        "Working with complex Arabic numerology algorithms and managing large datasets of 150,000+ combinations required efficient database indexing and search optimization techniques."
+      ],
+      "technologies": ["Flutter", "SQLite", "Arabic Processing"],
       "links": {
-        "liveUrl": "/inheritance",
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.elmuladaad"
+      },
+      "status": "Live",
+      "type": "Personal",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/ea-001.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/ea-002.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/ea-003.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/ea-004.webp"
+      ],
+      "html": null
+    },
+    {
+      "title": "HomeAssistant",
+      "clientId": "lakhana",
+      "isFeatured": false,
+      "timelineSort": 16,
+      "sort": 15,
+      "logoUrl": "/images/logo/ha.png",
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=HomeAssistant",
+      "description": "Personal smart home implementation with 80% home coverage using HomeAssistant platform, transforming entire home into intelligent automated living space",
+      "metadata": "HomeAssistant smart home project represents transforming my entire home into an intelligent, automated living space using IoT devices and the HomeAssistant platform. Started in 2020 with a single smart light, the system now covers 80% of the home with 50+ devices including smart switches, motion sensors, smart curtains, vacuum, and automated routines. Created a 3D house model for visualization and developed complex automation scenarios for morning routines, leaving/coming home, and night mode. The project demonstrates hands-on IoT implementation, home automation expertise, and system integration skills.",
+      "myRole": "System Integrator & Home Automation Enthusiast",
+      "keyLearnings": [
+        "Learned IoT protocols (Zigbee, Z-Wave, MQTT) and home networking",
+        "Mastered YAML programming for HomeAssistant configuration",
+        "Understood importance of gradual implementation and family buy-in",
+        "Practiced automation logic and creating conflict-free rules",
+        "Developed troubleshooting skills for hardware integrations"
+      ],
+      "technologies": [
+        "HomeAssistant",
+        "Zigbee",
+        "YAML",
+        "IoT Devices",
+        "Raspberry Pi",
+        "Node-RED"
+      ],
+      "links": {
+        "liveUrl": null,
         "githubUrl": null,
         "appStoreUrl": null,
         "playStoreUrl": null
       },
       "status": "Live",
       "type": "Personal",
-      "platform": "Web",
+      "platform": ["IoT System"],
       "screenshots": [],
       "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Story Blog",
+      "clientId": null,
+      "isFeatured": false,
+      "timelineSort": 17,
+      "sort": 32,
+      "logoUrl": null,
+      "logoVariants": null,
+      "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/mubashir-blog.png",
+      "description": "Personal creative writing blog featuring travelogues and stories primarily in Urdu language",
+      "metadata": "Story Blog is my personal creative writing platform—a collection of stories, travelogues, and reflections written primarily in Urdu language. Built using PHP Yii2 framework, it features a custom content management system for adding/editing stories, frontend reading interface optimized for long-form Urdu content with Nastaliq font, and mobile-responsive design. The blog serves as a personal creative outlet and archive of travel experiences and life observations.",
+      "myRole": "Developer & Writer",
+      "keyLearnings": [
+        "Building content management systems",
+        "Handling right-to-left (RTL) languages and Urdu typography",
+        "Creating engaging reading experiences for long-form content",
+        "Balancing creative expression with technical implementation"
+      ],
+      "technologies": ["PHP", "Yii2", "MySQL", "HTML5", "CSS3", "Urdu Fonts"],
+      "links": {
+        "liveUrl": "https://lakhana.com/mubashir/blog",
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Live",
+      "type": "Personal",
+      "platform": ["Website", "Admin Dashboard"],
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "CV Maker",
+      "clientId": null,
+      "isFeatured": false,
+      "timelineSort": 18,
+      "sort": 33,
+      "logoUrl": null,
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=CV+Maker",
+      "description": "Fast and customizable CV/Resume maker web application built for programmers and professionals",
+      "metadata": "CV Maker is a fast and customizable CV/Resume maker web application built specifically for programmers and professionals. It streamlines resume creation by allowing users to enter data, upload profile picture, customize colors, and generate printable professional resumes in seconds. Features include real-time preview, PDF export, multiple templates, color customization, and local storage for saving progress. Built as a side project using React/Vue.js with client-side focus for privacy and speed.",
+      "myRole": "Solo Developer",
+      "keyLearnings": [
+        "PDF generation from web content",
+        "Print stylesheet optimization",
+        "Client-side data persistence",
+        "Real-time reactive UI updates",
+        "Balancing customization with simplicity"
+      ],
+      "technologies": [
+        "React",
+        "JavaScript",
+        "PDF Generation",
+        "CSS",
+        "Local Storage"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Completed",
+      "type": "Personal",
+      "platform": ["Website"],
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "HHK (Household Helper Kit)",
+      "clientId": "lakhana",
+      "isFeatured": true,
+      "timelineSort": 19,
+      "sort": 5,
+      "logoUrl": null,
+      "logoVariants": null,
+      "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/hhk.jpg",
+      "description": "Comprehensive household finance management web application for tracking expenses, managing budgets, and making informed financial decisions",
+      "metadata": "HHK (Household Helper Kit) is a comprehensive household finance management web application evolved from my personal Excel sheet 'Home Hisab Kitab'. The app features smart ledger management (assets, income, expenses), shared ledgers for family collaboration, quick transaction entry with keyboard shortcuts (Press 'N' anywhere), automated salary management, comprehensive monthly/annual reports with visual analytics, and document management for receipts. Built as full-stack solo project, it demonstrates real-time collaboration, SMS parsing for bank transactions, and sophisticated financial reporting.",
+      "myRole": "Solo Developer (Full Stack)",
+      "keyLearnings": [
+        "Solve your own problems - best products come from personal pain points",
+        "Real-time collaborative editing and WebSocket implementation",
+        "SMS parsing with regex for extracting structured data",
+        "Performance optimization for handling years of financial transactions",
+        "User experience importance - keyboard shortcuts for power users"
+      ],
+      "technologies": [
+        "React",
+        "Next.js",
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "Chart.js",
+        "WebSocket"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Live",
+      "type": "Personal",
+      "platform": ["Web Dashboard"],
+      "screenshots": [
+        "https://s3.lakhana.com/portfolio/images/screenshots/hhk-001.png",
+        "https://s3.lakhana.com/portfolio/images/screenshots/hhk-002.png",
+        "https://s3.lakhana.com/portfolio/images/screenshots/hhk-003.png",
+        "https://s3.lakhana.com/portfolio/images/screenshots/hhk-004.png",
+        "https://s3.lakhana.com/portfolio/images/screenshots/hhk-005.png"
+      ],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Scroll",
+      "clientId": "lakhana",
+      "isFeatured": true,
+      "timelineSort": 20,
+      "sort": 13,
+      "logoUrl": null,
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Scroll",
+      "description": "Premium subscription-based audiobook and podcast application dedicated exclusively to authentic Sunni Islamic knowledge",
+      "metadata": "Scroll is a premium subscription-based audiobook and podcast application dedicated exclusively to authentic Sunni Islamic knowledge. Tagged as 'The Timeless Library, Reimagined for Audio', it provides a curated, authenticated, and organized audio library of Islamic lectures, Tafsir, Hadith studies, Fiqh, and more from verified scholars. Features include offline playback, variable speed, sleep timer, bookmarks, progress tracking across series, and subscription model (free Glimpse and paid Premium). As solo developer and curator, I handle content authentication, Flutter mobile development, backend infrastructure, and business operations.",
+      "myRole": "Solo Developer & Content Curator",
+      "keyLearnings": [
+        "Niche focus - serving specific audience deeply beats broad shallow approach",
+        "Quality over quantity - curated content more valuable than massive unfiltered library",
+        "Subscription model viability - users pay for authentication and convenience",
+        "Audio streaming optimization and CDN usage",
+        "Content authentication and scholarly vetting processes"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Audio Streaming",
+        "CDN",
+        "PHP",
+        "Laravel",
+        "PostgreSQL",
+        "Stripe"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Active Development",
+      "type": "Personal",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Mirai (ميراي)",
+      "clientId": "freelancing",
+      "isFeatured": false,
+      "timelineSort": 21,
+      "sort": 12,
+      "logoUrl": "/images/logo/mirai.webp",
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Mirai",
+      "description": "Local business discovery platform for Madinah, Saudi Arabia, connecting consumers with local shops, restaurants, and services",
+      "metadata": "Mirai is a comprehensive local business discovery and community platform designed to connect consumers with local shops, restaurants, services, and venues in Madinah, Saudi Arabia. The app serves as a digital marketplace and community hub, featuring detailed business information, user reviews, discussions, and exclusive discounts. It addresses the problem that Google lacks information about small local businesses that aren't advertised like popular brands. Features include business directory, discovery & search, ratings & reviews, discussion forum, and discount offers.",
+      "myRole": "Full-Stack Mobile Developer",
+      "keyLearnings": [
+        "Community platform development with user interaction features",
+        "Bilingual app development with full RTL support",
+        "Google Maps integration for location-based discovery",
+        "Handling user-generated content and moderation",
+        "Two-sided platform serving both businesses and consumers"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Google Maps",
+        "PHP",
+        "MySQL",
+        "Firebase"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": "https://apkpure.com/mirai-ميراي/com.ksa.mirai"
+      },
+      "status": "Completed",
+      "type": "Client",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mirai-001.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mirai-002.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mirai-003.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mirai-004.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mirai-005.webp",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mirai-006.webp"
+      ],
+      "html": null
+    },
+    {
+      "title": "LAIG (Laieg)",
+      "clientId": "freelancing",
+      "isFeatured": false,
+      "timelineSort": 22,
+      "sort": 31,
+      "logoUrl": null,
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=LAIG+(Laieg)",
+      "description": "E-commerce sunglasses app with innovative 3D AR virtual try-on feature using face filter technology",
+      "metadata": "LAIG (Laieg) is an innovative e-commerce mobile application for a functional offline sunglasses business. The app's unique selling proposition is its 3D AR (Augmented Reality) try-on feature, allowing users to virtually try on sunglasses using their phone camera before purchasing. Features include AR virtual try-on with face tracking, complete e-commerce functionality (signup, login, cart, checkout), product catalog browsing, secure payment integration, order management and tracking, and user account profiles.",
+      "myRole": "Mobile App Developer",
+      "keyLearnings": [
+        "First-hand experience with augmented reality in mobile apps",
+        "Complete e-commerce shopping flow implementation",
+        "Performance optimization balancing AR quality with app performance",
+        "Cross-platform AR handling (ARCore/ARKit differences)",
+        "3D model integration and real-time rendering"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "ARCore",
+        "ARKit",
+        "3D Models",
+        "Payment Gateway",
+        "RESTful API"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Completed",
+      "type": "Client",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Chic",
+      "clientId": "freelancing",
+      "isFeatured": false,
+      "timelineSort": 23,
+      "sort": 10,
+      "logoUrl": "/images/logo/chic.png",
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Chic",
+      "description": "KSA version of Booksy - beauty, wellness, and health marketplace for finding and booking appointments with local professionals",
+      "metadata": "Chic is the KSA (Saudi Arabia) version of Booksy—a beauty, wellness, and health marketplace application that makes it easy to find and book appointments with local professionals. The app connects customers with salons, spas, clinics, and wellness professionals across Saudi Arabia, eliminating back-and-forth phone calls by enabling instant booking through the app. Features include service discovery, professional profiles, instant booking, search & filter, reviews & ratings, appointment management, and favorites.",
+      "myRole": "Mobile App Developer",
+      "keyLearnings": [
+        "Marketplace development for two-sided platform",
+        "Complex booking system with calendar integration and availability management",
+        "Real-time data handling for live availability and booking conflicts",
+        "Service industry operations understanding",
+        "Location-based search implementation"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Google Maps",
+        "Calendar Integration",
+        "RESTful API",
+        "Firebase"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Completed",
+      "type": "Client",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": ["https://s3.lakhana.com/portfolio/videos/chic.mp4"],
+      "html": null
+    },
+    {
+      "title": "ChicBiz",
+      "clientId": "freelancing",
+      "isFeatured": false,
+      "timelineSort": 24,
+      "sort": 11,
+      "logoUrl": "/images/logo/chicbiz.png",
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=ChicBiz",
+      "description": "Business-facing companion app to Chic providing complete business management suite for beauty/wellness professionals",
+      "metadata": "ChicBiz is the service provider's companion app to Chic—the business-facing side of the platform empowering beauty/wellness business owners and professionals to manage their operations, appointments, marketing, and customer relationships. Features include appointment management, calendar management, customer database and history, marketing tools (social media campaigns, SMS ads), analytics & reporting, service menu management, staff scheduling, payment tracking, and 10+ business tools for comprehensive business operations.",
+      "myRole": "Mobile App Developer",
+      "keyLearnings": [
+        "Business tools development with professional-grade features",
+        "Dashboard design with intuitive data-rich interfaces",
+        "Multi-user systems with business owner + staff access levels",
+        "Analytics implementation for meaningful business metrics",
+        "Understanding both sides of two-sided marketplace platform"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Chart.js",
+        "SMS Gateway",
+        "Social Media APIs",
+        "RESTful API",
+        "Firebase"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Completed",
+      "type": "Client",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": ["https://s3.lakhana.com/portfolio/videos/chicbiz.mp4"],
+      "html": null
+    },
+    {
+      "title": "MyBaby",
+      "clientId": "freelancing",
+      "isFeatured": false,
+      "timelineSort": 25,
+      "sort": 14,
+      "logoUrl": "/images/logo/mybaby.webp",
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=MyBaby",
+      "description": "Kindergarten communication platform enhancing connection between parents, teachers, and administrators",
+      "metadata": "MyBaby is a comprehensive mobile application designed to enhance communication between kindergartens and parents, offering a secure and organized platform where parents can stay updated on their child's daily activities, progress, and important announcements. Features include real-time updates, secure encrypted messaging, child profiles with progress reports, event management, photo & video sharing, daily activity reports, analytics for school owners, and multi-role system (parents/teachers/admins). The app solves the problem of parents lacking visibility into child's daily kindergarten activities.",
+      "myRole": "Mobile App Developer",
+      "keyLearnings": [
+        "Educational software development understanding kindergarten workflows",
+        "Multi-role applications with different experiences per user type",
+        "Secure communication with encrypted messaging for child data",
+        "Media management handling large volumes of photos/videos",
+        "Privacy & security protecting children's data and images"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Cloud Storage",
+        "Firebase",
+        "End-to-end Encryption",
+        "Analytics Dashboard"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.mybabyapp.net&hl=en"
+      },
+      "status": "Live",
+      "type": "Client",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mybaby-001.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mybaby-002.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mybaby-003.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mybaby-004.jpg"
+      ],
+      "html": null
+    },
+    {
+      "title": "AirDocs",
+      "clientId": "freelancing",
+      "isFeatured": false,
+      "timelineSort": 26,
+      "sort": 18,
+      "logoUrl": "/images/logo/airdocs.png",
+      "logoVariants": {
+        "dark": "/images/logo/airdocs-wh.png"
+      },
+      "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/airdocs.png",
+      "description": "Personal document management system - like Google Drive but specifically targeted for personal documents with type-specific organization",
+      "metadata": "AirDocs is a personal document management system—like Google Drive but specifically targeted for personal documents. Instead of generic file storage, AirDocs provides a structured, document-type-specific approach with custom forms for each document type (passport, NIC, driving license, certificates, etc.). Features include document type library with custom forms, smart dashboard with expiry tracking, document upload with metadata, expiry alerts and notifications, and secure cloud storage. The innovation is treating different document types intelligently with optional form fields for additional details.",
+      "myRole": "Full-Stack Developer",
+      "keyLearnings": [
+        "Document management system architecture",
+        "Custom form generation per document type",
+        "Expiry tracking and notification systems",
+        "Cloud storage integration for sensitive documents",
+        "Security and encryption for personal data"
+      ],
+      "technologies": [
+        "Flutter",
+        "React",
+        "Next.js",
+        "Cloud Storage",
+        "RESTful API",
+        "Database",
+        "Notification System"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Completed",
+      "type": "Client",
+      "platform": ["Web Dashboard", "Mobile App"],
+      "screenshots": [
+        "https://s3.lakhana.com/portfolio/images/screenshots/airdocs-001.png",
+        "https://s3.lakhana.com/portfolio/images/screenshots/airdocs-002.png",
+        "https://s3.lakhana.com/portfolio/images/screenshots/airdocs-003.png",
+        "https://s3.lakhana.com/portfolio/images/screenshots/airdocs-004.png"
+      ],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/airdocs-001.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/airdocs-002.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/airdocs-003.jpg"
+      ],
+      "html": null
+    },
+    {
+      "title": "Info Ride",
+      "clientId": "freelancing",
+      "isFeatured": false,
+      "timelineSort": 27,
+      "sort": 29,
+      "logoUrl": null,
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Info+Ride",
+      "description": "Vehicle information display system for Saudi transport vehicles complying with legal requirements to show driver info and emergency contacts",
+      "metadata": "Info Ride is a standalone Android application designed to comply with Saudi Arabia's transportation laws requiring transport vehicles (buses, vans, etc.) to display specific information on in-car screens. The legal requirement mandates display of driver's picture, name, emergency contact numbers (Ambulance 997, Police 999, Traffic Police 993), and safety information. Features include offline-first operation, Google Maps integration when online, live speed display via GPS, and standalone APK installation on infotainment systems without cloud dependency.",
+      "myRole": "Mobile App Developer",
+      "keyLearnings": [
+        "Building compliance-focused applications for legal requirements",
+        "Offline-first design ensuring functionality without internet",
+        "In-vehicle application UI/UX for in-car displays",
+        "Performance optimization for continuous always-on operation",
+        "GPS integration for real-time speed and location",
+        "Safety-critical information display"
+      ],
+      "technologies": [
+        "Flutter",
+        "Android",
+        "Google Maps",
+        "GPS",
+        "Local Database",
+        "Standalone APK"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Completed",
+      "type": "Client",
+      "platform": ["Android App"],
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Inheritance Calculator",
+      "clientId": "lakhana",
+      "isFeatured": false,
+      "timelineSort": 28,
+      "sort": 6,
+      "logoUrl": null,
+      "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/inheritance.jpg",
+      "description": "Inheritance Calculator – your trusted online tool for precise and compliant inheritance calculations in accordance with Sunni Islamic law. Create and share inheritance statements seamlessly with your loved ones for transparency and peace of mind.",
+      "metadata": "Inheritance Calculator is a web application built with React and JavaScript that provides precise inheritance calculations according to Sunni Islamic law. The project required understanding complex legal frameworks and translating them into accurate algorithms. It features creating and sharing inheritance statements, ensuring accuracy and compliance with Islamic jurisprudence, and providing transparency for users and their families.",
+      "myRole": "Lead Developer",
+      "keyLearnings": [
+        "Building a calculator for Islamic inheritance law required understanding complex legal frameworks and translating them into precise algorithms. Ensuring accuracy and compliance was paramount."
+      ],
+      "technologies": ["React", "JavaScript", "Islamic Law Algorithms"],
+      "links": {
+        "liveUrl": "https://lakhana.com/inheritance",
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Live",
+      "type": "Prototype",
+      "platform": ["Website"],
+      "screenshots": [
+        "https://s3.lakhana.com/portfolio/images/screenshots/inheritance-001.png",
+        "https://s3.lakhana.com/portfolio/images/screenshots/inheritance-002.png",
+        "https://s3.lakhana.com/portfolio/videos/inheritance.mp4"
+      ],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "True Quran",
+      "clientId": "lakhana",
+      "isFeatured": false,
+      "timelineSort": 29,
+      "sort": 19,
+      "logoUrl": "/images/logo/truequran.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=True+Quran",
+      "description": "Recite Quran with transliteration, translation and tafsir with True Quran. A comprehensive Quran reading application with multiple translation options and detailed commentary.",
+      "metadata": "True Quran is a comprehensive Quran reading application developed with Flutter featuring transliteration, multiple translations, and detailed Tafsir (commentary). The app implements precise Arabic text rendering, audio player integration for recitation synchronization, and Arabic typography handling. Special attention was given to respectful handling of sacred content with high accuracy in text display and audio synchronization.",
+      "myRole": "Lead Developer",
+      "keyLearnings": [
+        "Developing a Quran application required careful attention to Arabic text rendering, audio synchronization, and respectful handling of sacred content with precise accuracy."
+      ],
+      "technologies": ["Flutter", "Audio Player", "Arabic Typography"],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Active Development",
+      "type": "Prototype",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": [],
+      "html": null
+    },
+    {
+      "title": "Time Sequence",
+      "clientId": "lakhana",
+      "isFeatured": false,
+      "timelineSort": 30,
+      "sort": 21,
+      "logoUrl": "/images/logo/timesequence.png",
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Time+Sequence",
+      "description": "Timeline of all Islamic events in the past 1400+ years. Our data dates back all the way to before Hijrah. You can jump to any year and see a timeline of all events that occurred in that year. You can also see relations between events.",
+      "metadata": "Time Sequence is an interactive historical timeline application built with Flutter featuring 1400+ years of Islamic historical events dating back before Hijrah. The app uses SQLite for data storage and implements innovative UI/UX design for timeline visualization. Users can navigate through different years, view event details, and explore relationships between historical events through an intuitive interface.",
+      "myRole": "Lead Developer",
+      "keyLearnings": [
+        "Creating an interactive timeline interface with 1400+ years of historical data required innovative UI/UX design and efficient data visualization techniques to make complex historical information accessible."
+      ],
+      "technologies": ["Flutter", "Timeline Visualization", "SQLite"],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": "https://play.google.com/store/apps/details?id=com.lakhana.timesequence"
+      },
+      "status": "Live",
+      "type": "Prototype",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": ["https://s3.lakhana.com/portfolio/videos/timesequence.mp4"],
+      "html": null
+    },
+    {
+      "title": "Ala Tayer (Maak)",
+      "clientId": "freelancing",
+      "isFeatured": false,
+      "timelineSort": 31,
+      "sort": 26,
+      "logoUrl": "/images/logo/alatayer.png",
+      "logoVariants": {
+        "text": "/images/logo/alatayer-text.png"
+      },
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Ala+Tayer+(Maak)",
+      "description": "Package delivery platform connecting inter-city travelers with people who want to send packages for non-urgent deliveries",
+      "metadata": "Ala Tayer is a platform prototype connecting inter-city travelers with people who want to send packages to other cities, targeting non-urgent deliveries where users prefer sending parcels through trusted individuals rather than traditional shipping. Features include traveler registration with travel dates and routes, package matching to find travelers going to desired city, delivery options (door pickup or sender drop-off), security system with QR code scanning at pickup and seal photo verification at delivery, and basic pricing with optional pickup fee.",
+      "myRole": "Lead Developer",
+      "keyLearnings": [
+        "Explored peer-to-peer package delivery concept",
+        "Implementing trust and security mechanisms in sharing economy applications",
+        "User matching algorithms for travelers and senders",
+        "QR code security verification for package handover"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "QR Code",
+        "API Service",
+        "Matching Algorithm"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Completed",
+      "type": "Prototype",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/alatayer-001.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/alatayer-002.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/alatayer-003.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/alatayer-004.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/alatayer-005.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/alatayer-006.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/alatayer-007.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/alatayer-008.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/alatayer-009.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/alatayer-010.jpg"
+      ],
+      "html": null
+    },
+    {
+      "title": "Taxi",
+      "clientId": null,
+      "isFeatured": false,
+      "timelineSort": 32,
+      "sort": 28,
+      "logoUrl": null,
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=Taxi",
+      "description": "Ride-hailing platform prototype with specialized features for Saudi religious tourism including Umrah Ziyarah packages",
+      "metadata": "Taxi is a ride-hailing platform prototype designed as alternative to Uber, Careem, Bolt, and inDrive with enhanced features for the Saudi market. Features include multi-vehicle support (sedans to buses for different group sizes), specialized Umrah Ziyarah packages with multi-destination tours (Quba Mosque, Battlefield of Uhud, etc.), destination information with pictures and descriptions, advance booking for future dates, flexible payment (advance or cash on arrival), and pre-planned routes for religious sites.",
+      "myRole": "Lead Developer",
+      "keyLearnings": [
+        "Specialized features for religious tourism market",
+        "Managing complex multi-destination routing for tour packages",
+        "Multi-vehicle management system",
+        "Integration of destination information with maps and media"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Google Maps",
+        "API Service",
+        "Media Management"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Completed",
+      "type": "Prototype",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": ["https://s3.lakhana.com/portfolio/videos/taxi.mp4"],
+      "html": null
+    },
+    {
+      "title": "GoodDeeds",
+      "clientId": null,
+      "isFeatured": false,
+      "timelineSort": 33,
+      "sort": 30,
+      "logoUrl": null,
+      "logoVariants": null,
+      "coverImageUrl": "https://placehold.co/600x400/4A5568/ffffff?text=GoodDeeds",
+      "description": "Prayer tracking application for parents and teachers to monitor children's daily Islamic prayers with detailed analytics",
+      "metadata": "GoodDeeds is a prayer tracking application prototype designed for parents and teachers to monitor children's or students' daily Islamic prayers. The app provides organization-based tracking with color-coded statistics showing prayer consistency. Features include multi-child support for parents, organization system where teachers manage student dashboards, detailed prayer tracking (Sunnah, Fard, congregation status), daily tracking of all 5 prayers (Fajr, Dhuhr, Asr, Maghrib, Isha), prayer status marking (prayed alone, in congregation, or missed), and monthly statistics with visual dashboard.",
+      "myRole": "Lead Developer",
+      "keyLearnings": [
+        "Educational tracking systems for religious practices",
+        "Creating engaging visual representations of daily habits",
+        "Organization-based multi-role user systems",
+        "Color-coded statistics visualization",
+        "Encouraging consistency in children's spiritual development"
+      ],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Database",
+        "Visualization Charts",
+        "Multi-Role System"
+      ],
+      "links": {
+        "liveUrl": null,
+        "githubUrl": null,
+        "appStoreUrl": null,
+        "playStoreUrl": null
+      },
+      "status": "Completed",
+      "type": "Prototype",
+      "platform": ["Mobile App"],
+      "screenshots": [],
+      "appScreenshots": [
+        "https://s3.lakhana.com/portfolio/videos/gooddeeds.mp4",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/gooddeeds-001.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/gooddeeds-002.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/gooddeeds-003.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/gooddeeds-004.jpg"
+      ],
       "html": null
     }
   ],
@@ -452,14 +1568,14 @@
       "title": "Custom React Hook for Fetching Data",
       "description": "A reusable React hook that simplifies API calls by handling loading, error, and data states.",
       "language": "javascript",
-      "code": "const useFetch = (url) => {\n  const [data, setData] = React.useState(null);\n  // ... rest of the hook implementation\n};",
+      "code": "const useFetch = (url) => {\n  const [data, setData] = React.useState(null);\n ",
       "gistUrl": "https://gist.github.com/yourusername/12345abcde",
-      "screenshots": ["/images/screenshots/alpha-001.png"]
+      "screenshots": []
     }
   ],
   "testimonials": [
     {
-      "clientId": "startup-co",
+      "clientId": "dc",
       "contactPerson": "Jane Doe",
       "contactTitle": "CEO, Startup Co.",
       "contactAvatarUrl": "https://placehold.co/100x100/EFEFEF/333333?text=JD",
@@ -469,11 +1585,25 @@
   ],
   "articles": [
     {
-      "title": "Understanding Async/Await in JavaScript",
-      "publication": "My Personal Blog",
-      "date": "2023-08-15",
-      "url": "https://yourblog.com/async-await-deep-dive",
-      "description": "A deep dive into the mechanics of asynchronous JavaScript, explaining the event loop and how async/await simplifies writing asynchronous code."
+      "title": "From College Dreams to University Realities",
+      "publication": "Lakhana Personal Blog",
+      "date": "2020-05-16",
+      "url": "https://lakhana.com/stories/read?id=2",
+      "description": "A witty and reflective travelogue tracing the reluctant yet revealing journey from college life to university days—where the pursuit of education meets the irony of disinterest on both sides."
+    },
+    {
+      "title": "Travelogue: Malaysia 2019",
+      "publication": "Lakhana Personal Blog",
+      "date": "2021-07-27",
+      "url": "https://lakhana.com/stories/read?id=1",
+      "description": "An engaging travelogue recounting a memorable 15-day journey to Malaysia—initially meant for a one-day university event—filled with vivid experiences, cultural encounters, and personal reflections from the author’s exploration."
+    },
+    {
+      "title": "Backpacking through Eastern Europe (like Joey)",
+      "publication": "@mylakhana (TikTok)",
+      "date": "2023-01-01",
+      "url": "https://www.tiktok.com/@mylakhana",
+      "description": "An 11-part visual travelogue capturing a deeply personal journey through Eastern Europe — where every frame tells a story of self-discovery. From the thrill of a first solo adventure to the quiet wonder of witnessing snowfall and riding a horse for the very first time, this 14-day odyssey blends heartfelt narration, evocative visuals, and AI-generated voice to portray the beauty of solitude, courage, and the joy of new beginnings."
     }
   ],
   "education": [
