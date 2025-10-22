@@ -187,7 +187,7 @@
     {
       "company": "Digital Commerce (WS1)",
       "companyUrl": "https://shiptag.com",
-      "jobTitle": "Customer Care Agent",
+      "jobTitle": "Tech Support & CS Agent",
       "location": "Medina, Saudi Arabia",
       "type": "Full-time",
       "startDate": "Mar 2016",
@@ -588,10 +588,10 @@
       "platform": ["Mobile App", "Web Dashboard", "Admin Dashboard"],
       "screenshots": [],
       "appScreenshots": [
-        "https://s3.lakhana.com/portfolio/images/app-screenshots/zm-001.png",
-        "https://s3.lakhana.com/portfolio/images/app-screenshots/zm-002.png",
-        "https://s3.lakhana.com/portfolio/images/app-screenshots/zm-003.png",
-        "https://s3.lakhana.com/portfolio/images/app-screenshots/zm-004.png",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/zm-001.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/zm-002.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/zm-003.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/zm-004.jpg",
         "https://s3.lakhana.com/portfolio/videos/zm.mp4"
       ],
       "html": null
@@ -622,12 +622,12 @@
       "platform": ["Mobile App", "Web Dashboard", "Admin Dashboard"],
       "screenshots": [],
       "appScreenshots": [
-        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-001.png",
-        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-002.png",
-        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-003.png",
-        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-004.png",
-        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-005.png",
-        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-006.png",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-001.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-002.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-003.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-004.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-005.jpg",
+        "https://s3.lakhana.com/portfolio/images/app-screenshots/mn-006.jpg",
         "https://s3.lakhana.com/portfolio/videos/mn-001.mp4",
         "https://s3.lakhana.com/portfolio/videos/mn-002.mp4"
       ],
@@ -958,7 +958,7 @@
       "coverImageUrl": "https://s3.lakhana.com/portfolio/images/cover/hhk.jpg",
       "description": "Comprehensive household finance management web application for tracking expenses, managing budgets, and making informed financial decisions",
       "metadata": "HHK (Household Helper Kit) is a comprehensive household finance management web application evolved from my personal Excel sheet 'Home Hisab Kitab'. The app features smart ledger management (assets, income, expenses), shared ledgers for family collaboration, quick transaction entry with keyboard shortcuts (Press 'N' anywhere), automated salary management, comprehensive monthly/annual reports with visual analytics, and document management for receipts. Built as full-stack solo project, it demonstrates real-time collaboration, SMS parsing for bank transactions, and sophisticated financial reporting.",
-      "myRole": "Solo Developer (Full Stack)",
+      "myRole": "Lead Developer (Full Stack)",
       "keyLearnings": [
         "Solve your own problems - best products come from personal pain points",
         "Real-time collaborative editing and WebSocket implementation",
