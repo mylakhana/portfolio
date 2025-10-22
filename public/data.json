@@ -76,10 +76,10 @@
     {
       "category": "Programming Languages & Web Tech",
       "technologies": {
-        "JavaScript": "Expert",
-        "TypeScript": "Expert",
-        "PHP": "High",
-        "Dart": "Expert",
+        "JavaScript": "High",
+        "TypeScript": "High",
+        "PHP": "Expert",
+        "Flutter": "Expert",
         "C#": "Moderate",
         "HTML5": "Expert",
         "CSS3": "Expert"
@@ -88,22 +88,26 @@
     {
       "category": "Frameworks & Libraries",
       "technologies": {
-        "React": "Expert",
-        "Next.js": "Expert",
+        "React": "High",
+        "Next.js": "High",
         "jQuery": "Expert",
-        "Ajax": "Expert",
-        "Flutter": "Expert",
-        "Laravel": "High",
+        "Laravel": "Moderate",
         "Yii2": "High",
         "Node.js (NestJS)": "Moderate",
         "Fastify": "Moderate"
       }
     },
     {
-      "category": "Databases",
+      "category": "Databases & Server",
       "technologies": {
         "MySQL": "High",
-        "PostgreSQL": "High"
+        "PostgreSQL": "Low",
+        "MongoDB": "Moderate",
+        "Prisma ORM": "High",
+        "Server Management": "Moderate",
+        "Docker": "Moderate",
+        "Kubernetes": "ModLowerate",
+        "Azure": "Moderate"
       }
     },
     {
@@ -131,7 +135,7 @@
         "React",
         "Next.js",
         "JavaScript",
-        "SQL",
+        "MySQL",
         "AI Chatbots",
         "Claude Code",
         "Bolt",
@@ -144,7 +148,7 @@
       ],
       "techStack": {
         "frontend": ["React", "Next.js", "JavaScript"],
-        "backend": ["Node.js", "SQL"],
+        "backend": ["Node.js", "MySQL"],
         "tools": ["Claude Code", "Bolt", "Cursor", "Windsurf"]
       }
     },
@@ -1365,9 +1369,9 @@
       "platform": ["Website"],
       "screenshots": [
         "https://s3.lakhana.com/portfolio/images/screenshots/inheritance-001.png",
-        "https://s3.lakhana.com/portfolio/images/screenshots/inheritance-002.png",
-        "https://s3.lakhana.com/portfolio/videos/inheritance.mp4"
+        "https://s3.lakhana.com/portfolio/images/screenshots/inheritance-002.png"
       ],
+      "videos": ["https://s3.lakhana.com/portfolio/videos/inheritance.mov"],
       "appScreenshots": [],
       "html": null
     },
