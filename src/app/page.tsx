@@ -15,6 +15,7 @@ import {
 import { AppScreenshot } from "@/components/AppScreenshot";
 import { useTheme } from "@/providers/theme-provider";
 import { TechIcon, getDeviconName, parseIconString } from "@/components/ui/tech-icon";
+import { AutoScrollCarousel } from "@/components/ui/auto-scroll-carousel";
 
 // Helper function to determine if a file is a video
 const isVideoFile = (filename: string): boolean => {
@@ -657,11 +658,13 @@ export default function Template002() {
                     ([tech, level], idx) => {
                       const percentage = getProficiencyPercentage(level);
                       const colors = getProficiencyColor(level);
+                      const iconString = getDeviconName(tech);
+                      const { name, variant } = parseIconString(iconString);
                       return (
                         <div key={idx} className="space-y-2">
                           <div className="flex items-center justify-between">
                             <span className="text-sm font-medium text-gray-900 dark:text-white flex items-center gap-2">
-                              <TechIcon name={getDeviconName(tech)} variant="original" className="text-lg" />
+                              <TechIcon name={name} variant={variant as "plain" | "original" | "line"} className="text-lg" />
                               <span className="truncate">{tech}</span>
                             </span>
                             <span className={cn("text-xs font-semibold px-2 py-1 rounded-full", colors.bg, colors.text, colors.border, "border")}>
@@ -996,33 +999,34 @@ export default function Template002() {
             <h3 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
               Clients Who Trust Me
             </h3>
-            <div className="bg-gray-200 dark:bg-gray-800 rounded-2xl py-8 px-6 overflow-hidden">
-              <div className="flex items-center gap-12 animate-scroll">
-                {/* Duplicate items for seamless loop - repeat more if few items */}
-                {(() => {
-                  const repeatCount = data.clients.length < 6 ? 4 : 2;
-                  return Array(repeatCount).fill(data.clients).flat().map((client, index) => {
-                    const isDark = resolvedTheme === 'dark';
-                    const logoSrc = isDark
-                      ? (client.logoVariants?.textDark || client.logoVariants?.text || client.logoUrl)
-                      : (client.logoVariants?.text || client.logoUrl);
+            <AutoScrollCarousel
+              containerClassName="bg-white dark:bg-gray-800 rounded-2xl py-8 px-6 border border-gray-200 dark:border-gray-700"
+              speed="normal"
+            >
+              {/* Duplicate items for seamless loop - repeat more if few items */}
+              {(() => {
+                const repeatCount = data.clients.length < 6 ? 4 : 2;
+                return Array(repeatCount).fill(data.clients).flat().map((client, index) => {
+                  const isDark = resolvedTheme === 'dark';
+                  const logoSrc = isDark
+                    ? (client.logoVariants?.textDark || client.logoVariants?.text || client.logoUrl)
+                    : (client.logoVariants?.text || client.logoUrl);
 
-                    return (
-                      <div
-                        key={`${client.id}-${index}`}
-                        className="transition-all duration-300 opacity-80 hover:opacity-100 hover:drop-shadow-lg flex-shrink-0"
-                      >
-                        <img
-                          src={logoSrc}
-                          alt={client.name}
-                          className="h-12 w-auto"
-                        />
-                      </div>
-                    );
-                  });
-                })()}
-              </div>
-            </div>
+                  return (
+                    <div
+                      key={`${client.id}-${index}`}
+                      className="transition-all duration-300 opacity-80 hover:opacity-100 hover:drop-shadow-lg flex-shrink-0"
+                    >
+                      <img
+                        src={logoSrc}
+                        alt={client.name}
+                        className="h-12 w-auto"
+                      />
+                    </div>
+                  );
+                });
+              })()}
+            </AutoScrollCarousel>
           </div>
         </section>
       )}
@@ -1033,26 +1037,27 @@ export default function Template002() {
           <h3 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
             Stack & Tools
           </h3>
-          <div className="bg-white dark:bg-gray-800 rounded-2xl py-12 px-6 overflow-hidden border border-gray-200 dark:border-gray-700">
-            <div className="flex items-center gap-12 animate-scroll">
-              {/* Duplicate items for seamless loop - repeat more if few items */}
-              {(() => {
-                const repeatCount = data.technologiesUsed.length < 8 ? 4 : 2;
-                return Array(repeatCount).fill(data.technologiesUsed).flat().map((tech, index) => {
-                  const iconString = getDeviconName(tech);
-                  const { name, variant } = parseIconString(iconString);
-                  return (
-                    <div
-                      key={`${tech}-${index}`}
-                      className="flex-shrink-0 transition-all duration-300 opacity-85 hover:opacity-100 hover:drop-shadow-lg"
-                    >
-                      <TechIcon name={name} variant={variant as "plain" | "original" | "line"} className="text-5xl" />
-                    </div>
-                  );
-                });
-              })()}
-            </div>
-          </div>
+          <AutoScrollCarousel
+            containerClassName="bg-white dark:bg-gray-800 rounded-2xl py-12 px-6 border border-gray-200 dark:border-gray-700"
+            speed="normal"
+          >
+            {/* Duplicate items for seamless loop - repeat more if few items */}
+            {(() => {
+              const repeatCount = data.technologiesUsed.length < 8 ? 4 : 2;
+              return Array(repeatCount).fill(data.technologiesUsed).flat().map((tech, index) => {
+                const iconString = getDeviconName(tech);
+                const { name, variant } = parseIconString(iconString);
+                return (
+                  <div
+                    key={`${tech}-${index}`}
+                    className="flex-shrink-0 transition-all duration-300 opacity-85 hover:opacity-100 hover:drop-shadow-lg"
+                  >
+                    <TechIcon name={name} variant={variant as "plain" | "original" | "line"} className="text-5xl" />
+                  </div>
+                );
+              });
+            })()}
+          </AutoScrollCarousel>
         </div>
       </section>
 
@@ -1797,40 +1802,44 @@ export default function Template002() {
               </p>
             </div>
 
-            <div className="overflow-hidden">
-              <div className="flex gap-8 animate-scroll-slow">
-                {/* Duplicate testimonials for seamless loop */}
-                {[...data.testimonials, ...data.testimonials].map((testimonial, index) => (
-                  <div
-                    key={index}
-                    className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex-shrink-0 w-[500px]"
-                  >
-                    <div className="flex items-start gap-4 mb-6">
-                      <img
-                        src={testimonial.contactAvatarUrl}
-                        alt={testimonial.contactPerson}
-                        className="w-16 h-16 rounded-full object-cover"
-                      />
-                      <div>
-                        <p className="font-semibold text-gray-900 dark:text-white">
-                          {testimonial.contactPerson}
-                        </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">
-                          {testimonial.contactTitle}
-                        </p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                          Re: {testimonial.projectName}
-                        </p>
-                      </div>
+            <AutoScrollCarousel
+              speed="slow"
+              gap="gap-8"
+              delay={5000}
+              containerClassName="pb-8"
+              equalHeight={true}
+            >
+              {/* Duplicate testimonials for seamless loop */}
+              {[...data.testimonials, ...data.testimonials].map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 flex-shrink-0 w-[500px] h-full flex flex-col"
+                >
+                  <div className="flex items-start gap-4 mb-6">
+                    <img
+                      src={testimonial.contactAvatarUrl}
+                      alt={testimonial.contactPerson}
+                      className="w-16 h-16 rounded-full object-cover"
+                    />
+                    <div>
+                      <p className="font-semibold text-gray-900 dark:text-white">
+                        {testimonial.contactPerson}
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        {testimonial.contactTitle}
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        Re: {testimonial.projectName}
+                      </p>
                     </div>
-
-                    <blockquote className="text-gray-600 dark:text-gray-300 italic leading-relaxed">
-                      "{testimonial.quote}"
-                    </blockquote>
                   </div>
-                ))}
-              </div>
-            </div>
+
+                  <blockquote className="text-gray-600 dark:text-gray-300 italic leading-relaxed">
+                    "{testimonial.quote}"
+                  </blockquote>
+                </div>
+              ))}
+            </AutoScrollCarousel>
           </div>
         </section>
       )}
